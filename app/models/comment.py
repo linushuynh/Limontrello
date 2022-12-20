@@ -7,16 +7,17 @@ class Comment(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(100), nullable=False)
-    board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
+    content = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    card_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("cards.id")))
 
-    cards = db.relationship(
-        "Card", cascade="all, delete-orphan", back_populates="list"
+
+    card = db.relationship(
+        "Card", back_populates="comments"
     )
 
     def to_dict(self):
         return {
             'id': self.id,
             'content': self.content,
-            'cards': [card.to_dict() for card in self.cards]
         }

@@ -40,5 +40,6 @@ class Board(db.Model):
             'id': self.id,
             'name': self.name,
             'background': self.background,
-            'private': self.private
+            'private': self.private,
+            'lists': [list.to_dict() for list in self.lists]
         }

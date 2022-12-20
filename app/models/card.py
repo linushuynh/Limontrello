@@ -14,6 +14,9 @@ class Card(db.Model):
     list = db.relationship(
         "CardList", back_populates="cards"
     )
+    comments = db.relationship(
+        "Comment", cascade="all, delete-orphan", back_populates="card"
+    )
 
     @property
     def title(self):
@@ -36,5 +39,6 @@ class Card(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'list': self.list.to_dict()
+            'list': self.list.to_dict(),
+            'comments': [comment.to_dict() for comment in self.comments]
         }
