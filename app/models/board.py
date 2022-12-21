@@ -8,7 +8,7 @@ class Board(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    background = db.Column(db.String(255), nullable=False)
+    background = db.Column(db.String(255), default="default")
     private = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
@@ -38,6 +38,7 @@ class Board(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'user_id': self.user_id,
             'name': self.name,
             'background': self.background,
             'private': self.private,
