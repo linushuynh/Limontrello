@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -9,7 +8,7 @@ const NavBar = () => {
     <div className={styles.navBarContainer}>
           <div>
             <NavLink to='/dashboard' exact={true} activeClassName='active' className={styles.navBar}>
-              Home
+              Limontrello
             </NavLink>
           </div>
           {/* <li>
