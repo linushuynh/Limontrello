@@ -20,20 +20,13 @@ class Board(db.Model):
     )
 
     @property
-    def name(self):
+    def _name(self):
         return self.name
 
-    @name.setter
-    def name(self, new_name):
+    @_name.setter
+    def _name(self, new_name):
         self.name = new_name
 
-    @property
-    def name(self):
-        return self.name
-
-    @name.setter
-    def name(self, new_name):
-        self.name = new_name
 
     def to_dict(self):
         return {

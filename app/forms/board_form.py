@@ -12,3 +12,8 @@ class CreateBoardForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), name_check])
     background = StringField('Background')
     private = BooleanField('Private')
+
+class UpdateBoardForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), name_check])
+    background = StringField('Background')
+    private = BooleanField('Private')
