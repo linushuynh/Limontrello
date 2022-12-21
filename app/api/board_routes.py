@@ -8,10 +8,10 @@ board_routes = Blueprint('boards', __name__)
 
 
 @board_routes.route('', methods=["POST"])
-# @login_required
+@login_required
 def create_board():
     """
-    Create a new board for the user
+    Create a new board for the user and append 3 lists for the new board to start with
     """
     form = CreateBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -27,10 +27,7 @@ def create_board():
         db.session.add(new_board)
         db.session.commit()
 
-        # print("newboard after commit",new_board)
-
         # Add 3 default lists to newly created boards
-        # new_posted_board = new_board.to_dict()
         if len(new_board.lists) < 1:
             new_list1 = CardList(
                 name = "To-Do",
@@ -47,7 +44,6 @@ def create_board():
             new_board.lists.append(new_list1)
             new_board.lists.append(new_list2)
             new_board.lists.append(new_list3)
-            # print("newboard after newlists appended",new_board)
             db.session.add(new_board)
             db.session.commit()
 
@@ -57,15 +53,18 @@ def create_board():
 
 
 @board_routes.route('/<int:board_id>', methods=["PUT"])
-# @login_required
+@login_required
 def update_board(board_id):
     """
-    Edit an existing board
+    Find an existing board by id and updates it with form data
     """
     form = UpdateBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     board = Board.query.get(board_id)
+
+    if not board:
+        return { "error": "Board couldn't be found" }
 
     if not authorized(board.user_id):
         return { "error": "You do not own this board" }
@@ -79,3 +78,22 @@ def update_board(board_id):
 
         return board.to_dict()
     return { "errors": validation_errors_to_error_messages(form.errors) }, 401
+
+
+@board_routes.route('/<int:board_id>', methods=["DELETE"])
+@login_required
+def delete_board(board_id):
+    """
+    Finds a board by id and deletes it
+    """
+    board = Board.query.get(board_id)
+
+    if not board:
+        return { "error": "Board couldn't be found" }
+
+    if not authorized(board.user_id):
+        return { "error": "You do not own this board" }
+
+    db.session.delete(board)
+    db.session.commit()
+    return { "message": "Successfully deleted" }
