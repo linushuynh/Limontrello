@@ -63,8 +63,19 @@ def update_board(board_id):
     Edit an existing board
     """
     form = UpdateBoardForm()
-    form["csrf_token"].data = request.cookies["csurf_token"]
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if form.validate_on_submit():
+    board = Board.query.get(board_id)
+
+    if not authorized(board.user_id):
+        return { "error": "You do not own this board" }
+
+    if board and form.validate_on_submit():
         data = form.data
-    return
+        board.name = data["name"]
+        board.background = data["background"]
+        board.private = data["private"]
+        db.session.commit()
+
+        return board.to_dict()
+    return { "errors": validation_errors_to_error_messages(form.errors) }, 401
