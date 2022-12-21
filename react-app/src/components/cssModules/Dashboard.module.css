@@ -1,0 +1,20 @@
+.outerContainer {
+    height: 100vh;
+    width: 100vw;
+    /* border: 1px red solid;
+    box-sizing: border-box; */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centeredContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    width: 800px;
+    border: 1px red solid;
+    box-sizing: border-box;
+}
