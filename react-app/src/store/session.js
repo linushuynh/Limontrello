@@ -1,7 +1,9 @@
-// constants
+// Action Types
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
+
+// Action Creators
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -13,6 +15,7 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+// Thunks
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -24,7 +27,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +43,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -82,7 +85,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -96,6 +99,18 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return ['An error occurred. Please try again.']
   }
 }
+
+export const getUserThunk = (id) => async (dispatch) => {
+  const response = await fetch(`/api/users/${id}`, {});
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data));
+    return data;
+  } else {
+    throw response;
+  }
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

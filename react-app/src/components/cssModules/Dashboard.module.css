@@ -18,3 +18,20 @@
     border: 1px red solid;
     box-sizing: border-box;
 }
+
+.addBoardContainer {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #E6E9ED;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.addBoardContainer:hover {
+    background-color: #d1d5da;
+}
