@@ -101,7 +101,7 @@ export default function reducer (state = initialState, action) {
             newSavedBoards[newBoard.id] = newBoard
             return { ...newState, savedBoards: newSavedBoards }
         case DELETE_BOARD:
-            let deleteBoardId = action.payload
+            let deleteBoardId = action.boardId
             delete newSavedBoards[deleteBoardId]
             return { ...newState, savedBoards: newSavedBoards}
         default:

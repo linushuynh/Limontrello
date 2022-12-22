@@ -8,26 +8,20 @@ import { getUserThunk } from "../store/session"
 const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getUserThunk(currentUserId))
-    // }, [hasClicked])
-
     if (!board) return null
 
-    const onClick = () => {
-        return console.log("THIS IS CLICKED BOARD", board)
-    }
+    // const onClick = () => {
+    //     return console.log("THIS IS CLICKED BOARD", board)
+    // }
 
-    const clickDelete = async () => {
-        console.log("hasClicked BEFORE",hasClicked)
-        await dispatch(deleteBoardThunk(board.id))
-        .then(setHasClicked((prevValue) => !prevValue))
-        console.log("hasClicked AFTER", hasClicked)
+    const clickDelete = () => {
+        dispatch(deleteBoardThunk(board.id))
+        .then(() => setHasClicked(prevValue => !prevValue))
     }
 
 
     return (
-        <div className={styles.container} onClick={onClick}>
+        <div className={styles.container} >
             <div className={styles.nameText}>
                 <span>{board.name}</span>
                 <span onClick={clickDelete} className={`material-symbols-outlined ${styles.trashIcon}`}>delete</span>

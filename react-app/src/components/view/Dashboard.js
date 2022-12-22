@@ -37,7 +37,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getUserThunk(currentUserId))
         dispatch(saveBoardsAction(boards))
-    }, [dispatch])
+    }, [dispatch, hasClicked])
 
 
     if (!boards) return null
