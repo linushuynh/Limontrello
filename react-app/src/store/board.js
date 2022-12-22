@@ -8,14 +8,37 @@ export const normalize = (arr) => {
   };
 
 // Action Type
-const LOAD_BOARD = "/board/LOAD_BOARD"
-
+const SAVE_BOARDS = "board/SAVE_BOARDS"
+const SELECT_BOARD = "board/SELECT_BOARD"
+const ADD_BOARD = "board/ADD_BOARD"
+const DELETE_BOARD = "board/DELETE_BOARD"
 
 // Action Creator
-export const loadBoardAction = (payload) => {
+export const saveBoardsAction = (payload) => {
     return {
-        type: LOAD_BOARD,
+        type: SAVE_BOARDS,
         payload
+    }
+}
+
+export const selectBoardAction = (payload) => {
+    return {
+        type: SELECT_BOARD,
+        payload
+    }
+}
+
+export const addBoardAction = (payload) => {
+    return {
+        type: ADD_BOARD,
+        payload
+    }
+}
+
+export const deleteBoardAction = (boardId) => {
+    return {
+        type: DELETE_BOARD,
+        boardId
     }
 }
 
@@ -26,7 +49,7 @@ export const createBoardThunk = (input) => async (dispatch) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-          },
+        },
         body: JSON.stringify({
             name,
             background,
@@ -38,19 +61,49 @@ export const createBoardThunk = (input) => async (dispatch) => {
         throw response
     }
 
-    const data = response.json()
-    await dispatch(loadBoardAction(data))
-    await dispatch(getUserThunk(data.user_id))
+    const data = await response.json()
+    await dispatch(selectBoardAction(data))
+    await dispatch(addBoardAction(data))
+    return data
+}
+
+export const deleteBoardThunk = (boardId) => async (dispatch) => {
+    const response = await fetch(`api/boards/${boardId}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+    if (!response.ok) {
+        throw response
+    }
+
+    const data = await response.json()
+    await dispatch(deleteBoardAction(boardId))
     return data
 }
 
 // Reducer
-let initialState = { selectedBoard: null }
+let initialState = { selectedBoard: null, savedBoards: null }
 
 export default function reducer (state = initialState, action) {
+    let newState = { ...state }
+    let newBoard = action.payload
+    let newSavedBoards = newState.savedBoards
     switch (action.type){
-        case LOAD_BOARD:
-            return { selectedBoard: action.payload }
+        case SAVE_BOARDS:
+            let boardsObj = normalize(action.payload)
+            return { ...newState, savedBoards: boardsObj }
+        case SELECT_BOARD:
+            return { ...newState, selectedBoard: action.payload }
+        case ADD_BOARD:
+            newSavedBoards[newBoard.id] = newBoard
+            return { ...newState, savedBoards: newSavedBoards }
+        case DELETE_BOARD:
+            let deleteBoardId = action.payload
+            delete newSavedBoards[deleteBoardId]
+            return { ...newState, savedBoards: newSavedBoards}
         default:
             return state
     }

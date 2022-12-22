@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../cssModules/CreateBoardForm.module.css"
 import boardPreview from "../../assets/board-preview.svg"
 import { useDispatch } from "react-redux";
-import { createBoardThunk } from "../../store/board";
+import { addBoardAction, createBoardThunk } from "../../store/board";
 // import { useHistory } from "react-router-dom";
 
 const CreateBoardForm = ({ setShowModal }) => {
