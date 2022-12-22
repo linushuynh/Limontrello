@@ -1,0 +1,13 @@
+.logoutButton {
+    margin-right: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter Tight', sans-serif;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.logoutButton:hover {
+    background-color: rgb(190, 202, 212);
+}

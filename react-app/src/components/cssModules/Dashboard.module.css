@@ -15,8 +15,31 @@
     justify-content: center;
     gap: 50px;
     width: 800px;
-    border: 1px red solid;
     box-sizing: border-box;
+}
+
+.mainContainer {
+    box-sizing: border-box;
+    width: 800px;
+}
+
+.workspaceText {
+    color: #586C84;
+
+    margin: 10px;
+    font-weight: bold;
+}
+
+.workspaceSettings {
+    margin: 10px;
+    color: black;
+}
+
+.boardsContainer {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .addBoardContainer {
@@ -30,6 +53,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.1s;
+    margin: 10px;
 }
 
 .addBoardContainer:hover {

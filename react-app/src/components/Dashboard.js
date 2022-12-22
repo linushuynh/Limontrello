@@ -31,16 +31,11 @@ const Dashboard = () => {
         <div className={styles.outerContainer}>
             <NavBar />
             <div className={styles.centeredContainer}>
-                <div className={styles.workspaceContainer}>Workspaces</div>
+                <div className={styles.workspaceContainer}>Workspaces Dropdown</div>
                 <div className={styles.mainContainer}>
                     <div className={styles.workspaceText}>Your Workspaces</div>
                     <div className={styles.workspaceSettings}>Main Workspace</div>
                     <div className={styles.boardsContainer}>
-                        Map out each board here
-                        {boards.map((board) => (
-                            <BoardCard />
-                        ))}
-
                         {boards && boards.map((board) => (
                             <div>
                                 <BoardCard board={board} />
