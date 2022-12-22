@@ -18,9 +18,14 @@
     box-sizing: border-box;
 }
 
+.workspaceContainer {
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
 .mainContainer {
     box-sizing: border-box;
-    width: 800px;
+    width: 900px;
 }
 
 .workspaceText {
