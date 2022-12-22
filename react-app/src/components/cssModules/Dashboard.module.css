@@ -1,0 +1,69 @@
+.outerContainer {
+    height: 100vh;
+    width: 100vw;
+    /* border: 1px red solid;
+    box-sizing: border-box; */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centeredContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    width: 800px;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    box-sizing: border-box;
+    width: 800px;
+}
+
+.workspaceText {
+    color: #586C84;
+
+    margin: 10px;
+    font-weight: bold;
+}
+
+.workspaceSettings {
+    margin: 10px;
+    color: black;
+}
+
+.boardsContainer {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.addBoardContainer {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #E6E9ED;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    margin: 10px;
+}
+
+.addBoardContainer:hover {
+    background-color: #d1d5da;
+}
+
+.createBoardText {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

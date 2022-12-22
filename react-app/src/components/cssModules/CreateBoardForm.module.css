@@ -1,0 +1,110 @@
+.outerContainer {
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 1px 2px rgb(168, 168, 168);
+    border-radius: 4px;
+    position: relative;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+}
+
+.createBoardText {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.hrBarContainer {
+    width: 85%;
+}
+
+#hrBar {
+    border: #aeaeae 1px solid;
+}
+
+.formContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 85%;
+    /* border: 1px solid green; */
+}
+
+.boardTitleContainer {
+    /* border: 1px solid black; */
+    width: 100%;
+}
+
+.boardTitleText {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #707D92;
+}
+
+.asterisk {
+    color: red;
+}
+
+.inputBar {
+    width: 100%;
+    border: #026AA7 2px solid;
+    line-height: 30px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-indent: 5px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+.inputBar:focus {
+    outline: none;
+}
+
+.inputBar::selection {
+    height: 20px;
+}
+
+.submitContainer {
+    width: 100%;
+}
+
+.submitButton:disabled {
+    background-color: #F5F6F7;
+    color: #ADB5C0;
+    cursor: default;
+    user-select: none;
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 32px;
+    border-radius: 4px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+}
+
+.submitButton:enabled {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #0086d3;
+    color: #F5F6F7;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+    user-select: auto;
+    transition: background-color 0.1s;
+}
+
+.submitButton:hover:enabled {
+    background-color: #016EAD;
+}
