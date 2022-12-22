@@ -61,8 +61,14 @@
     margin: 10px;
 }
 
+
 .addBoardContainer:hover {
     background-color: #d1d5da;
+}
+
+.addBoardContainer:active:hover {
+    background-color: #e4f0f6;
+    color: #5ea9d5;
 }
 
 .createBoardText {

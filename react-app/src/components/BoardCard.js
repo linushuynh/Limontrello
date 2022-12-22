@@ -7,7 +7,8 @@ const BoardCard = ({ board }) => {
     return (
         <div className={styles.container}>
             <div className={styles.nameText}>{board.name}</div>
-            {/* <div className={board.background === "default" ? styles.defaultBackground : styles.variableBackground}></div> */}
+            <div className={board.background === "default" ? styles.defaultBackground : styles.variableBackground}></div>
+            {/* <div className={styles.opacityLayer}></div> */}
         </div>
     )
 }
