@@ -29,7 +29,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <h1>Landing Page(in landing page, check if logged in/current user exists and if so then redirect to /dashboard)</h1>
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
