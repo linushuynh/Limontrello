@@ -39,8 +39,8 @@ export const createBoardThunk = (input) => async (dispatch) => {
     }
 
     const data = response.json()
-    dispatch(loadBoardAction(data))
-    dispatch(getUserThunk(data.user_id))
+    await dispatch(loadBoardAction(data))
+    await dispatch(getUserThunk(data.user_id))
     return data
 }
 
