@@ -1,15 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { saveBoardsAction } from '../store/board';
+import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
 
 const NavBar = () => {
+  const currentUser = useSelector(state => state.session.user)
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const redirectHome = async () => {
+    const response = await dispatch(getUserThunk(currentUser.id))
+    await dispatch(saveBoardsAction(response.boards))
+    history.push("/dashboard")
+  }
+
   return (
     <div className={styles.navBarContainer}>
           <div>
-            <NavLink to='/dashboard' exact={true} activeClassName='active' className={styles.navBar}>
+            <div className={styles.title} onClick={redirectHome}>
               Limontrello
-            </NavLink>
+            </div>
           </div>
           {/* <li>
             <NavLink to='/login' exact={true} activeClassName='active'>

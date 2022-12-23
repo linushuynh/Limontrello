@@ -6,3 +6,12 @@
     background-color: #026AA7;
     height: 45px;
 }
+
+.title {
+    color: white;
+}
+
+.title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

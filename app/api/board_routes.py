@@ -60,7 +60,6 @@ def update_board(board_id):
     """
     form = UpdateBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-
     board = Board.query.get(board_id)
 
     if not board:
