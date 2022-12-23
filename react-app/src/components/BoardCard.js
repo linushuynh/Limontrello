@@ -1,18 +1,19 @@
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import styles from "./cssModules/BoardCard.module.css"
 import { deleteBoardThunk } from "../store/board"
 import { useDispatch } from "react-redux"
-import { getUserThunk } from "../store/session"
+import { useHistory } from "react-router-dom"
 // import { SubmittedContext } from "./context/SubmittedContext"
 
 const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     if (!board) return null
 
-    // const onClick = () => {
-    //     return console.log("THIS IS CLICKED BOARD", board)
-    // }
+    const redirectClick = () => {
+        history.push(`/b/${board.id}`)
+    }
 
     const clickDelete = () => {
         dispatch(deleteBoardThunk(board.id))
@@ -22,15 +23,12 @@ const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
 
     return (
         <div className={styles.container} >
-            <div className={styles.nameText}>
-                <span>{board.name}</span>
-                <span onClick={clickDelete} className={`material-symbols-outlined ${styles.trashIcon}`}>delete</span>
+            <div className={styles.boardCard} onClick={redirectClick}>
+                <span className={styles.nameText}>{board.name}</span>
             </div>
             {/* <div className={board.background === "default" ? styles.defaultBackground : styles.variableBackground}></div> */}
             {/* <div className={styles.opacityLayer}></div> */}
-            {/* <div className={styles.trashContainer}>
-
-            </div> */}
+            <span onClick={clickDelete} className={`material-symbols-outlined ${styles.trashIcon}`}>delete</span>
         </div>
     )
 }

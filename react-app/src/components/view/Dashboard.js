@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserThunk } from "../../store/session";
@@ -37,7 +37,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getUserThunk(currentUserId))
         dispatch(saveBoardsAction(boards))
-    }, [dispatch, hasClicked])
+    }, [dispatch, currentUserId])
 
 
     if (!boards) return null

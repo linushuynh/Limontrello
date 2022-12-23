@@ -1,4 +1,3 @@
-import { getUserThunk } from "./session";
 
 //normalize array of objects into nested object
 export const normalize = (arr) => {

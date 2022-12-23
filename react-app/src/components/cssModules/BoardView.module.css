@@ -3,14 +3,50 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    border: 1px solid red;
     box-sizing: border-box;
 }
 
 .headerContainer {
     display: flex;
+    height: 50px;
 }
 
 .bodyContainer {
-    
+    width: 100%;
+    height: 100%;
+    border: lightblue 1px solid;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.boardListContainer {
+    width: 250px;
+    border: green 1px solid;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContainer {
+    border: 1px solid salmon;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.boardHeader {
+    width: 100%;
+    height: 50px;
+    border: 1px solid purple;
+}
+
+.listsContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }

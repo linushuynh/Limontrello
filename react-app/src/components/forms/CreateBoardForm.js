@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import styles from "../cssModules/CreateBoardForm.module.css"
 import boardPreview from "../../assets/board-preview.svg"
 import { useDispatch } from "react-redux";
-import { addBoardAction, createBoardThunk } from "../../store/board";
-// import { useHistory } from "react-router-dom";
+import { createBoardThunk } from "../../store/board";
+import { useHistory } from "react-router-dom";
 
 const CreateBoardForm = ({ setShowModal }) => {
     const [name, setName] = useState("")
     const dispatch = useDispatch()
-    // const history = useHistory()
+    const history = useHistory()
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -18,8 +18,7 @@ const CreateBoardForm = ({ setShowModal }) => {
             private: false
         }
         let response = await dispatch(createBoardThunk(input))
-        .then(() => setShowModal(false))
-        // .then((response) => history.push('/dashboard'))
+        history.push(`/b/${response.id}`)
     }
 
     return (
