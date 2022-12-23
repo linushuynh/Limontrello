@@ -20,15 +20,16 @@
     1px 1px 0 rgb(140, 140, 140),
     1px -1px 0 rgb(142, 142, 142),
     -1px -1px 0 rgb(142, 142, 142); */
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 1px;
     justify-content: space-between;
-    transition: backgroudn-color 0.1s;
+    transition: background-color 75ms;
     border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.18);
+    background-color: rgba(0, 0, 0, 0.28);
 }
 
 .boardCard:hover {
-    background-color: rgba(0, 0, 0, 0.33);
+    background-color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
 
