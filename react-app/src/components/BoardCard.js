@@ -12,7 +12,7 @@ const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
     if (!board) return null
 
     const redirectClick = async () => {
-        let response = await dispatch(selectBoardAction(board))
+        await dispatch(selectBoardAction(board))
         history.push(`/b/${board.id}`)
     }
 

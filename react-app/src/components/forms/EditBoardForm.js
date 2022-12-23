@@ -1,34 +1,35 @@
 import React, { useState } from "react";
-import styles from "../cssModules/CreateBoardForm.module.css"
+import styles from "../cssModules/EditBoardForm.module.css"
 import boardPreview from "../../assets/board-preview.svg"
 import { useDispatch, useSelector } from "react-redux";
-import { addBoardAction, createBoardThunk, selectBoardAction } from "../../store/board";
-import { useHistory } from "react-router-dom";
+import { saveBoardsAction, selectBoardAction, updateBoardThunk } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 
-const CreateBoardForm = ({ setShowModal }) => {
+const EditBoardForm = ({ board, setShowEditModal, setHasSubmitted }) => {
     const currentUser = useSelector(state => state.session.user)
-    const [name, setName] = useState("")
+    let loadedName = board.name
+    const [name, setName] = useState(loadedName)
     const dispatch = useDispatch()
-    const history = useHistory()
 
     const onSubmit = async (e) => {
         e.preventDefault();
         let input = {
             name: name,
             background: "default",
-            private: false
+            private: false,
+            boardId: board.id
         }
-        let response = await dispatch(createBoardThunk(input))
-        await dispatch(getUserThunk(currentUser.id))
-        await dispatch(selectBoardAction(response))
-        await dispatch(addBoardAction(response))
-        history.push(`/b/${response.id}`)
+        await dispatch(updateBoardThunk(input))
+        let response = await dispatch(getUserThunk(currentUser.id))
+        await dispatch(saveBoardsAction(response.boards))
+        await dispatch(selectBoardAction(response.boards[board.id]))
+        setShowEditModal(prevValue => !prevValue)
+        setHasSubmitted(prevValue => !prevValue)
     }
 
     return (
         <div className={styles.outerContainer}>
-            <div className={styles.createBoardText}>Create Board</div>
+            <div className={styles.createBoardText}>Edit Board</div>
             <div className={styles.hrBarContainer}><hr id={styles.hrBar}/></div>
             <div>
                 <img src={boardPreview} alt="boardPreview" />
@@ -46,8 +47,8 @@ const CreateBoardForm = ({ setShowModal }) => {
                         />
                     </div>
                     <div className={styles.submitContainer}>
-                        <button type="submit" className={styles.submitButton} disabled={!name}>
-                            Create
+                        <button type="submit" className={styles.submitButton}>
+                            Confirm changes
                         </button>
                     </div>
                 </form>
@@ -56,4 +57,4 @@ const CreateBoardForm = ({ setShowModal }) => {
     )
 }
 
-export default CreateBoardForm
+export default EditBoardForm

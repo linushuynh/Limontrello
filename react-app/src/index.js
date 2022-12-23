@@ -7,6 +7,7 @@ import configureStore from './store';
 import { SubmittedProvider } from './components/context/SubmittedContext';
 import { ModalProvider } from './components/context/Modal';
 import { CreateBoardModalProvider } from './components/context/CreateBoardModal';
+import { EditBoardModalProvider } from './components/context/EditBoardModal';
 
 const store = configureStore();
 
@@ -16,7 +17,9 @@ ReactDOM.render(
       <SubmittedProvider>
         <ModalProvider>
           <CreateBoardModalProvider>
-            <App />
+            <EditBoardModalProvider>
+              <App />
+            </EditBoardModalProvider>
           </CreateBoardModalProvider>
         </ModalProvider>
       </SubmittedProvider>

@@ -67,7 +67,7 @@ export const createBoardThunk = (input) => async (dispatch) => {
 }
 
 export const deleteBoardThunk = (boardId) => async (dispatch) => {
-    const response = await fetch(`api/boards/${boardId}`, {
+    const response = await fetch(`/api/boards/${boardId}`, {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
@@ -80,6 +80,28 @@ export const deleteBoardThunk = (boardId) => async (dispatch) => {
 
     const data = await response.json()
     await dispatch(deleteBoardAction(boardId))
+    return data
+}
+
+export const updateBoardThunk = (input) => async (dispatch) => {
+    const { name, background, boardId } = input
+    const response = await fetch(`/api/boards/${boardId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            background,
+            private: false
+        })
+    })
+
+    if (!response.ok) {
+        throw response
+    }
+
+    const data = await response.json()
     return data
 }
 
