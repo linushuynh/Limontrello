@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./cssModules/BoardCard.module.css"
-import { deleteBoardThunk } from "../store/board"
+import { deleteBoardThunk, selectBoardAction } from "../store/board"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 // import { SubmittedContext } from "./context/SubmittedContext"
@@ -11,7 +11,8 @@ const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
 
     if (!board) return null
 
-    const redirectClick = () => {
+    const redirectClick = async () => {
+        let response = await dispatch(selectBoardAction(board))
         history.push(`/b/${board.id}`)
     }
 

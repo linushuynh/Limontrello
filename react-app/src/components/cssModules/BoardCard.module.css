@@ -23,7 +23,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     justify-content: space-between;
-    transition: background-color 75ms;
+    transition: background-color 75ms, box-shadow 75ms;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.28);
 }
@@ -31,6 +31,7 @@
 .boardCard:hover {
     background-color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
 .nameText {
