@@ -9,9 +9,20 @@
 
 .title {
     color: white;
+    display: flex;
+    align-items: center;
 }
 
 .title:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.icon {
+    height: 30px;
+    background-color: #026AA7;
+}
+
+/* .icon:hover {
+    background-image: element(gif);
+} */
