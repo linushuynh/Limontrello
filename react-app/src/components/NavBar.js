@@ -5,6 +5,8 @@ import { saveBoardsAction } from '../store/board';
 import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
+import icon from "../assets/trelloIcon.png"
+import gif from "../assets/trello.gif"
 
 const NavBar = () => {
   const currentUser = useSelector(state => state.session.user)
@@ -21,6 +23,9 @@ const NavBar = () => {
     <div className={styles.navBarContainer}>
           <div>
             <div className={styles.title} onClick={redirectHome}>
+              <img src={icon} alt="gif" className={styles.icon} />
+              {/* <img src={gif} alt="gif" className={styles.gif} /> */}
+
               Limontrello
             </div>
           </div>
