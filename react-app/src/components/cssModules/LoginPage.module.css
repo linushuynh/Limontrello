@@ -1,0 +1,33 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #F9FAFC;
+}
+
+.centeredContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundImg {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    bottom: 0;
+    /* border: 1px solid salmon; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftImg {
+    width: 30%;
+    height: 30%;
+}
+
+.rightImg {
+    width: 30%;
+    height: 30%;
+}
