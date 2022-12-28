@@ -14,7 +14,7 @@ const LoginPage = () => {
                 </div>
                 <LoginForm />
             </div>
-            <div className={styles.backgroundImg}>
+            <div className={styles.backgroundImgContainer}>
                     <img src={bottomLeft} alt="bottomLeft" className={styles.leftImg} />
                     <img src={bottomRight} alt="bottomRight" className={styles.rightImg} />
             </div>

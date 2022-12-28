@@ -1,0 +1,87 @@
+.centeredContainer {
+    background-color: #FFFFFF;
+    width: 400px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px 0px rgb(209, 209, 209);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcomeText {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.inputContainer {
+    box-sizing: border-box;
+    margin: 13px 0px;
+}
+
+.inputBar {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 2px solid #DFE1E6;
+    border-radius: 4px;
+    text-indent: 5px;
+    transition: all 0.3s;
+}
+
+.inputBar:focus {
+    border: 2px solid #4C9AFF;
+    border-radius: 4px;
+    outline: none;
+    background-color: #FFFFFF;
+}
+
+.inputBar:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.loginButton {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #0052CC;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    background-color: #0065ff;
+}
+
+.hrBar {
+    margin-top: 15px;
+    width: 75%;
+    height: 0;
+    border: none;
+    border-top: 1px solid rgb(213,216,222, 1);
+    border-radius: 4px;
+}
+
+.signupContainer {
+    margin-top: 10px;
+    margin-bottom: 35px;
+    font-size: 15px;
+    cursor: pointer;
+    color: rgb(0,82,204);
+}
+
+.signupContainer:hover {
+    text-decoration: underline;
+}
