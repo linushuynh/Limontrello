@@ -1,12 +1,28 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createCardThunk } from "../../store/cards";
 import styles from "../cssModules/CreateCardForm.module.css"
 
 const CreateCardForm = ({ listId, setShowAddCardModal }) => {
     const [title, setTitle] = useState("")
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.session.user)
 
     const closeCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(false)
+    }
+
+    const submitNewCard = (e) => {
+        e.preventDefault()
+        let input = {
+            title,
+            description: "placeholder",
+            listId
+        }
+
+        dispatch(createCardThunk(input, currentUser.id))
+        .then(() => setShowAddCardModal(false))
     }
 
     return (
@@ -21,7 +37,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
                     />
                 </div>
                 <div className={styles.buttonsContainer}>
-                    <button type="submit" className={styles.addCardButton}>Add card</button>
+                    <button type="submit" className={styles.addCardButton} onClick={submitNewCard}>Add card</button>
                     <button onClick={closeCardForm} className={styles.Xbutton}>
                         <span className="material-symbols-outlined">close</span>
                     </button>

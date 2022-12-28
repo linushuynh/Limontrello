@@ -60,6 +60,8 @@ def upgrade():
 
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
+    sa.Column('description', sa.String(length=255)),
     sa.Column('list_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['list_id'], ['lists.id'], ),
     sa.PrimaryKeyConstraint('id')

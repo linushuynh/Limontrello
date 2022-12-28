@@ -5,7 +5,8 @@ import CreateCardForm from "./forms/CreateCardForm";
 const ListColumn = ({ list }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
-    console.log(cards)
+    console.log("list ID",list.id)
+    console.log("cards array for above list id",cards)
 
     const openCardForm = (e) => {
         e.preventDefault()
@@ -24,10 +25,12 @@ const ListColumn = ({ list }) => {
                 </div>
             </div>
             <div className={styles.cardsContainer}>
-                <div>Cards go here</div>
+                <div>
+                    Cards go here
+                </div>
                 <div className={styles.addCardContainer}>
                     {showAddCardModal?
-                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} />
+                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} />
                         :
                         <button onClick={openCardForm} className={styles.addCardButton}>+ Add a card</button>
                     }

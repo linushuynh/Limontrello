@@ -19,19 +19,19 @@ class Card(db.Model):
     )
 
     @property
-    def title(self):
+    def _title(self):
         return self.title
 
-    @title.setter
-    def title(self, new_title):
+    @_title.setter
+    def _title(self, new_title):
         self.description = new_title
 
     @property
-    def description(self):
+    def _description(self):
         return self.description
 
-    @description.setter
-    def description(self, new_description):
+    @_description.setter
+    def _description(self, new_description):
         self.description = new_description
 
     def to_dict(self):
@@ -39,6 +39,6 @@ class Card(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'list': self.list.to_dict(),
+            'list_id': self.list_id,
             'comments': [comment.to_dict() for comment in self.comments]
         }
