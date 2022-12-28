@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { saveBoardsAction, selectBoardAction } from "../../store/board";
+import { getUserThunk } from "../../store/session";
 import { EditBoardModal } from "../context/EditBoardModal";
 // import { getUserThunk } from "../../store/session";
 import styles from "../cssModules/BoardView.module.css"
@@ -20,7 +21,9 @@ const BoardView = () => {
     let board;
     let usersBoards;
 
+    console.log("hasSubmitted state", hasSubmitted)
     useEffect(() => {
+        dispatch(getUserThunk(currentUser.id))
         dispatch(saveBoardsAction(usersBoards))
         dispatch(selectBoardAction(board))
     }, [dispatch])
@@ -72,7 +75,7 @@ const BoardView = () => {
                     <div className={styles.listsContainer}>
                         {lists.map((list) => (
                             <div key={list.id}>
-                                <ListColumn list={list} />
+                                <ListColumn list={list} setHasSubmitted={setHasSubmitted} />
                             </div>
                         ))}
                     </div>

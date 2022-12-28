@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styles from "./cssModules/ListColumn.module.css"
 import CreateCardForm from "./forms/CreateCardForm";
+import SingleCard from "./SingleCard";
 
-const ListColumn = ({ list }) => {
+const ListColumn = ({ list, setHasSubmitted }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
-    console.log("list ID",list.id)
-    console.log("cards array for above list id",cards)
+    console.log(`cards array for list ${list.id}`,cards)
 
     const openCardForm = (e) => {
         e.preventDefault()
@@ -25,12 +25,14 @@ const ListColumn = ({ list }) => {
                 </div>
             </div>
             <div className={styles.cardsContainer}>
-                <div>
-                    Cards go here
-                </div>
+                {cards.map(card => (
+                    <div key={card.id}>
+                        <SingleCard card={card} />
+                    </div>
+                ))}
                 <div className={styles.addCardContainer}>
                     {showAddCardModal?
-                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} />
+                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} setHasSubmitted={setHasSubmitted}/>
                         :
                         <button onClick={openCardForm} className={styles.addCardButton}>+ Add a card</button>
                     }
