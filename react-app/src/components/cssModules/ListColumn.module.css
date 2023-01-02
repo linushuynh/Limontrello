@@ -47,9 +47,18 @@
     align-items: center;
 }
 
+.singleCard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .addCardContainer {
-    width: 95%;
+    width: 100%;
     height: fit-content;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
 }
 
 .addCardButton {
@@ -57,16 +66,19 @@
     border: none;
     background-color: #EBECF0;
     height: 30px;
-    width: 100%;
+    width: 93%;
     border-radius: 4px;
     font-family: 'Inter Tight', sans-serif;
     font-size: 15px;
     color: #7B8698;
     text-align: left;
     margin-bottom: 7px;
+    display: flex;
+    align-items: center;
 }
 
 .addCardButton:hover {
     cursor: pointer;
     background-color: #dcdcdc;
 }
+

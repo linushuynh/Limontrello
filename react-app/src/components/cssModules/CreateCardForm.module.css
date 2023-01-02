@@ -1,11 +1,15 @@
 .formContainer {
-    width: 100%;
+    width: 93%;
     height: fit-content;
+    display: flex;
+    justify-content: center;
 }
 
-/* .form {
-    border: 1px solid salmon;
-} */
+.form {
+    /* border: 1px solid salmon; */
+    width: 100%;
+    box-sizing: border-box;
+}
 
 .inputContainer {
     height: fit-content;
@@ -23,6 +27,7 @@
     box-sizing: border-box;
     overflow: hidden;
     text-indent: 5px;
+    padding-top: 5px;
 }
 
 .inputArea:focus {

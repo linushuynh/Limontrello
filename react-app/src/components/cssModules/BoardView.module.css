@@ -62,5 +62,6 @@
     height: 100%;
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

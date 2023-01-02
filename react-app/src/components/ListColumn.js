@@ -26,7 +26,7 @@ const ListColumn = ({ list, setHasSubmitted }) => {
             </div>
             <div className={styles.cardsContainer}>
                 {cards.map(card => (
-                    <div key={card.id}>
+                    <div key={card.id} className={styles.singleCard} >
                         <SingleCard card={card} />
                     </div>
                 ))}
@@ -34,7 +34,10 @@ const ListColumn = ({ list, setHasSubmitted }) => {
                     {showAddCardModal?
                         <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} setHasSubmitted={setHasSubmitted}/>
                         :
-                        <button onClick={openCardForm} className={styles.addCardButton}>+ Add a card</button>
+                        <div onClick={openCardForm} className={styles.addCardButton}>
+                            <span className="material-symbols-outlined" id={styles.plusSign}>add</span>
+                            Add a card
+                        </div>
                     }
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./cssModules/SingleCard.module.css"
 
 const SingleCard = ({ card }) => {
 
@@ -6,7 +7,11 @@ const SingleCard = ({ card }) => {
 
     return (
         <>
-            {card.title}
+            <div className={styles.cardContainer}>
+                <span>
+                    {card.title}
+                </span>
+            </div>
         </>
     )
 }
