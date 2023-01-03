@@ -8,7 +8,7 @@ import BoardCard from "../BoardCard";
 // import { Modal } from "./context/Modal.js"
 import { CreateBoardModal } from "../context/CreateBoardModal";
 import CreateBoardForm from "../forms/CreateBoardForm";
-import { saveBoardsAction, selectBoardAction } from "../../store/board";
+import { saveBoardsAction } from "../../store/board";
 
 const Dashboard = () => {
     let boardsObj = useSelector(state => state.boards.savedBoards)
@@ -37,7 +37,6 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getUserThunk(currentUserId))
         dispatch(saveBoardsAction(boards))
-
     }, [dispatch, currentUserId])
 
 

@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCardThunk } from "../../store/cards";
-import { getUserThunk } from "../../store/session";
-import { loadBoardsThunk, saveBoardsAction } from "../../store/board";
-import { selectBoardAction } from "../../store/board";
 import styles from "../cssModules/CreateCardForm.module.css"
-import { useParams } from "react-router-dom";
+import { SubmittedContext } from "../context/SubmittedContext";
 
-const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
+const CreateCardForm = ({ listId, setShowAddCardModal }) => {
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
     // let board = useSelector(state => state.boards.selectedBoard)
-    let { boardId } = useParams()
+    let textRef = useRef(null)
+    const { setHasSubmitted } = useContext(SubmittedContext)
+
+    useEffect(() => {
+        textRef.current.focus()
+    }, [ textRef ])
 
     const closeCardForm = (e) => {
         e.preventDefault()
@@ -23,7 +25,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
         e.preventDefault()
         let input = {
             title,
-            description: "placeholder",
+            description: "",
             listId
         }
 
@@ -31,10 +33,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
         // let response = await dispatch(getUserThunk(currentUser.id))
         // await dispatch(saveBoardsAction(response.boards))
         setShowAddCardModal(false)
-        let loadedBoards = await dispatch(loadBoardsThunk())
-        let selectBoard = loadedBoards.boards.find(board => +board.id === +boardId)
-        await dispatch(selectBoardAction(selectBoard))
-        // setHasSubmitted(prevValue => !prevValue)
+        setHasSubmitted(prev => !prev)
     }
 
     return (
@@ -46,6 +45,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter a title for this card..."
                     className={styles.inputArea}
+                    ref={textRef}
                     />
                 </div>
                 <div className={styles.buttonsContainer}>

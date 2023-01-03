@@ -1,22 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loadBoardsThunk, saveBoardsAction } from '../store/board';
-import { getUserThunk } from '../store/session';
+import { loadBoardsThunk } from '../store/board';
+// import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
 import icon from "../assets/trelloIcon.png"
 // import gif from "../assets/trello.gif"
 
 const NavBar = () => {
-  const currentUser = useSelector(state => state.session.user)
+  // const currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
 
   const redirectHome = async () => {
-    // await dispatch(getUserThunk(currentUser.id))
     await dispatch(loadBoardsThunk())
-    // await dispatch(saveBoardsAction(response.boards))
     history.push("/dashboard")
   }
 

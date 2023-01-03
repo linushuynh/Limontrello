@@ -77,12 +77,25 @@
     width: 95%;
     cursor: pointer;
     overflow-wrap: break-word;
-    border: 1px solid rgba(5, 33, 90, 0);
-    box-sizing: border-box;
-    text-indent: 2px;
+    border: 1px solid rgb(244,245,247);
+    font-family: 'Inter Tight', sans-serif;
+    /* box-sizing: border-box; */
+    /* text-indent: 2px; */
+    outline: rgb(244,245,247);
+    background-color: rgb(244,245,247);
+    resize: none;
+    overflow-y: hidden;
 }
 
-#editDescriptionBox {
+#descriptionBox:focus {
+    cursor: text;
+    border: 2px solid #0086d3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* #editDescriptionBox {
     font-size: 15px;
     font-weight: 400;
     height: 100px;
@@ -90,11 +103,9 @@
     resize: none;
     font-family: 'Inter Tight', sans-serif;
     outline: none;
-    border: 2px solid #0086d3;
-    border-radius: 4px;
     overflow-x: hidden;
     box-sizing: border-box;
-}
+} */
 
 .editButton {
     font-weight: 400;
@@ -144,4 +155,8 @@
     position: relative;
     right: 5%;
     font-size: 15px;
+}
+
+.noShow {
+    display: none;
 }

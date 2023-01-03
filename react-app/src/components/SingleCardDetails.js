@@ -1,39 +1,45 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCardThunk } from "../store/cards";
+import { deleteCardThunk, editCardThunk } from "../store/cards";
 // import { getUserThunk } from "../store/session";
-import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../store/board";
+// import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../store/board";
 import styles from "./cssModules/SingleCardDetails.module.css"
-import { useParams } from "react-router-dom";
+import { SubmittedContext } from "./context/SubmittedContext";
 
-const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
+const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const dispatch = useDispatch()
-    // const currentUser = useSelector(state => state.session.user)
-    const { boardId } = useParams()
-    // console.log("clicked card",card)
     const lists = useSelector(state => state.boards.selectedBoard.lists)
     const selectedList = lists.find(list => list.id = card.list_id)
-    // const board = useSelector(state => state.boards.selectedBoard)
     const [showEditCard, setShowEditCard] = useState(false)
+    const [title, setTitle] = useState(card.title)
     const [description, setDescription] = useState(card.description)
     const descriptionRef = useRef(null)
+    const { setHasSubmitted } = useContext(SubmittedContext)
 
     useEffect(() => {
         if (showEditCard) {
             descriptionRef.current.focus()
             descriptionRef.current.setSelectionRange(description.length, description.length)
         }
+
     }, [showEditCard])
+
+    const submitEdit = async () => {
+        let input = {
+            title,
+            description,
+            listId: selectedList.id
+        }
+        console.log("input data",input)
+        await dispatch(editCardThunk(input, card.id))
+        setShowEditCard(false)
+        setHasSubmitted(prev => !prev)
+    }
 
     const handleDelete = async () => {
         await dispatch(deleteCardThunk(card.id))
         setShowCardDetailsModal(false)
-        // let response = await dispatch(getUserThunk(currentUser.id))
-        // await dispatch(loadBoardsThunk())
-        // await dispatch(selectBoardAction(response.boards[board.id]))
-        let loadedBoards = await dispatch(loadBoardsThunk())
-        let selectBoard = loadedBoards.boards.find(board => +board.id === +boardId)
-        await dispatch(selectBoardAction(selectBoard))
+        setHasSubmitted(prev => !prev)
     }
 
     if (!card) return null
@@ -50,33 +56,26 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
                     <div className={styles.bodyDetails}>
                         <div className={styles.detailContainer}>
                             <div className={styles.categoryTitle}>
-                            Description (255 characters)
+                            Description
                             {!showEditCard && (
                                 <div className={styles.editButton} onClick={() => setShowEditCard(true)} >
                                     Edit
                                 </div>
                             )}
                             </div>
-                            {showEditCard ? (<>
                                 <textarea
                                     value={description}
                                     onChange={e => setDescription(e.target.value)}
-                                    onBlur={() => setShowEditCard(false)}
+                                    onClick={() => setShowEditCard(true)}
+                                    onBlur={submitEdit}
                                     ref={descriptionRef}
-                                    id={styles.editDescriptionBox}
+                                    id={styles.descriptionBox}
                                     maxLength={255}
-                                    />
-                                <div className={styles.editFooter}>
-                                    <div className={styles.saveButton}>Save</div>
+                                />
+                                <div className={showEditCard ? styles.editFooter : styles.noShow }>
+                                    <div className={styles.saveButton} onClick={submitEdit} >Save</div>
                                     <div className={styles.charCount}>{description.length}/255 characters</div>
                                 </div>
-                                </>
-                                ) : (
-                                <div id={styles.descriptionBox} onClick={() => setShowEditCard(true)}>
-                                    {description}
-                                </div>
-                            )}
-
                         </div>
                     </div>
                     <div className={styles.moreOptions}>

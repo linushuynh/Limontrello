@@ -26,7 +26,7 @@ const ListColumn = ({ list, setHasSubmitted }) => {
             <div className={styles.cardsContainer}>
                 {cards.map(card => (
                     <div key={card.id} className={styles.singleCard} >
-                        <SingleCard card={card} />
+                        <SingleCard card={card} setHasSubmitted={setHasSubmitted} />
                     </div>
                 ))}
                 <div className={styles.addCardContainer}>

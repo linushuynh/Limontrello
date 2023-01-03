@@ -1,43 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import { EditBoardModal } from "../context/EditBoardModal";
-// import { getUserThunk } from "../../store/session";
 import styles from "../cssModules/BoardView.module.css"
 import EditBoardForm from "../forms/EditBoardForm";
 import ListColumn from "../ListColumn";
 import NavBar from "../NavBar";
+import { SubmittedContext } from "../context/SubmittedContext";
 
 const BoardView = () => {
-    const selectedBoard = useSelector(state => state.boards.selectedBoard)
-    const savedBoards = useSelector(state => state.boards.savedBoards)
+    // const selectedBoard = useSelector(state => state.boards.selectedBoard)
+    // const savedBoards = useSelector(state => state.boards.savedBoards)
     const currentUser = useSelector(state => state.session.user)
     const [showEditModal, setShowEditModal] = useState(false)
-    const [hasSubmitted, setHasSubmitted] = useState(false)
+    const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
     const { boardId } = useParams()
     const dispatch = useDispatch()
-    let board;
-    let usersBoards;
+    let board = currentUser.boards.find(bored => +bored.id === +boardId)
+    let usersBoards = currentUser.boards
+
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
         dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
-    }, [dispatch])
+    }, [dispatch, hasSubmitted, currentUser.id])
 
-    if (!selectedBoard) {
-        board = currentUser.boards.find(bored => +bored.id === +boardId)
-    } else {
-        board = selectedBoard
-    }
-
-    if (!savedBoards) {
-        usersBoards = currentUser.boards
-    } else {
-        usersBoards = Object.values(savedBoards)
-    }
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) return "The board was not found or not yours"
@@ -72,12 +62,11 @@ const BoardView = () => {
                         </div>
                     </div>
                     <div className={styles.listsContainer}>
-                        {lists.map((list) => (
-                            <div key={list.id}>
-                                {console.log("****LIST ID", list.id)}
+                        {lists.map((list) => {
+                            return (<div key={list.id}>
                                 <ListColumn list={list} setHasSubmitted={setHasSubmitted} />
-                            </div>
-                        ))}
+                            </div>)
+                        })}
                     </div>
                 </div>
             </div>

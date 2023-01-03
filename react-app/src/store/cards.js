@@ -49,3 +49,21 @@ export const deleteCardThunk = (cardId) => async (dispatch) => {
     const data = await response.json()
     return data
 }
+
+export const editCardThunk = (input, cardId) => async (dispatch) => {
+    const { title, description, listId } = input
+    const response = await fetch(`/api/cards/${cardId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title,
+            description,
+            list_id: listId
+        })
+    })
+    console.log("IN CARD THUNK")
+    const data = await response.json()
+    return data
+}

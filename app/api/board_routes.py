@@ -16,7 +16,6 @@ def get_user_boards():
     current_id = current_user.id
 
     boards = Board.query.filter(Board.user_id == current_id).all()
-    print("*************This is inside boards",boards)
 
     return {
         'boards': [board.to_dict() for board in boards]

@@ -23,7 +23,6 @@ def create_card():
             description = data['description'],
             list_id = data['list_id']
         )
-        print("THIS IS NEW CARD IN ROUTE",new_card)
         db.session.add(new_card)
         db.session.commit()
         return new_card.to_dict()
