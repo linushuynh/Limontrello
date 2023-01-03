@@ -68,7 +68,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
                                     />
                                 <div className={styles.editFooter}>
                                     <div className={styles.saveButton}>Save</div>
-                                    <div className={styles.charCount}>{description.length}/255</div>
+                                    <div className={styles.charCount}>{description.length}/255 characters</div>
                                 </div>
                                 </>
                                 ) : (

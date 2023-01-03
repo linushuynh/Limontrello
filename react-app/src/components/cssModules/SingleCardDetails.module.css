@@ -133,10 +133,15 @@
 }
 
 .saveButton {
-
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #0086d3;
+    color: #F5F6F7;
+    padding: 8px 12px;
 }
 
 .charCount {
     position: relative;
     right: 5%;
+    font-size: 15px;
 }
