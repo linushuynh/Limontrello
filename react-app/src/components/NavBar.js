@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { saveBoardsAction } from '../store/board';
+import { loadBoardsThunk, saveBoardsAction } from '../store/board';
 import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
@@ -14,8 +14,9 @@ const NavBar = () => {
   const dispatch = useDispatch()
 
   const redirectHome = async () => {
-    const response = await dispatch(getUserThunk(currentUser.id))
-    await dispatch(saveBoardsAction(response.boards))
+    // await dispatch(getUserThunk(currentUser.id))
+    await dispatch(loadBoardsThunk())
+    // await dispatch(saveBoardsAction(response.boards))
     history.push("/dashboard")
   }
 

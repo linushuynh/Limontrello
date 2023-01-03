@@ -13,6 +13,7 @@ const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
 
     const redirectClick = async () => {
         await dispatch(selectBoardAction(board))
+        // console.log("redirecting")
         history.push(`/b/${board.id}`)
     }
 

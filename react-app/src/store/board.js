@@ -42,6 +42,18 @@ export const deleteBoardAction = (boardId) => {
 }
 
 // Thunks
+export const loadBoardsThunk = () => async (dispatch) => {
+    const response = await fetch("/api/boards")
+
+    if (!response.ok) {
+        throw response
+    }
+    const data = await response.json()
+    const boards = data.boards
+    await dispatch(saveBoardsAction(boards))
+    return data
+}
+
 export const createBoardThunk = (input) => async (dispatch) => {
     let { name, background } = input
     const response = await fetch(`/api/boards`,{

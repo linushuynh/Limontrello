@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { saveBoardsAction, selectBoardAction } from "../../store/board";
+import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import { EditBoardModal } from "../context/EditBoardModal";
 // import { getUserThunk } from "../../store/session";
@@ -23,7 +23,7 @@ const BoardView = () => {
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
-        dispatch(saveBoardsAction(usersBoards))
+        dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
     }, [dispatch])
 

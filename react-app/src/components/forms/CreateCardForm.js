@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCardThunk } from "../../store/cards";
 import { getUserThunk } from "../../store/session";
-import { saveBoardsAction } from "../../store/board";
+import { loadBoardsThunk, saveBoardsAction } from "../../store/board";
 import { selectBoardAction } from "../../store/board";
 import styles from "../cssModules/CreateCardForm.module.css"
+import { useParams } from "react-router-dom";
 
 const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
     let board = useSelector(state => state.boards.selectedBoard)
+    let { boardId } = useParams()
 
     const closeCardForm = (e) => {
         e.preventDefault()
@@ -26,11 +28,14 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
         }
 
         await dispatch(createCardThunk(input, currentUser.id))
-        let response = await dispatch(getUserThunk(currentUser.id))
-        await dispatch(saveBoardsAction(response.boards))
-        await dispatch(selectBoardAction(response.boards[board.id]))
+        // let response = await dispatch(getUserThunk(currentUser.id))
+        // await dispatch(saveBoardsAction(response.boards))
+        let loadedBoards = await dispatch(loadBoardsThunk())
+        let selectBoard = loadedBoards.boards.find(board => +board.id === +boardId)
+        await dispatch(selectBoardAction(selectBoard))
         // setShowAddCardModal(prevValue => !prevValue)
         // setHasSubmitted(prevValue => !prevValue)
+        setTitle("")
     }
 
     return (

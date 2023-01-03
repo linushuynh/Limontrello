@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCardThunk } from "../store/cards";
 import { getUserThunk } from "../store/session";
-import { saveBoardsAction, selectBoardAction } from "../store/board";
+import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../store/board";
 import styles from "./cssModules/SingleCardDetails.module.css"
 
 const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    console.log("clicked card",card)
+    // console.log("clicked card",card)
     const lists = useSelector(state => state.boards.selectedBoard.lists)
     const selectedList = lists.find(list => list.id = card.list_id)
     const board = useSelector(state => state.boards.selectedBoard)
@@ -17,10 +17,11 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
         await dispatch(deleteCardThunk(card.id))
         setShowCardDetailsModal(false)
         let response = await dispatch(getUserThunk(currentUser.id))
-        await dispatch(saveBoardsAction(response.boards))
+        await dispatch(loadBoardsThunk())
         await dispatch(selectBoardAction(response.boards[board.id]))
     }
 
+    if (!card) return null
 
     return (
         <div className={styles.outerContainer}>

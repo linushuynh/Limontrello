@@ -7,6 +7,22 @@ from .auth_routes import validation_errors_to_error_messages, authorized
 board_routes = Blueprint('boards', __name__)
 
 
+@board_routes.route('', methods=["GET"])
+@login_required
+def get_user_boards():
+    """
+    Get all boards
+    """
+    current_id = current_user.id
+
+    boards = Board.query.filter(Board.user_id == current_id).all()
+    print("*************This is inside boards",boards)
+
+    return {
+        'boards': [board.to_dict() for board in boards]
+        }
+
+
 @board_routes.route('', methods=["POST"])
 @login_required
 def create_board():

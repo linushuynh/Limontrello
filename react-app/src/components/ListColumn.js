@@ -6,7 +6,6 @@ import SingleCard from "./SingleCard";
 const ListColumn = ({ list, setHasSubmitted }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
-    console.log(`cards array for list ${list.id}`,cards)
 
     const openCardForm = (e) => {
         e.preventDefault()
