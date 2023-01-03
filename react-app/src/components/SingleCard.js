@@ -20,7 +20,7 @@ const SingleCard = ({ card }) => {
                 </span>
             </div>
             {showCardDetailsModal && (<CardDetailModal onClose={() => setShowCardDetailsModal(false) }>
-                <SingleCardDetails card={card} />
+                <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} />
             </CardDetailModal>
             )}
         </>

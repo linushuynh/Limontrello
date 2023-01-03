@@ -35,7 +35,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
         <div className={styles.formContainer}>
             <form className={styles.form}>
                 <div className={styles.inputContainer}>
-                    <textarea
+                    <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter a title for this card..."

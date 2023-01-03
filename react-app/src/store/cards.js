@@ -33,3 +33,19 @@ export const createCardThunk = (input, currentUserId) => async (dispatch) => {
     // await dispatch(getUserThunk(currentUserId))
     return data
 }
+
+export const deleteCardThunk = (cardId) => async (dispatch) => {
+    const response = await fetch(`/api/cards/${cardId}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if (!response.ok) {
+        throw response
+    }
+
+    const data = await response.json()
+    return data
+}

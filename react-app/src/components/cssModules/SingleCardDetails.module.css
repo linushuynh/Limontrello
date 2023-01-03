@@ -70,3 +70,21 @@
     font-size: 15px;
     font-weight: 400;
 }
+
+.deleteButton {
+    height: 32px;
+    border-radius: 4px;
+    background-color: #B04632;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    text-indent: 10px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.1s;
+}
+
+.deleteButton:hover {
+    background-color: #8f3928;
+}

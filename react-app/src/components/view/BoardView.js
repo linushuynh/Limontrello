@@ -21,7 +21,6 @@ const BoardView = () => {
     let board;
     let usersBoards;
 
-    console.log("hasSubmitted state", hasSubmitted)
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
         dispatch(saveBoardsAction(usersBoards))
