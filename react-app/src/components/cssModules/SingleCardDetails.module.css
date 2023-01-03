@@ -64,11 +64,49 @@
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 32px;
 }
 
 #descriptionBox {
     font-size: 15px;
     font-weight: 400;
+    height: 100px;
+    width: 95%;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    border: 1px solid rgba(5, 33, 90, 0);
+    box-sizing: border-box;
+    text-indent: 2px;
+}
+
+#editDescriptionBox {
+    font-size: 15px;
+    font-weight: 400;
+    height: 100px;
+    width: 94.5%;
+    resize: none;
+    font-family: 'Inter Tight', sans-serif;
+    outline: none;
+    border: 2px solid #0086d3;
+    border-radius: 4px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.editButton {
+    font-weight: 400;
+    font-size: 15px;
+    padding: 8px 12px;
+    background-color: #EAECEF;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.editButton:hover {
+    background-color: #dadbde;
 }
 
 .deleteButton {
@@ -87,4 +125,18 @@
 
 .deleteButton:hover {
     background-color: #8f3928;
+}
+
+.editFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.saveButton {
+
+}
+
+.charCount {
+    position: relative;
+    right: 5%;
 }

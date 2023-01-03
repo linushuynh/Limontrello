@@ -45,9 +45,9 @@ export const deleteBoardAction = (boardId) => {
 export const loadBoardsThunk = () => async (dispatch) => {
     const response = await fetch("/api/boards")
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
     const data = await response.json()
     const boards = data.boards
     await dispatch(saveBoardsAction(boards))
@@ -68,9 +68,9 @@ export const createBoardThunk = (input) => async (dispatch) => {
         })
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     await dispatch(selectBoardAction(data))
@@ -86,9 +86,9 @@ export const deleteBoardThunk = (boardId) => async (dispatch) => {
         },
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     await dispatch(deleteBoardAction(boardId))
@@ -109,9 +109,9 @@ export const updateBoardThunk = (input) => async (dispatch) => {
         })
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     return data
