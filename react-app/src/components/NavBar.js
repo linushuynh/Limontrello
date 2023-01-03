@@ -6,7 +6,7 @@ import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
 import icon from "../assets/trelloIcon.png"
-import gif from "../assets/trello.gif"
+// import gif from "../assets/trello.gif"
 
 const NavBar = () => {
   const currentUser = useSelector(state => state.session.user)

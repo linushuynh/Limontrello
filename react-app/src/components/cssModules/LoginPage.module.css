@@ -1,0 +1,49 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #F9FAFC;
+    position: absolute;
+    z-index: 0;
+}
+
+.centeredContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    width: 100%;
+}
+
+.trelloHeader {
+    height: 45px;
+}
+
+.backgroundImgContainer {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    bottom: 0;
+    /* border: 1px solid salmon; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: -1;
+}
+
+.leftImg {
+    width: 27%;
+    height: 27%;
+}
+
+.rightImg {
+    width: 27%;
+    height: 27%;
+}

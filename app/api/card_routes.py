@@ -7,7 +7,7 @@ from .auth_routes import validation_errors_to_error_messages, authorized
 card_routes = Blueprint('cards', __name__)
 
 
-@card_routes.route("", methods=["POST"])
+@card_routes.route('', methods=["POST"])
 @login_required
 def create_card():
     """
@@ -23,7 +23,7 @@ def create_card():
             description = data['description'],
             list_id = data['list_id']
         )
-
+        print("THIS IS NEW CARD IN ROUTE",new_card)
         db.session.add(new_card)
         db.session.commit()
         return new_card.to_dict()

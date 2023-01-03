@@ -1,19 +1,43 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createCardThunk } from "../../store/cards";
+import { getUserThunk } from "../../store/session";
+import { saveBoardsAction } from "../../store/board";
+import { selectBoardAction } from "../../store/board";
 import styles from "../cssModules/CreateCardForm.module.css"
 
-const CreateCardForm = ({ listId, setShowAddCardModal }) => {
+const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
     const [title, setTitle] = useState("")
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.session.user)
+    let board = useSelector(state => state.boards.selectedBoard)
 
     const closeCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(false)
     }
 
+    const submitNewCard = async (e) => {
+        e.preventDefault()
+        let input = {
+            title,
+            description: "placeholder",
+            listId
+        }
+
+        await dispatch(createCardThunk(input, currentUser.id))
+        let response = await dispatch(getUserThunk(currentUser.id))
+        await dispatch(saveBoardsAction(response.boards))
+        await dispatch(selectBoardAction(response.boards[board.id]))
+        // setShowAddCardModal(prevValue => !prevValue)
+        // setHasSubmitted(prevValue => !prevValue)
+    }
+
     return (
         <div className={styles.formContainer}>
             <form className={styles.form}>
                 <div className={styles.inputContainer}>
-                    <textarea
+                    <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter a title for this card..."
@@ -21,7 +45,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
                     />
                 </div>
                 <div className={styles.buttonsContainer}>
-                    <button type="submit" className={styles.addCardButton}>Add card</button>
+                    <button type="submit" className={styles.addCardButton} onClick={submitNewCard}>Add card</button>
                     <button onClick={closeCardForm} className={styles.Xbutton}>
                         <span className="material-symbols-outlined">close</span>
                     </button>
