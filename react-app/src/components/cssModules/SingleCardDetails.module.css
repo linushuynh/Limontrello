@@ -1,0 +1,72 @@
+.outerContainer {
+    width: 730px;
+    height: 81vh;
+    background-color: rgb(244,245,247);
+    border-radius: 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    padding: 25px;
+}
+
+.iconColumn {
+    width: 6%;
+}
+
+.bigBody {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 94%;
+    color: #172B4D;
+}
+
+.headerContainer {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#titleText {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+#listText {
+    font-size: 14px;
+    font-weight: 400;
+    color: #5E6C84;
+}
+
+.bodyContainer {
+    display: flex;
+    /* gap: 15px; */
+    height: 100%;
+}
+
+.bodyDetails {
+    width: 75%;
+    /* border: 1px solid lightblue; */
+}
+
+.moreOptions {
+    width: 25%;
+    /* border: 1px solid lightgreen; */
+    display: flex;
+    flex-direction: column;
+}
+
+.detailContainer {
+    margin-bottom: 20px;
+}
+
+.categoryTitle {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#descriptionBox {
+    font-size: 15px;
+    font-weight: 400;
+}
