@@ -74,6 +74,7 @@ const BoardView = () => {
                     <div className={styles.listsContainer}>
                         {lists.map((list) => (
                             <div key={list.id}>
+                                {console.log("****LIST ID", list.id)}
                                 <ListColumn list={list} setHasSubmitted={setHasSubmitted} />
                             </div>
                         ))}

@@ -11,7 +11,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    let board = useSelector(state => state.boards.selectedBoard)
+    // let board = useSelector(state => state.boards.selectedBoard)
     let { boardId } = useParams()
 
     const closeCardForm = (e) => {
@@ -30,12 +30,11 @@ const CreateCardForm = ({ listId, setShowAddCardModal, setHasSubmitted }) => {
         await dispatch(createCardThunk(input, currentUser.id))
         // let response = await dispatch(getUserThunk(currentUser.id))
         // await dispatch(saveBoardsAction(response.boards))
+        setShowAddCardModal(false)
         let loadedBoards = await dispatch(loadBoardsThunk())
         let selectBoard = loadedBoards.boards.find(board => +board.id === +boardId)
         await dispatch(selectBoardAction(selectBoard))
-        // setShowAddCardModal(prevValue => !prevValue)
         // setHasSubmitted(prevValue => !prevValue)
-        setTitle("")
     }
 
     return (

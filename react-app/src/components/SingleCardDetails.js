@@ -4,21 +4,26 @@ import { deleteCardThunk } from "../store/cards";
 import { getUserThunk } from "../store/session";
 import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../store/board";
 import styles from "./cssModules/SingleCardDetails.module.css"
+import { useParams } from "react-router-dom";
 
 const SingleCardDetails = ({ card, setShowCardDetailsModal }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
+    const { boardId } = useParams()
     // console.log("clicked card",card)
     const lists = useSelector(state => state.boards.selectedBoard.lists)
     const selectedList = lists.find(list => list.id = card.list_id)
-    const board = useSelector(state => state.boards.selectedBoard)
+    // const board = useSelector(state => state.boards.selectedBoard)
 
     const handleDelete = async () => {
         await dispatch(deleteCardThunk(card.id))
         setShowCardDetailsModal(false)
-        let response = await dispatch(getUserThunk(currentUser.id))
-        await dispatch(loadBoardsThunk())
-        await dispatch(selectBoardAction(response.boards[board.id]))
+        // let response = await dispatch(getUserThunk(currentUser.id))
+        // await dispatch(loadBoardsThunk())
+        // await dispatch(selectBoardAction(response.boards[board.id]))
+        let loadedBoards = await dispatch(loadBoardsThunk())
+        let selectBoard = loadedBoards.boards.find(board => +board.id === +boardId)
+        await dispatch(selectBoardAction(selectBoard))
     }
 
     if (!card) return null
