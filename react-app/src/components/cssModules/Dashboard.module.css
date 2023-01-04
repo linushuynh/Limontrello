@@ -12,15 +12,18 @@
 
 .centeredContainer {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 50px;
-    width: 800px;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
 }
 
 .workspaceContainer {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     box-sizing: border-box;
+    width: 260px;
+    height: 100%;
 }
 
 .mainContainer {
@@ -30,7 +33,6 @@
 
 .workspaceText {
     color: #586C84;
-
     margin: 10px;
     font-weight: bold;
 }
