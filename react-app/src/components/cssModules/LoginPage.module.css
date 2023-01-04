@@ -1,12 +1,15 @@
+
 .pageContainer {
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     background-color: #F9FAFC;
     position: absolute;
     z-index: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .centeredContainer {
@@ -25,10 +28,32 @@
     cursor: default;
     gap: 13px;
     color: #253858;
+    user-select: none;
 }
 
 .trelloHeader {
     height: 50px;
+}
+
+.hrBar {
+    margin-top: 45px;
+    color: #CCCCCC;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: #CCCCCC 1px solid;
+    width: 100%;
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.atlassian {
+    height: 18px;
+    margin-top: 20px;
 }
 
 .backgroundImgContainer {
@@ -51,4 +76,11 @@
 .rightImg {
     width: 27%;
     height: 27%;
+}
+
+.formNbarContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
 }

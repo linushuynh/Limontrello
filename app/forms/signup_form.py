@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
 
 
@@ -19,9 +19,15 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
 
+def password_check(form, field):
+    # Checking if passwords match
+    password = form.password.data
+    repeat_password = field.data
+    if password != repeat_password:
+        raise ValidationError('Passwords do not match.')
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
+        'username', validators=[DataRequired(), username_exists, Length(max=40, message="Username longer than 40 characters." )])
     email = StringField('Email', validators=[DataRequired(), user_exists])
-    password = StringField('Password', validators=[DataRequired()])
+    password = StringField('Password', validators=[DataRequired(), password_check])
