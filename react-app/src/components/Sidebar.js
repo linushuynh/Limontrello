@@ -10,7 +10,6 @@ const Sidebar = ({ boards }) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const location = useLocation()
-    console.log(location.pathname)
 
     const highlightCheck = (mainClass) => {
         if (location.pathname === "/dashboard") {

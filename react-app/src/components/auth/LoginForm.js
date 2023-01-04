@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { Redirect, useHistory } from 'react-router-dom';
+import { loadBoardsThunk } from '../../store/board';
+import { getUserThunk, login } from '../../store/session';
 import styles from '../cssModules/LoginForm.module.css'
 
 const LoginForm = () => {
@@ -10,10 +11,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    // await dispatch(getUserThunk())
     if (data) {
       setErrors(data);
     }
@@ -27,8 +30,16 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const redirectSignup = (e) => {
+    history.push("/signup")
+  }
+
   if (user) {
     return <Redirect to='/dashboard' />;
+  }
+
+  const loginDemo = async () => {
+    await dispatch(login('demo@aa.io', 'password'))
   }
 
   return (
@@ -65,12 +76,18 @@ const LoginForm = () => {
           />
         </div>
           <div className={styles.inputContainer}>
-            <button type='submit' className={styles.loginButton}>Log In</button>
+            <button type='submit' className={styles.loginButton}>Continue</button>
           </div>
       </form>
       <hr className={styles.hrBar} />
-      <div className={styles.signupContainer}>
-          Sign up for an account
+      <div className={styles.footerTextContainer}>
+        <div className={styles.hoverable} onClick={loginDemo}>
+          Need a demo account?
+        </div>
+        <span id={styles.dot} >•</span>
+        <div className={styles.hoverable} onClick={redirectSignup}>
+            Sign up for an account
+        </div>
       </div>
     </div>
   );

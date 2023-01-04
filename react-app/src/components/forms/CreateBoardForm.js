@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../cssModules/CreateBoardForm.module.css"
 import boardPreview from "../../assets/board-preview.svg"
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,11 @@ const CreateBoardForm = ({ setShowModal }) => {
     const [name, setName] = useState("")
     const dispatch = useDispatch()
     const history = useHistory()
+    const boardRef = useRef(null)
+
+    useEffect(() => {
+        boardRef.current.focus()
+    }, [boardRef])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +48,7 @@ const CreateBoardForm = ({ setShowModal }) => {
                         onChange={(e) => setName(e.target.value)}
                         required
                         className={styles.inputBar}
+                        ref={boardRef}
                         />
                     </div>
                     <div className={styles.submitContainer}>

@@ -6,10 +6,14 @@ import SingleCard from "./SingleCard";
 const ListColumn = ({ list, setHasSubmitted }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
+    const [displayAddButtons, setDisplayAddButtons] = useState()
+    const [alreadyOpen, setAlreadyOpen] = useState(false)
 
     const openCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(true)
+        // if (alreadyOpen && displayAddButtons == list.id)
+        setDisplayAddButtons(list.id)
     }
 
     if (!list) return null
@@ -30,8 +34,8 @@ const ListColumn = ({ list, setHasSubmitted }) => {
                     </div>
                 ))}
                 <div className={styles.addCardContainer}>
-                    {showAddCardModal?
-                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} setHasSubmitted={setHasSubmitted}/>
+                    { showAddCardModal ?
+                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />
                         :
                         <div onClick={openCardForm} className={styles.addCardButton}>
                             <span className="material-symbols-outlined" id={styles.plusSign}>add</span>

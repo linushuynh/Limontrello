@@ -52,6 +52,13 @@
     background-color: rgb(230, 230, 230);
 }
 
+.disclaimer {
+    font-size: 12px;
+    font-weight: 300;
+    color: #5E6C84;
+    margin-bottom: 10px;
+}
+
 .loginButton {
     width: 100%;
     height: 40px;
@@ -78,27 +85,15 @@
     border-radius: 4px;
 }
 
-.footerTextContainer {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.signupContainer {
     margin-top: 10px;
-    margin-bottom: 45px;
-}
-
-.hoverable {
+    margin-bottom: 35px;
     font-size: 13px;
     font-weight: 300;
     cursor: pointer;
     color: rgb(0,82,204);
 }
 
-.hoverable:hover {
+.signupContainer:hover {
     text-decoration: underline;
-}
-
-#dot {
-    font-size: 12px;
-    font-weight: 300;
-    color: #4D4D4D;
 }

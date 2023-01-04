@@ -1,12 +1,12 @@
 import React from "react";
-import LoginForm from "../auth/LoginForm";
 import styles from "../cssModules/LoginPage.module.css"
+import limontrello from "../../assets/limontrello.png"
 import bottomLeft from "../../assets/bottom-left-trello.svg"
 import bottomRight from "../../assets/bottom-right-trello.svg"
-import limontrello from "../../assets/limontrello.png"
+import SignUpForm from "../auth/SignUpForm";
 import atlassian from "../../assets/atlassian-logo.svg"
 
-const LoginPage = () => {
+const SignupPage = () => {
     return (
         <div className={styles.pageContainer}>
             <div className={styles.centeredContainer}>
@@ -15,7 +15,7 @@ const LoginPage = () => {
                     Limontrello
                 </div>
                 <div className={styles.formNbarContainer}>
-                    <LoginForm />
+                    <SignUpForm />
                     <div>
                         <hr className={styles.hrBar} />
                         <div className={styles.footerContainer}>
@@ -32,4 +32,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage;
+export default SignupPage;
