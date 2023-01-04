@@ -11,6 +11,7 @@ import Dashboard from './components/view/Dashboard'
 import BoardView from './components/view/BoardView'
 import { authenticate } from './store/session';
 import LoginPage from './components/view/LoginPage';
+import SignupPage from './components/view/SignupPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,8 +37,8 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginPage />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path='/signup' exact={true}>
+          <SignupPage />
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />

@@ -12,6 +12,15 @@
     padding-bottom: 5px;
 }
 
+.hrBar {
+    color: #D9DDE2;
+    background-color: #D9DDE2;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #D9DDE2;
+}
+
 .centeredContainer {
     display: flex;
     flex-direction: column;
@@ -27,6 +36,7 @@
     padding-bottom: 6px;
     cursor: pointer;
     text-indent: 30px;
+    transition: background-color 65ms;
 }
 
 .boardsTab:hover {
@@ -51,6 +61,7 @@
     padding-top: 6px;
     padding-bottom: 6px;
     text-indent: 30px;
+    transition: background-color 65ms;
 }
 
 .boardItem:hover {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../../store/board";
+import { loadBoardsThunk, selectBoardAction } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import { EditBoardModal } from "../context/EditBoardModal";
 import styles from "../cssModules/BoardView.module.css"

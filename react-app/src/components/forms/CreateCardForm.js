@@ -4,7 +4,7 @@ import { createCardThunk } from "../../store/cards";
 import styles from "../cssModules/CreateCardForm.module.css"
 import { SubmittedContext } from "../context/SubmittedContext";
 
-const CreateCardForm = ({ listId, setShowAddCardModal }) => {
+const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDisplayAddButtons }) => {
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
@@ -14,11 +14,17 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
 
     useEffect(() => {
         textRef.current.focus()
-    }, [ textRef ])
+    }, [textRef])
 
     const closeCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(false)
+        // let index = displayAddButtons.indexOf(listId)
+        // console.log('index', index)
+        console.log('displayaddbuttons before', displayAddButtons)
+        // let newArr = displayAddButtons.splice(index, 1)
+        console.log('displayaddbuttons after', displayAddButtons)
+        setDisplayAddButtons()
     }
 
     const submitNewCard = async (e) => {
@@ -29,9 +35,9 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
             listId
         }
 
-        await dispatch(createCardThunk(input, currentUser.id))
         setShowAddCardModal(false)
         setHasSubmitted(prev => !prev)
+        await dispatch(createCardThunk(input, currentUser.id))
     }
 
     return (

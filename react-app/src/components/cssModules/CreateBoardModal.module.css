@@ -1,5 +1,6 @@
 #modal {
     position: absolute;
+    /* THIS MOVES THE POSITION OF THE MODAL */
     top: 0;
     right: 0;
     left: 0;

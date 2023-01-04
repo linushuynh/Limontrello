@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 import styles from '../cssModules/LoginForm.module.css'
 
@@ -10,6 +10,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +27,10 @@ const LoginForm = () => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  const redirectSignup = (e) => {
+    history.push("/signup")
+  }
 
   if (user) {
     return <Redirect to='/dashboard' />;
@@ -69,7 +74,7 @@ const LoginForm = () => {
           </div>
       </form>
       <hr className={styles.hrBar} />
-      <div className={styles.signupContainer}>
+      <div className={styles.signupContainer} onClick={redirectSignup}>
           Sign up for an account
       </div>
     </div>

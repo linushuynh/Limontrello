@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import styles from '../cssModules/SignupForm.module.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,6 +12,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -42,52 +44,73 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  const redirectLogin = () => {
+    history.push("/login")
+  }
+
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className={styles.centeredContainer}>
+      <form onSubmit={onSignUp} className={styles.form}>
+        <div className={styles.welcomeText}>
+          Sign up for your account
+        </div>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type='email'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            placeholder={"Enter email"}
+            required={true}
+            className={styles.inputBar}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            placeholder={"Enter username"}
+            required={true}
+            className={styles.inputBar}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            required={true}
+            placeholder={"Enter password"}
+            className={styles.inputBar}
+          ></input>
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            placeholder={"Confirm password"}
+            className={styles.inputBar}
+            required={true}
+          ></input>
+        </div>
+        <div className={styles.inputContainer}>
+          <button type='submit' className={styles.loginButton}>Continue</button>
+        </div>
+      </form>
+      <div className={styles.signupContainer} onClick={redirectLogin}>
+          Already have an account? Log In
       </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div>
   );
 };
 
