@@ -16,9 +16,11 @@ const LoginPage = () => {
                 </div>
                 <div className={styles.formNbarContainer}>
                     <LoginForm />
-                    <hr className={styles.hrBar} />
-                    <div className={styles.footerContainer}>
-                        <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
+                    <div>
+                        <hr className={styles.hrBar} />
+                        <div className={styles.footerContainer}>
+                            <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
+                        </div>
                     </div>
                 </div>
             </div>

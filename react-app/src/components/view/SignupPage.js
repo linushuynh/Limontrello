@@ -16,9 +16,11 @@ const SignupPage = () => {
                 </div>
                 <div className={styles.formNbarContainer}>
                     <SignUpForm />
-                    <hr className={styles.hrBar} />
-                    <div className={styles.footerContainer}>
-                        <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
+                    <div>
+                        <hr className={styles.hrBar} />
+                        <div className={styles.footerContainer}>
+                            <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
+                        </div>
                     </div>
                 </div>
             </div>
