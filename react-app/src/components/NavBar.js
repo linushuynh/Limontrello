@@ -1,21 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { saveBoardsAction } from '../store/board';
-import { getUserThunk } from '../store/session';
+import { loadBoardsThunk } from '../store/board';
+// import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
-import icon from "../assets/trelloIcon.png"
+import icon from "../assets/limontrello.png"
 // import gif from "../assets/trello.gif"
 
 const NavBar = () => {
-  const currentUser = useSelector(state => state.session.user)
+  // const currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
 
   const redirectHome = async () => {
-    const response = await dispatch(getUserThunk(currentUser.id))
-    await dispatch(saveBoardsAction(response.boards))
+    await dispatch(loadBoardsThunk())
     history.push("/dashboard")
   }
 
@@ -23,9 +22,8 @@ const NavBar = () => {
     <div className={styles.navBarContainer}>
           <div>
             <div className={styles.title} onClick={redirectHome}>
-              <img src={icon} alt="gif" className={styles.icon} />
+              <img src={icon} alt="gif" className="trelloIcon" />
               {/* <img src={gif} alt="gif" className={styles.gif} /> */}
-
               Limontrello
             </div>
           </div>

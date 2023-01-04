@@ -42,6 +42,18 @@ export const deleteBoardAction = (boardId) => {
 }
 
 // Thunks
+export const loadBoardsThunk = () => async (dispatch) => {
+    const response = await fetch("/api/boards")
+
+    // if (!response.ok) {
+    //     throw response
+    // }
+    const data = await response.json()
+    const boards = data.boards
+    await dispatch(saveBoardsAction(boards))
+    return data
+}
+
 export const createBoardThunk = (input) => async (dispatch) => {
     let { name, background } = input
     const response = await fetch(`/api/boards`,{
@@ -56,9 +68,9 @@ export const createBoardThunk = (input) => async (dispatch) => {
         })
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     await dispatch(selectBoardAction(data))
@@ -74,9 +86,9 @@ export const deleteBoardThunk = (boardId) => async (dispatch) => {
         },
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     await dispatch(deleteBoardAction(boardId))
@@ -97,9 +109,9 @@ export const updateBoardThunk = (input) => async (dispatch) => {
         })
     })
 
-    if (!response.ok) {
-        throw response
-    }
+    // if (!response.ok) {
+    //     throw response
+    // }
 
     const data = await response.json()
     return data
@@ -117,6 +129,7 @@ export default function reducer (state = initialState, action) {
             let boardsObj = normalize(action.payload)
             return { ...newState, savedBoards: boardsObj }
         case SELECT_BOARD:
+            newState.selectedBoard = null
             return { ...newState, selectedBoard: action.payload }
         case ADD_BOARD:
             newSavedBoards[newBoard.id] = newBoard

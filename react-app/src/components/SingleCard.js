@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+// import { useDispatch } from "react-redux";
 import { CardDetailModal } from "./context/CardDetailsModal";
+// import { loadBoardsThunk } from "../store/board";
 import styles from "./cssModules/SingleCard.module.css"
 import SingleCardDetails from "./SingleCardDetails";
 
-const SingleCard = ({ card }) => {
+const SingleCard = ({ card, setHasSubmitted }) => {
+    // const dispatch = useDispatch()
     const [showCardDetailsModal, setShowCardDetailsModal] = useState(false)
 
     const openCardDetails = () => {
@@ -20,7 +23,7 @@ const SingleCard = ({ card }) => {
                 </span>
             </div>
             {showCardDetailsModal && (<CardDetailModal onClose={() => setShowCardDetailsModal(false) }>
-                <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} />
+                <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} setHasSubmitted={setHasSubmitted} />
             </CardDetailModal>
             )}
         </>

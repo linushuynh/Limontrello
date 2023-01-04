@@ -6,3 +6,12 @@ body {
     font-weight: 400;
     font-size: 17px;
 }
+
+.trelloIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 5px;
+    /* background-color: rgb(255, 255, 48); */
+}

@@ -6,7 +6,6 @@ import SingleCard from "./SingleCard";
 const ListColumn = ({ list, setHasSubmitted }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
-    console.log(`cards array for list ${list.id}`,cards)
 
     const openCardForm = (e) => {
         e.preventDefault()
@@ -27,7 +26,7 @@ const ListColumn = ({ list, setHasSubmitted }) => {
             <div className={styles.cardsContainer}>
                 {cards.map(card => (
                     <div key={card.id} className={styles.singleCard} >
-                        <SingleCard card={card} />
+                        <SingleCard card={card} setHasSubmitted={setHasSubmitted} />
                     </div>
                 ))}
                 <div className={styles.addCardContainer}>
