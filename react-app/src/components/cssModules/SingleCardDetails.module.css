@@ -18,14 +18,14 @@
 
 .titleIconContainer {
     position: relative;
-    top: 3px;
-    left: 5px;
+    top: 2px;
+    left: 10px;
 }
 
 .descriptionIconContainer {
     position: relative;
     top: 50px;
-    left: 5px;
+    left: 10px;
 }
 
 .bigBody {
