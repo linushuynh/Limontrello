@@ -20,10 +20,15 @@
     align-items: center;
     height: 125px;
     width: 100%;
+    font-size: 42px;
+    font-weight: 700;
+    cursor: default;
+    gap: 13px;
+    color: #253858;
 }
 
 .trelloHeader {
-    height: 45px;
+    height: 50px;
 }
 
 .backgroundImgContainer {

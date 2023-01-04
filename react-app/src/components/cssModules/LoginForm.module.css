@@ -19,9 +19,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: #5E6C84;
 }
 
 .inputContainer {
@@ -61,6 +62,7 @@
     color: #FFFFFF;
     cursor: pointer;
     font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
 }
 
 .loginButton:hover {
@@ -76,14 +78,27 @@
     border-radius: 4px;
 }
 
-.signupContainer {
+.footerTextContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
     margin-top: 10px;
     margin-bottom: 35px;
-    font-size: 15px;
+}
+
+.hoverable {
+    font-size: 13px;
+    font-weight: 300;
     cursor: pointer;
     color: rgb(0,82,204);
 }
 
-.signupContainer:hover {
+.hoverable:hover {
     text-decoration: underline;
+}
+
+#dot {
+    font-size: 12px;
+    font-weight: 300;
+    color: #4D4D4D;
 }

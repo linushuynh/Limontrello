@@ -103,10 +103,14 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
+        <div className={styles.disclaimer}>
+          By signing up, you confirm that you've read and accepted our <span>Terms of Service</span> and <span>Privacy Policy.</span>
+        </div>
         <div className={styles.inputContainer}>
-          <button type='submit' className={styles.loginButton}>Continue</button>
+          <button type='submit' className={styles.loginButton}>Sign up</button>
         </div>
       </form>
+      <hr className={styles.hrBar} />
       <div className={styles.signupContainer} onClick={redirectLogin}>
           Already have an account? Log In
       </div>

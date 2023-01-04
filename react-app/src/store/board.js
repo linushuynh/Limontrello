@@ -126,7 +126,10 @@ export default function reducer (state = initialState, action) {
     let newSavedBoards = newState.savedBoards
     switch (action.type){
         case SAVE_BOARDS:
-            let boardsObj = normalize(action.payload)
+            let boardsObj = null
+            if (action.payload) {
+                boardsObj = normalize(action.payload)
+            }
             return { ...newState, savedBoards: boardsObj }
         case SELECT_BOARD:
             newState.selectedBoard = null
