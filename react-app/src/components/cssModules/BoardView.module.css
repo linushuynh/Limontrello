@@ -21,8 +21,7 @@
 }
 
 .boardListContainer {
-    width: 250px;
-    border: green 1px solid;
+    width: 260px;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -30,7 +29,7 @@
 }
 
 .mainContainer {
-    width: 100%;
+    width: calc(100% - 260px);
     /*
     HEIGHT HERE ADJUSTS THE SPACE AT THE BOTTOM, DECREASE TO 97% WHEN X-AXIS SCROLLBAR IMPLEMENTED
     */

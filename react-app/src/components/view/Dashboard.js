@@ -9,6 +9,7 @@ import BoardCard from "../BoardCard";
 import { CreateBoardModal } from "../context/CreateBoardModal";
 import CreateBoardForm from "../forms/CreateBoardForm";
 import { saveBoardsAction } from "../../store/board";
+import Sidebar from "../Sidebar";
 
 const Dashboard = () => {
     let boardsObj = useSelector(state => state.boards.savedBoards)
@@ -46,17 +47,13 @@ const Dashboard = () => {
         <div className={styles.outerContainer}>
             <NavBar />
             <div className={styles.centeredContainer}>
-                <div className={styles.workspaceContainer}>Workspaces Dropdown</div>
+                <div className={styles.workspaceContainer}>
+                    <Sidebar boards={boards} />
+                </div>
                 <div className={styles.mainContainer}>
                     <div className={styles.workspaceText}>Your Workspaces</div>
                     <div className={styles.workspaceSettings}>Main Workspace</div>
                     <div className={styles.boardsContainer}>
-                        {boards && boards.map((board) => (
-                            <div key={board.id}>
-                                <BoardCard board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} currentUserId={currentUserId} />
-                            </div>
-                        ))}
-
                         <div className={styles.addBoardContainer} >
                             <div className={styles.createBoardText} onClick={() => setShowModal(true)}>
                                Create new board
@@ -67,6 +64,12 @@ const Dashboard = () => {
                             </CreateBoardModal>)}
                             </div>
                         </div>
+                        {boards && boards.map((board) => (
+                            <div key={board.id}>
+                                <BoardCard board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} currentUserId={currentUserId} />
+                            </div>
+                        ))}
+
                     </div>
                 </div>
             </div>

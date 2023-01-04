@@ -9,6 +9,7 @@ import EditBoardForm from "../forms/EditBoardForm";
 import ListColumn from "../ListColumn";
 import NavBar from "../NavBar";
 import { SubmittedContext } from "../context/SubmittedContext";
+import Sidebar from "../Sidebar";
 
 const BoardView = () => {
     // const selectedBoard = useSelector(state => state.boards.selectedBoard)
@@ -35,17 +36,10 @@ const BoardView = () => {
 
     return (
         <div className={styles.outerContainer}>
-            <div className={styles.headerContainer}>
-                <NavBar />
-            </div>
+            <NavBar />
             <div className={styles.bodyContainer}>
                 <div className={styles.boardListContainer}>
-                    <div>
-                        My Boards
-                    {usersBoards.map((userBoard) =>(
-                        <div key={userBoard.id}>{userBoard.name}</div>
-                    ))}
-                    </div>
+                    <Sidebar boards={usersBoards} />
                 </div>
                 <div className={styles.mainContainer}>
                     <div className={styles.boardHeader}>
