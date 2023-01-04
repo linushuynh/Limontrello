@@ -33,7 +33,7 @@
     /*
     HEIGHT HERE ADJUSTS THE SPACE AT THE BOTTOM, DECREASE TO 97% WHEN X-AXIS SCROLLBAR IMPLEMENTED
     */
-    height: 98%;
+    /* height: 98%; */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

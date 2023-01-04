@@ -61,6 +61,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         onBlur={submitEdit}
+                        maxLength={50}
                     />
                     <div id={styles.listText} >in list {selectedList.name}</div>
                 </div>

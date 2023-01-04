@@ -14,6 +14,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
 
     useEffect(() => {
         textRef.current.focus()
+        textRef.current.scrollIntoView()
     }, [textRef])
 
     const closeCardForm = (e) => {
