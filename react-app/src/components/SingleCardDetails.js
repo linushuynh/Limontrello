@@ -30,7 +30,6 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
             description,
             listId: selectedList.id
         }
-        console.log("input data",input)
         await dispatch(editCardThunk(input, card.id))
         setShowEditCard(false)
         setHasSubmitted(prev => !prev)
@@ -46,10 +45,22 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
 
     return (
         <div className={styles.outerContainer}>
-            <div className={styles.iconColumn}>icons</div>
+            <div className={styles.iconColumn}>
+                <div className={styles.titleIconContainer}>
+                    <span className={`styles.titleIcon material-symbols-outlined`}>web</span>
+                </div>
+                <div className={styles.descriptionIconContainer}>
+                    <span className={`styles.descriptionIcon material-symbols-outlined`}>notes</span>
+                </div>
+            </div>
             <div className={styles.bigBody}>
                 <div className={styles.headerContainer}>
-                    <div id={styles.titleText} >{card.title}</div>
+                    <input
+                        id={styles.titleText}
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        onBlur={submitEdit}
+                    />
                     <div id={styles.listText} >in list {selectedList.name}</div>
                 </div>
                 <div className={styles.bodyContainer} >

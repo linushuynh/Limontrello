@@ -30,8 +30,6 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
         }
 
         await dispatch(createCardThunk(input, currentUser.id))
-        // let response = await dispatch(getUserThunk(currentUser.id))
-        // await dispatch(saveBoardsAction(response.boards))
         setShowAddCardModal(false)
         setHasSubmitted(prev => !prev)
     }
