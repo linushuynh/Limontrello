@@ -49,7 +49,11 @@ const CreateBoardForm = ({ setShowModal }) => {
                         required
                         className={styles.inputBar}
                         ref={boardRef}
+                        maxLength={20}
                         />
+                    </div>
+                    <div className={styles.nameCount}>
+                        {name.length}/20 characters
                     </div>
                     <div className={styles.submitContainer}>
                         <button type="submit" className={styles.submitButton} disabled={!name}>

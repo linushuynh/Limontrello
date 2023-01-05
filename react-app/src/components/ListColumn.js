@@ -7,7 +7,7 @@ const ListColumn = ({ list, setHasSubmitted }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
-    const [alreadyOpen, setAlreadyOpen] = useState(false)
+    // const [alreadyOpen, setAlreadyOpen] = useState(false)
 
     const openCardForm = (e) => {
         e.preventDefault()

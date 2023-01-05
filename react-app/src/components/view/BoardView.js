@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadBoardsThunk, selectBoardAction, updateBoardThunk } from "../../store/board";
 import { getUserThunk } from "../../store/session";
-import { EditBoardModal } from "../context/EditBoardModal";
 import styles from "../cssModules/BoardView.module.css"
-import EditBoardForm from "../forms/EditBoardForm";
 import ListColumn from "../ListColumn";
 import NavBar from "../NavBar";
 import { SubmittedContext } from "../context/SubmittedContext";
@@ -22,6 +20,7 @@ const BoardView = () => {
     let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board.name)
+    // const [showEditBar, setShowEditBar] = useState(false)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -57,6 +56,10 @@ const BoardView = () => {
         document.activeElement.blur();
     }
 
+    // const flipEditBar = () => {
+    //     setShowEditBar(prevValue => !prevValue)
+    // }
+
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
@@ -77,22 +80,26 @@ const BoardView = () => {
                 <div className={styles.boardListContainer}>
                     <Sidebar boards={usersBoards} name={name} setName={setName} />
                 </div>
+                <div className={styles.backgroundOpacity}>
                 <div className={styles.mainContainer}>
-                    {/* <div className={styles.boardHeader}> */}
-                        <form onSubmit={submitForm} className={styles.boardHeader}>
+                    <form onSubmit={submitForm} className={styles.boardHeader}>
+                        <div className={styles.nameNcharCount}>
                             <input
                                 className={styles.boardName}
                                 value={name}
                                 onChange={e => setName(e.target.value)}
-                                maxLength={50}
+                                maxLength={20}
                                 onBlur={submitEdit}
                                 onClick={() => setSelectEdit(true)}
-                            />
+                                />
                             {selectEdit && <div className={styles.editCharCount}>
-                                {name.length}/50 characters
+                                {name.length}/20 characters
                             </div>}
-                        </form>
-                    {/* </div> */}
+                        </div>
+                        {/* <div className={styles.ellipses} onClick={flipEditBar}>
+                        •••
+                        </div> */}
+                    </form>
                     <div className={styles.listsContainer}>
                         {lists.map((list) => {
                             return (<div key={list.id}>
@@ -100,6 +107,10 @@ const BoardView = () => {
                             </div>)
                         })}
                     </div>
+                {/* <div className={showEditBar? styles.editBar : styles.hidden}>
+                    Edit Board here
+                </div> */}
+                </div>
                 </div>
             </div>
         </div>

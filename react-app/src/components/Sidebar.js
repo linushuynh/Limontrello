@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { selectBoardAction } from "../store/board";
-import { SubmittedContext } from "./context/SubmittedContext";
+// import { SubmittedContext } from "./context/SubmittedContext";
 import styles from "./cssModules/Sidebar.module.css"
 
 
@@ -14,7 +14,7 @@ const Sidebar = ({ boards, setName }) => {
     const location = useLocation()
     const currentUser = useSelector(state => state.session.user)
     const firstLetter = currentUser.username[0].toUpperCase()
-    const { setHasSubmitted } = useContext(SubmittedContext)
+    // const { setHasSubmitted } = useContext(SubmittedContext)
 
     const highlightCheck = (mainClass) => {
         if (location.pathname === "/dashboard") {
