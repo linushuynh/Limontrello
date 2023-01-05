@@ -4,7 +4,6 @@
     /* background-color: rgb(250, 251, 252); */
     border-right: 1px solid #D9DDE2;
     background-color: rgba(250, 251, 252, 0.75);
-
 }
 
 .workspaceTitle {
@@ -25,7 +24,7 @@
 .firstLetter {
     height: 35px;
     width: 35px;
-    background-color: #D3C94A;
+    background-color: #EAB82C;
     color: white;
     font-size: 22px;
     font-weight: 500;

@@ -23,6 +23,14 @@ const NavBar = () => {
     }
   }
 
+  const setTitleClass = () => {
+    if (location.pathname === "/dashboard") {
+      return styles.title
+    } else {
+      return styles.titleBoard
+    }
+  }
+
   const redirectHome = async () => {
     await dispatch(loadBoardsThunk())
     history.push("/dashboard")
@@ -31,7 +39,7 @@ const NavBar = () => {
   return (
     <div className={setNavClass()}>
           <div>
-            <div className={styles.title} onClick={redirectHome}>
+            <div className={setTitleClass()} onClick={redirectHome}>
               <div className={styles.iconContainer}>
                 <img src={icon} alt="gif" className="trelloIcon" />
               </div>
