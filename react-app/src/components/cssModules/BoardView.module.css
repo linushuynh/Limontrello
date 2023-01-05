@@ -89,9 +89,10 @@
     background-color: white;
 }
 
-.editModal:hover {
-    text-decoration: underline;
-    cursor: pointer;
+.editCharCount {
+    margin-left: 10px;
+    color: #172B4D;
+    font-weight: 500;
 }
 
 .listsContainer {

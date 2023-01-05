@@ -41,7 +41,7 @@ const NavBar = () => {
           <div>
             <div className={setTitleClass()} onClick={redirectHome}>
               <div className={styles.iconContainer}>
-                <img src={icon} alt="gif" className="trelloIcon" />
+                <img src={icon} alt="icon" className="trelloIcon" />
               </div>
               Limontrello
             </div>

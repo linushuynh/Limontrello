@@ -75,7 +75,7 @@ const BoardView = () => {
             <NavBar />
             <div className={styles.bodyContainer}>
                 <div className={styles.boardListContainer}>
-                    <Sidebar boards={usersBoards} />
+                    <Sidebar boards={usersBoards} name={name} setName={setName} />
                 </div>
                 <div className={styles.mainContainer}>
                     {/* <div className={styles.boardHeader}> */}
@@ -88,17 +88,7 @@ const BoardView = () => {
                                 onBlur={submitEdit}
                                 onClick={() => setSelectEdit(true)}
                             />
-                        {/* <div className={styles.editModal} >
-                            <div onClick={() => setShowEditModal(true)}>
-                                Edit Board
-                            </div>
-                            <div>
-                                {showEditModal && (<EditBoardModal onClose={() => setShowEditModal(false)}>
-                                    <EditBoardForm board={board} setShowEditModal={setShowEditModal} setHasSubmitted={setHasSubmitted} />
-                                </EditBoardModal>)}
-                            </div>
-                        </div> */}
-                            {selectEdit && <div>
+                            {selectEdit && <div className={styles.editCharCount}>
                                 {name.length}/50 characters
                             </div>}
                         </form>

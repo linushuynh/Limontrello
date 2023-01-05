@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { selectBoardAction } from "../store/board";
+import { SubmittedContext } from "./context/SubmittedContext";
 import styles from "./cssModules/Sidebar.module.css"
 
 
 
-const Sidebar = ({ boards }) => {
-    const [isSelected, setIsSelected] = useState("")
+const Sidebar = ({ boards, setName }) => {
+    // const [isSelected, setIsSelected] = useState("")
     const history = useHistory()
     const dispatch = useDispatch()
     const location = useLocation()
     const currentUser = useSelector(state => state.session.user)
     const firstLetter = currentUser.username[0].toUpperCase()
+    const { setHasSubmitted } = useContext(SubmittedContext)
 
     const highlightCheck = (mainClass) => {
         if (location.pathname === "/dashboard") {
@@ -24,6 +26,10 @@ const Sidebar = ({ boards }) => {
     const redirectBoard = async (eachBoard) => {
         await dispatch(selectBoardAction(eachBoard))
         history.push(`/b/${eachBoard.id}`)
+        if (setName) {
+            setName(eachBoard.name)
+        }
+        // setHasSubmitted(prevValue => !prevValue)
     }
 
     const redirectDash = async () => {
@@ -50,7 +56,8 @@ const Sidebar = ({ boards }) => {
                         <span>Dashboard</span>
                     </div>
                     <div className={styles.yourBoards}>
-                        <span>Your Boards</span> <span className="material-symbols-outlined">add</span>
+                        <span>Your Boards</span>
+                        {/* <span className="material-symbols-outlined">add</span> */}
                     </div>
                     {boards.map((eachBoard) =>(
                         <div key={eachBoard.id} className={styles.boardItem} onClick={() => redirectBoard(eachBoard)}>
