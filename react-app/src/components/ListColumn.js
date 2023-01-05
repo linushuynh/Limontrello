@@ -23,9 +23,9 @@ const ListColumn = ({ list, setHasSubmitted }) => {
                 <div className={styles.listName}>
                     {list.name}
                 </div>
-                <div className={styles.ellipses}>
+                {/* <div className={styles.ellipses}>
                     <div>...</div>
-                </div>
+                </div> */}
             </div>
             <div className={styles.cardsContainer}>
                 {cards.map(card => (

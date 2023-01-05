@@ -3,14 +3,47 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: #026AA7;
+    /* background-color: #026AA7; */
+    /* background-color: #f1e86e; */
+    /* background-color: #FED053; */
+    background-color: #2A2E34;
+    box-sizing: border-box;
     height: 45px;
 }
 
+.transparentNavBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    background-color: rgba(250, 251, 252, 0.85);
+}
+
 .title {
-    color: white;
+    /* color: #40526D; */
+    color: #FED053;
     display: flex;
     align-items: center;
+    gap: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    margin-left: 10px;
+    padding-right: 5px;
+    border-radius: 7px;
+    user-select: none;
+}
+
+.titleBoard {
+    color: #40526D;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    margin-left: 10px;
+    padding-right: 5px;
+    border-radius: 7px;
 }
 
 .title:hover {
@@ -18,11 +51,18 @@
     cursor: pointer;
 }
 
-.icon {
-    height: 30px;
-    background-color: #026AA7;
+.titleBoard:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-/* .icon:hover {
-    background-image: element(gif);
+/* .icon {
+    height: 28px;
+    width: 28px;
+    background-color: #ffffff;
 } */
+
+.iconContainer {
+    border-radius: 10px;
+    /* background-color: #6E77F1; */
+}

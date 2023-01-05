@@ -1,25 +1,21 @@
 .container {
-    width: 200px;
+    width: 100%;
+    min-width: 280px;
     height: 80px;
-    background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg);
+    /* background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg); */
+    background-image: url(https://images.unsplash.com/photo-1614630669107-f48325791b57?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c25vdyUyMGZvcmVzdHxlbnwwfHwwfHw%3D&w=1000&q=80);
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 4px;
-    margin: 10px;
 }
 
 .boardCard {
     width: 100%;
     height: 100%;
-    /* line-height: 40px; */
     text-indent: 10px;
     display: flex;
     color: rgb(238, 238, 238);
-    /* text-shadow: -1px 1px 0 rgb(141, 141, 141),
-    1px 1px 0 rgb(140, 140, 140),
-    1px -1px 0 rgb(142, 142, 142),
-    -1px -1px 0 rgb(142, 142, 142); */
     font-weight: 600;
     letter-spacing: 1px;
     justify-content: space-between;
@@ -58,7 +54,7 @@
 .trashIcon {
     position: relative;
     top: -30px;
-    left: 160px;
+    left: 240px;
     cursor: pointer;
     width: fit-content;
     height: fit-content;
@@ -66,5 +62,5 @@
 }
 
 .trashIcon:hover {
-    color: white;
+    color: rgb(255, 109, 109);
 }

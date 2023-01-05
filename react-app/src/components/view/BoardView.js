@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadBoardsThunk, selectBoardAction } from "../../store/board";
+import { loadBoardsThunk, selectBoardAction, updateBoardThunk } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import { EditBoardModal } from "../context/EditBoardModal";
 import styles from "../cssModules/BoardView.module.css"
@@ -15,12 +15,47 @@ const BoardView = () => {
     // const selectedBoard = useSelector(state => state.boards.selectedBoard)
     // const savedBoards = useSelector(state => state.boards.savedBoards)
     const currentUser = useSelector(state => state.session.user)
-    const [showEditModal, setShowEditModal] = useState(false)
+    const [selectEdit, setSelectEdit] = useState(false)
     const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
     const { boardId } = useParams()
     const dispatch = useDispatch()
     let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
+    const [name, setName] = useState(board.name)
+
+    // Called when the board title input is deselected
+    const submitEdit = async () => {
+        if (name === "") {
+            setName(board.name)
+        }
+        let input = {
+            name: name,
+            background: "default",
+            private: false,
+            boardId: board.id
+        }
+        setHasSubmitted(prevValue => !prevValue)
+        await dispatch(updateBoardThunk(input))
+        setSelectEdit(false)
+    }
+
+    // Same function as above but separate to prevent blur on blur loop
+    const submitForm = async (e) => {
+        e.preventDefault();
+        if (name === "") {
+            setName(board.name)
+        }
+        let input = {
+            name: name,
+            background: "default",
+            private: false,
+            boardId: board.id
+        }
+        await dispatch(updateBoardThunk(input))
+        setHasSubmitted(prevValue => !prevValue)
+        setSelectEdit(false)
+        document.activeElement.blur();
+    }
 
 
     useEffect(() => {
@@ -35,26 +70,29 @@ const BoardView = () => {
     let lists = board.lists
 
     return (
+    <div className={styles.backgroundImg}>
         <div className={styles.outerContainer}>
             <NavBar />
             <div className={styles.bodyContainer}>
                 <div className={styles.boardListContainer}>
-                    <Sidebar boards={usersBoards} />
+                    <Sidebar boards={usersBoards} name={name} setName={setName} />
                 </div>
                 <div className={styles.mainContainer}>
-                    <div className={styles.boardHeader}>
-                        <div className={styles.boardName}>{board.name}</div>
-                        <div className={styles.editModal} >
-                            <div onClick={() => setShowEditModal(true)}>
-                                Edit Board
-                            </div>
-                            <div>
-                                {showEditModal && (<EditBoardModal onClose={() => setShowEditModal(false)}>
-                                    <EditBoardForm board={board} setShowEditModal={setShowEditModal} setHasSubmitted={setHasSubmitted} />
-                                </EditBoardModal>)}
-                            </div>
-                        </div>
-                    </div>
+                    {/* <div className={styles.boardHeader}> */}
+                        <form onSubmit={submitForm} className={styles.boardHeader}>
+                            <input
+                                className={styles.boardName}
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                maxLength={50}
+                                onBlur={submitEdit}
+                                onClick={() => setSelectEdit(true)}
+                            />
+                            {selectEdit && <div className={styles.editCharCount}>
+                                {name.length}/50 characters
+                            </div>}
+                        </form>
+                    {/* </div> */}
                     <div className={styles.listsContainer}>
                         {lists.map((list) => {
                             return (<div key={list.id}>
@@ -65,6 +103,7 @@ const BoardView = () => {
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

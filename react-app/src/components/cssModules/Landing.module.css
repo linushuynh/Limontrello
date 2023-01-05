@@ -1,0 +1,121 @@
+.navContainer {
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: white;
+}
+
+.limontrelloContainer {
+    display: flex;
+    align-items: center;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    /* Add this back in to avoid scroll bar */
+    /* margin-right: 20px; */
+    height: 100%;
+    font-weight: 500;
+    font-size: 19px;
+}
+
+#loginButton {
+    display: flex;
+    align-items: center;
+    color: #172B4D;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+#loginButton:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+#signupButton {
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #5381FE;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+#signupButton:hover {
+    background-color: #2c54c2;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 100%;
+    height: fit-content;
+}
+
+.gradientContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+    /* Temporary height */
+    height: calc(100vh - 60px);
+    /* height: 550px; */
+    background: rgb(212,164,36);
+    background: linear-gradient(90deg, rgba(212,164,36,1) 0%, rgba(254,249,83,1) 100%);
+}
+
+.introTextContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.introTextHeader {
+    margin-top: 60px;
+    font-size: 48px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.introTextSubheader {
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+
+.teamImgContainer {
+    display: flex;
+    align-items: center;
+}
+
+.teamImgContainer > img {
+    /* margin-top: 80px; */
+    width: 632px;
+    height: 558px;
+}
+
+.limontrelloIcon {
+    height: 38px;
+    width: 38px;
+    border-radius: 3px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.fillerDiv {
+    height: 60px;
+    width: 100vw;
+}

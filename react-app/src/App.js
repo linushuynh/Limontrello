@@ -7,6 +7,7 @@ import BoardView from './components/view/BoardView'
 import { authenticate } from './store/session';
 import LoginPage from './components/view/LoginPage';
 import SignupPage from './components/view/SignupPage';
+import Landing from './components/view/Landing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +28,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true} >
-          <h1>Landing Page(in landing page, check if logged in/current user exists and if so then redirect to /dashboard)</h1>
+          <Landing />
         </Route>
         <Route path='/login' exact={true}>
           <LoginPage />
@@ -41,6 +42,9 @@ function App() {
         <ProtectedRoute path='/b/:boardId' exact={true}>
           <BoardView />
         </ProtectedRoute>
+        <Route>
+          <h1>This is 404, render 404 component here</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

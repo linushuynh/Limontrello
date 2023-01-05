@@ -18,9 +18,9 @@ const SingleCard = ({ card, setHasSubmitted }) => {
     return (
         <>
             <div className={styles.cardContainer} onClick={openCardDetails} >
-                <span>
+                <div className={styles.cardTitle}>
                     {card.title}
-                </span>
+                </div>
             </div>
             {showCardDetailsModal && (<CardDetailModal onClose={() => setShowCardDetailsModal(false) }>
                 <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} setHasSubmitted={setHasSubmitted} />
