@@ -2,12 +2,12 @@
     width: 100%;
     min-width: 280px;
     height: 80px;
-    background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg);
+    /* background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg); */
+    background-image: url(https://images.unsplash.com/photo-1614630669107-f48325791b57?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c25vdyUyMGZvcmVzdHxlbnwwfHwwfHw%3D&w=1000&q=80);
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 4px;
-    margin: 10px 0px;
 }
 
 .boardCard {

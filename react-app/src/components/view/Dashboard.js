@@ -15,6 +15,7 @@ const Dashboard = () => {
     let boardsObj = useSelector(state => state.boards.savedBoards)
     const currentUser = useSelector(state => state.session.user)
     const currentUserId = currentUser.id
+    const firstLetter = currentUser.username[0].toUpperCase()
     const dispatch = useDispatch();
     const history = useHistory();
     const [showModal, setShowModal] = useState(false);
@@ -54,6 +55,7 @@ const Dashboard = () => {
                     <div className={styles.centerBody}>
                         <div className={styles.headerContainer}>
                             <div className={styles.headerInfo}>
+                                <div className={styles.firstLetter}>{firstLetter}</div>
                                 <div className={styles.headerText}>
                                     <div className={styles.workspaceText}>
                                         Your Workspace

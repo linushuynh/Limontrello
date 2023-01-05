@@ -13,7 +13,6 @@ const Sidebar = ({ boards }) => {
     const location = useLocation()
     const currentUser = useSelector(state => state.session.user)
     const firstLetter = currentUser.username[0].toUpperCase()
-    const [selectedIcon, setSelectedIcon] = useState("")
 
     const highlightCheck = (mainClass) => {
         if (location.pathname === "/dashboard") {
@@ -32,17 +31,6 @@ const Sidebar = ({ boards }) => {
         history.push(`/dashboard`)
     }
 
-    const dashboardIcons = ["dashboard", "grid_view", "space_dashboard"]
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-      }
-
-    useEffect(() => {
-        let int = getRandomInt(3)
-        setSelectedIcon(dashboardIcons[int])
-    })
-
     return (
         <>
             <div className={styles.outerContainer}>
@@ -58,10 +46,7 @@ const Sidebar = ({ boards }) => {
                 <div className={styles.hrContainer}><hr className={styles.hrBar} /></div>
                 <div className={styles.centeredContainer}>
                     <div className={highlightCheck(styles.dashboardContainer)} onClick={redirectDash}>
-                        {/* <span className="material-symbols-outlined" id={styles.dashboardIcon}>dashboard</span> */}
-                        {/* <span class="material-symbols-outlined" id={styles.dashboardIcon}>grid_view</span> */}
-                        {/* <span class="material-symbols-outlined" id={styles.dashboardIcon}>space_dashboard</span> */}
-                        <span class="material-symbols-outlined" id={styles.dashboardIcon}>{selectedIcon}</span>
+                        <span class="material-symbols-outlined" id={styles.dashboardIcon}>grid_view</span>
                         <span>Dashboard</span>
                     </div>
                     <div className={styles.yourBoards}>
@@ -69,7 +54,7 @@ const Sidebar = ({ boards }) => {
                     </div>
                     {boards.map((eachBoard) =>(
                         <div key={eachBoard.id} className={styles.boardItem} onClick={() => redirectBoard(eachBoard)}>
-                                <img alt="boardIcon" src="https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg" className={styles.boardIcon} ></img>
+                                <img alt="boardIcon" src="https://wallpaper.dog/large/5526740.jpg" className={styles.boardIcon} ></img>
                             {eachBoard.name}
                         </div>
                         ))}

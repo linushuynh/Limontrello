@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { loadBoardsThunk } from '../store/board';
 // import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
@@ -12,6 +12,16 @@ const NavBar = () => {
   // const currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
+  const location = useLocation()
+  let navClass;
+
+  const setNavClass = () => {
+    if (location.pathname === "/dashboard") {
+      return styles.navBarContainer
+    } else {
+      return styles.transparentNavBarContainer
+    }
+  }
 
   const redirectHome = async () => {
     await dispatch(loadBoardsThunk())
@@ -19,24 +29,15 @@ const NavBar = () => {
   }
 
   return (
-    <div className={styles.navBarContainer}>
+    <div className={setNavClass()}>
           <div>
             <div className={styles.title} onClick={redirectHome}>
-              <img src={icon} alt="gif" className="trelloIcon" />
-              {/* <img src={gif} alt="gif" className={styles.gif} /> */}
+              <div className={styles.iconContainer}>
+                <img src={icon} alt="gif" className="trelloIcon" />
+              </div>
               Limontrello
             </div>
           </div>
-          {/* <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </li> */}
           <div>
             <LogoutButton />
           </div>

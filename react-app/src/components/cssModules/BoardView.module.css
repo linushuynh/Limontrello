@@ -1,3 +1,14 @@
+.backgroundImg {
+    width: 100%;
+    height: 100%;
+    background-image: url(https://wallpaper.dog/large/5526740.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
 .outerContainer {
     display: flex;
     flex-direction: column;
@@ -18,6 +29,10 @@
     box-sizing: border-box;
     display: flex;
     overflow: hidden;
+    /* background-image: url(https://wallpaper.dog/large/5526740.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; */
 }
 
 .boardListContainer {
@@ -38,6 +53,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background-color: rgb(0, 0, 0, 0.1);
 }
 
 .boardHeader {
@@ -53,6 +69,7 @@
     font-size: 20px;
     font-weight: bold;
     text-indent: 30px;
+    color: #172B4D;
 }
 
 .editModal:hover {

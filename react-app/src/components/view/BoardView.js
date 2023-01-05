@@ -35,6 +35,7 @@ const BoardView = () => {
     let lists = board.lists
 
     return (
+    <div className={styles.backgroundImg}>
         <div className={styles.outerContainer}>
             <NavBar />
             <div className={styles.bodyContainer}>
@@ -65,6 +66,7 @@ const BoardView = () => {
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 
