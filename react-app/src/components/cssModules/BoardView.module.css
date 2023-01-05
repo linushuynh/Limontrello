@@ -61,15 +61,32 @@
     height: 50px;
     /* border: 1px solid purple; */
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
 }
 
 .boardName {
     font-size: 20px;
-    font-weight: bold;
-    text-indent: 30px;
+    font-weight: 600;
+    margin-left: 15px;
     color: #172B4D;
+    width: 690px;
+    border: 2px solid rgb(244,245,247, 0);
+    /* border: none; */
+    font-family: 'Inter Tight', sans-serif;
+    background-color: rgb(244,245,247, 0);
+    resize: none;
+    cursor: pointer;
+}
+
+.boardName:focus {
+    cursor: text;
+    outline: #FED053;
+    border: 2px solid #FED053;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    background-color: white;
 }
 
 .editModal:hover {

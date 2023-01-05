@@ -46,7 +46,7 @@ const Sidebar = ({ boards }) => {
                 <div className={styles.hrContainer}><hr className={styles.hrBar} /></div>
                 <div className={styles.centeredContainer}>
                     <div className={highlightCheck(styles.dashboardContainer)} onClick={redirectDash}>
-                        <span class="material-symbols-outlined" id={styles.dashboardIcon}>grid_view</span>
+                        <span className="material-symbols-outlined" id={styles.dashboardIcon}>grid_view</span>
                         <span>Dashboard</span>
                     </div>
                     <div className={styles.yourBoards}>
