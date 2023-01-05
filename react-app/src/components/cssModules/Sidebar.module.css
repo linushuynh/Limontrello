@@ -12,6 +12,39 @@
     padding-bottom: 5px;
 }
 
+.headerInfo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    user-select: none;
+}
+
+.firstLetter {
+    height: 35px;
+    width: 35px;
+    background-color: #D3C94A;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-right: 7px;
+}
+
+.headerText {
+    display: flex;
+    flex-direction: column;
+}
+
+.workspaceText {
+    font-size: 15px;
+    font-weight: 600;
+    color: #40526D;
+}
+
 .hrBar {
     color: #D9DDE2;
     background-color: #D9DDE2;
@@ -30,17 +63,28 @@
     padding-right: 10px; */
 }
 
-.boardsTab {
+.dashboardContainer {
     /* margin-bottom: 10px; */
     padding-top: 6px;
     padding-bottom: 6px;
     cursor: pointer;
-    text-indent: 30px;
+    /* text-indent: 30px; */
     transition: background-color 65ms;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: left;
+    font-size: 16px;
 }
 
-.boardsTab:hover {
+.dashboardContainer:hover {
     background-color: #E6E7E8;
+}
+
+#dashboardIcon {
+    /* margin-right: -25px; */
+    font-size: 22px;
+    margin-left: 15px;
 }
 
 .yourBoards {
@@ -60,10 +104,23 @@
     width: 100%;
     padding-top: 6px;
     padding-bottom: 6px;
-    text-indent: 30px;
+    /* text-indent: 30px; */
     transition: background-color 65ms;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 15px;
+    gap: 10px;
 }
 
 .boardItem:hover {
     background-color: #E6E7E8;
 }
+
+.boardIcon {
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+    margin-left: 15px;
+}
+

@@ -51,25 +51,40 @@ const Dashboard = () => {
                     <Sidebar boards={boards} />
                 </div>
                 <div className={styles.mainContainer}>
-                    <div className={styles.workspaceText}>Your Workspaces</div>
-                    <div className={styles.workspaceSettings}>Main Workspace</div>
-                    <div className={styles.boardsContainer}>
-                        <div className={styles.addBoardContainer} >
-                            <div className={styles.createBoardText} onClick={() => setShowModal(true)}>
-                               Create new board
-                            </div>
-                            <div>
-                            {showModal && (<CreateBoardModal onClose={() => setShowModal(false)}>
-                                <CreateBoardForm setShowModal={setShowModal} />
-                            </CreateBoardModal>)}
+                    <div className={styles.centerBody}>
+                        <div className={styles.headerContainer}>
+                            <div className={styles.headerInfo}>
+                                <div className={styles.headerText}>
+                                    <div className={styles.workspaceText}>
+                                        Your Workspace
+                                    </div>
+                                    <div className={styles.privateText}>
+                                        <span className="material-symbols-outlined" id={styles.lock}>lock</span>
+                                        Private
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        {boards && boards.map((board) => (
-                            <div key={board.id}>
-                                <BoardCard board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} currentUserId={currentUserId} />
+                        <hr className={styles.hr} />
+                        <div className={styles.boardsText}>Boards</div>
+                        <div className={styles.boardsContainer}>
+                            <div className={styles.addBoardContainer} >
+                                <div className={styles.createBoardText} onClick={() => setShowModal(true)}>
+                                   Create new board
+                                </div>
+                                <div>
+                                {showModal && (<CreateBoardModal onClose={() => setShowModal(false)}>
+                                    <CreateBoardForm setShowModal={setShowModal} />
+                                </CreateBoardModal>)}
+                                </div>
                             </div>
-                        ))}
+                            {boards && boards.map((board) => (
+                                <div key={board.id}>
+                                    <BoardCard board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} currentUserId={currentUserId} />
+                                </div>
+                            ))}
 
+                        </div>
                     </div>
                 </div>
             </div>
