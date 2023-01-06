@@ -48,15 +48,11 @@ const LoginForm = () => {
         <div className={styles.welcomeText}>
           Log in to Limontrello
         </div>
-        <div className={styles.errors}>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
+
         <div className={styles.inputContainer}>
           <input
             name='email'
-            type='text'
+            type='email'
             placeholder='Enter Email'
             value={email}
             onChange={updateEmail}
@@ -75,9 +71,15 @@ const LoginForm = () => {
             required
           />
         </div>
-          <div className={styles.inputContainer}>
-            <button type='submit' className={styles.loginButton}>Continue</button>
-          </div>
+        <div className={styles.errors}>
+          {errors.map((error, ind) => (
+            <div key={ind} className="errors">{error}</div>
+          ))}
+        </div>
+        <div className={styles.inputContainer}>
+          <button type='submit' className={styles.loginButton}>Continue</button>
+        </div>
+
       </form>
       <hr className={styles.hrBar} />
       <div className={styles.footerTextContainer}>

@@ -195,3 +195,7 @@
 .noShow {
     display: none;
 }
+
+.moreOptions > span {
+    color: #5E6C84;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { selectBoardAction } from "../store/board";
+import snowmountains from "../assets/snowmountain.jpg"
 // import { SubmittedContext } from "./context/SubmittedContext";
 import styles from "./cssModules/Sidebar.module.css"
 
@@ -61,7 +62,7 @@ const Sidebar = ({ boards, setName }) => {
                     </div>
                     {boards.map((eachBoard) =>(
                         <div key={eachBoard.id} className={styles.boardItem} onClick={() => redirectBoard(eachBoard)}>
-                                <img alt="boardIcon" src="https://wallpaper.dog/large/5526740.jpg" className={styles.boardIcon} ></img>
+                                <img alt="boardIcon" src={snowmountains} className={styles.boardIcon} ></img>
                             {eachBoard.name}
                         </div>
                         ))}

@@ -20,3 +20,10 @@ body {
 .sideBarHighlight {
     background-color: rgb(218, 218, 218, 1);
 }
+
+.errors {
+    color: rgb(255, 109, 109);
+    font-size: 15px;
+    margin-bottom: 10px;
+    user-select: none;
+}

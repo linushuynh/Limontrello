@@ -24,6 +24,7 @@ const BoardView = () => {
     const [name, setName] = useState(board.name)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
+    const [cardList, setCardList] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -65,15 +66,22 @@ const BoardView = () => {
 
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
+        // Return if card is dropped in same spot
+        // if (destination.droppableId === source.droppableId && destination.index === source.index) {
+        //     return
+        // }
 
         // Return if card is dropped outside of droppable
         if (!destination) {
             return
         }
 
-        // Return if card is dropped in same spot
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-            return
+        if (destination.droppableId === source.droppableId) {
+            console.log("card list", cardList)
+            let sourceList = cardList.find(list => list.name === source.droppableId)
+            console.log("source list", sourceList)
+            let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
+            console.log("grabbed card", grabbedCard)
         }
 
         // If card is dropped in different list column, send thunk to move it

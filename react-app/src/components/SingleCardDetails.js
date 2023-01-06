@@ -96,7 +96,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                             <span className="material-symbols-outlined">remove</span>
                             <span>Delete Card</span>
                         </div>
-                        More button options soon!
+                        <span>More button options soon!</span>
                     </div>
                 </div>
             </div>

@@ -30,15 +30,17 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
 
     const submitNewCard = async (e) => {
         e.preventDefault()
-        let input = {
-            title,
-            description: "",
-            listId
-        }
-
-        setShowAddCardModal(false)
-        setHasSubmitted(prev => !prev)
-        await dispatch(createCardThunk(input, currentUser.id))
+            let input = {
+                title,
+                description: "",
+                listId
+            }
+            setShowAddCardModal(false)
+            setHasSubmitted(prev => !prev)
+            const data = await dispatch(createCardThunk(input, currentUser.id))
+            if (!data.ok) {
+                console.log("caught")
+            }
     }
 
     return (
