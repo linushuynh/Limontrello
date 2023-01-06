@@ -5,6 +5,8 @@ import bottomLeft from "../../assets/bottom-left-trello.svg"
 import bottomRight from "../../assets/bottom-right-trello.svg"
 import limontrello from "../../assets/limontrello.png"
 import atlassian from "../../assets/atlassian-logo.svg"
+import linkedin from "../../assets/linkedin.png"
+import github from "../../assets/github.svg"
 import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
@@ -30,22 +32,40 @@ const LoginPage = () => {
                         </div>
                         <div className={styles.aboutMeContainer}>
                             <div className={styles.nameCard}>
+                                <div className={styles.linkContainer}>
                                 <div>Linus Huynh</div>
-                                <a
-                                className={styles.gitContainer}
-                                href="https://github.com/linushuynh"
-                                target="_blank"
-                                rel="noreferrer"
-                                >
                                     <div>
-                                      <img
+                                    <a
+                                    className={styles.gitContainer}
+                                    href="https://github.com/linushuynh"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >
+                                        <img
                                         className={styles.githubImg}
-                                        src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
+                                        src={github}
                                         alt="github-icon"
-                                      />
+                                        />
+                                        {/* <div className={styles.gitText}>Github</div> */}
+                                    </a>
                                     </div>
-                                    <div className={styles.gitText}>Github</div>
-                                </a>
+                                    <div>
+
+                                    <a
+                                    className={styles.linkedInContainer}
+                                    href="https://www.linkedin.com/in/linus-huynh-2457a9238/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >
+                                        <img
+                                            src={linkedin}
+                                            alt="linkedIn-icon"
+                                            className={styles.linkedInImg}
+                                            />
+                                        {/* <span className={styles.linkedInText}>LinkedIn</span> */}
+                                    </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

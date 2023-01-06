@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { CardDetailModal } from "./context/CardDetailsModal";
 import styles from "./cssModules/SingleCard.module.css"
 import SingleCardDetails from "./SingleCardDetails";
-import { Draggable } from "react-beautiful-dnd";
 
 const SingleCard = ({ card, setHasSubmitted, provided, innerRef }) => {
     const [showCardDetailsModal, setShowCardDetailsModal] = useState(false)
