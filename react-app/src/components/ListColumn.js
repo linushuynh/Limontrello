@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./cssModules/ListColumn.module.css"
 import CreateCardForm from "./forms/CreateCardForm";
-import CardList from "./CardList";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd";
 import SingleCard from "./SingleCard";
 
 

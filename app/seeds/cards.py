@@ -8,7 +8,7 @@ def seed_cards():
     card2 = Card(
         title='Make more cards', description='Give your cards descriptions too!', list_id = 1)
     card3 = Card(
-        title='Be awesome', description='', list_id = 3)
+        title='Drag me into another column!', description='', list_id = 1)
 
     db.session.add_all([card1, card2, card3])
     db.session.commit()
