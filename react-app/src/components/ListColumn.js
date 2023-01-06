@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styles from "./cssModules/ListColumn.module.css"
 import CreateCardForm from "./forms/CreateCardForm";
+import CardList from "./CardList";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import SingleCard from "./SingleCard";
 
-const ListColumn = ({ list, setHasSubmitted }) => {
+
+
+const ListColumn = ({ list, placeholder }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
@@ -28,11 +32,25 @@ const ListColumn = ({ list, setHasSubmitted }) => {
                 </div> */}
             </div>
             <div className={styles.cardsContainer}>
-                {cards.map(card => (
-                    <div key={card.id} className={styles.singleCard} >
-                        <SingleCard card={card} setHasSubmitted={setHasSubmitted} />
-                    </div>
-                ))}
+
+                    {cards.map((card, index) => (
+                        <div key={card.id} className={styles.singleCard}>
+                        <Draggable
+                            draggableId={card.title}
+                            index={index}
+                        >
+                            {(provided) => (
+                                <SingleCard
+                                    provided={provided}
+                                    innerRef={provided.innerRef}
+                                    card={card}
+                                    index={index}
+                                />
+                            )}
+                        </Draggable>
+                        </div>
+                    ))}
+                {placeholder}
                 <div className={styles.addCardContainer}>
                     { showAddCardModal ?
                         <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />
