@@ -13,7 +13,6 @@ const NavBar = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const location = useLocation()
-  let navClass;
 
   const setNavClass = () => {
     if (location.pathname === "/dashboard") {

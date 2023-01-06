@@ -39,6 +39,14 @@
     outline: none;
 }
 
+.titleCount {
+    font-size: 15px;
+    color: #6B778C;
+    margin-top: 2px;
+    margin-left: 3px;
+    user-select: none;
+}
+
 .buttonsContainer {
     display: flex;
     gap: 10px;

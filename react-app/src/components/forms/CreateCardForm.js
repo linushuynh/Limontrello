@@ -22,9 +22,9 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
         setShowAddCardModal(false)
         // let index = displayAddButtons.indexOf(listId)
         // console.log('index', index)
-        console.log('displayaddbuttons before', displayAddButtons)
+        // console.log('displayaddbuttons before', displayAddButtons)
         // let newArr = displayAddButtons.splice(index, 1)
-        console.log('displayaddbuttons after', displayAddButtons)
+        // console.log('displayaddbuttons after', displayAddButtons)
         setDisplayAddButtons()
     }
 
@@ -51,7 +51,11 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
                     placeholder="Enter a title for this card..."
                     className={styles.inputArea}
                     ref={textRef}
+                    maxLength={100}
                     />
+                </div>
+                <div className={styles.titleCount}>
+                    {title.length}/100 characters
                 </div>
                 <div className={styles.buttonsContainer}>
                     <button type="submit" className={styles.addCardButton} onClick={submitNewCard}>Add card</button>
