@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Board, db, CardList
-from ..forms.board_form import CreateBoardForm, UpdateBoardForm
+from ..forms.board_form import BoardForm
 from .auth_routes import validation_errors_to_error_messages, authorized
 
 board_routes = Blueprint('boards', __name__)
@@ -28,7 +28,7 @@ def create_board():
     """
     Create a new board for the user and append 3 lists for the new board to start with
     """
-    form = CreateBoardForm()
+    form = BoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
@@ -73,7 +73,7 @@ def update_board(board_id):
     """
     Find an existing board by id and updates it with form data
     """
-    form = UpdateBoardForm()
+    form = BoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     board = Board.query.get(board_id)
 
