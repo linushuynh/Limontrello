@@ -22,6 +22,7 @@
     transition: background-color 75ms, box-shadow 75ms;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.32);
+    user-select: none;
 }
 
 .boardCard:hover {

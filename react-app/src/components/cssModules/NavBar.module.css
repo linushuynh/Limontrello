@@ -44,6 +44,7 @@
     margin-left: 10px;
     padding-right: 5px;
     border-radius: 7px;
+    user-select: none;
 }
 
 .title:hover {

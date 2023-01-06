@@ -84,6 +84,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                     ref={descriptionRef}
                                     id={styles.descriptionBox}
                                     maxLength={255}
+                                    placeholder={"Give this card a description..."}
                                 />
                                 <div className={showEditCard ? styles.editFooter : styles.noShow }>
                                     <div className={styles.saveButton} onClick={submitEdit} >Save</div>
