@@ -28,3 +28,38 @@ Limontrello also utilizes the [React Beautiful DnD](https://github.com/atlassian
 ## 💻 Run Limontrello on Local
 
 Clone the project
+
+```bash
+git clone https://github.com/linushuynh/Limontrello.git
+```
+
+Install dependencies
+
+```bash
+npm install --prefix react-app
+pip install -r requirements.txt(if you have pipenv installed, use pipenv instead of pip)
+pipenv run
+flask db upgrade
+flask seed all
+```
+
+Setup the Environment Variables
+
+To run this project, you will need to add a .env file in the root of your directory
+To do this, duplicate(copy/paste) the **.env.example** file in the root directory then rename the copy to **.env**
+Make sure the SECREY_KEY, DATABASE_URL, and SCHEMA are the same.
+
+Start the backend of the server
+
+```bash
+pipenv run flask run
+```
+
+Open another terminal window(make sure you're in the root directory) then run 
+
+```bash
+cd react-app
+npm start
+```
+
+**Then you can visit localhost:3000 to view your local version of Limontrello!**
