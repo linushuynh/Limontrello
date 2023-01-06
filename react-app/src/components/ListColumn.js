@@ -7,7 +7,7 @@ import SingleCard from "./SingleCard";
 
 
 
-const ListColumn = ({ list }) => {
+const ListColumn = ({ list, placeholder }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
@@ -32,6 +32,7 @@ const ListColumn = ({ list }) => {
                 </div> */}
             </div>
             <div className={styles.cardsContainer}>
+
                     {cards.map((card, index) => (
                         <div key={card.id} className={styles.singleCard}>
                         <Draggable
@@ -49,7 +50,7 @@ const ListColumn = ({ list }) => {
                         </Draggable>
                         </div>
                     ))}
-
+                {placeholder}
                 <div className={styles.addCardContainer}>
                     { showAddCardModal ?
                         <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />

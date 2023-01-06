@@ -9,6 +9,7 @@ import NavBar from "../NavBar";
 import { SubmittedContext } from "../context/SubmittedContext";
 import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import { editCardThunk } from "../../store/cards";
 
 const BoardView = () => {
     // const selectedBoard = useSelector(state => state.boards.selectedBoard)
@@ -22,6 +23,7 @@ const BoardView = () => {
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board.name)
     // const [showEditBar, setShowEditBar] = useState(false)
+    let lists = board?.lists
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -62,7 +64,32 @@ const BoardView = () => {
     // }
 
     const onDragEnd = result => {
-        // for later
+        const { destination, source, draggableId } = result
+
+        // Return if card is dropped outside of droppable
+        if (!destination) {
+            return
+        }
+
+        // Return if card is dropped in same spot
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return
+        }
+
+        // If card is dropped in different list column, send thunk to move it
+        if (destination.droppableId !== source.droppableId) {
+            let sourceList = lists.find(list => list.name === source.droppableId)
+            let destinationList = lists.find(list => list.name === destination.droppableId)
+            let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
+            let input = {
+                title: grabbedCard.title,
+                description: grabbedCard.description,
+                listId: destinationList.id
+            }
+            dispatch(editCardThunk(input, grabbedCard.id))
+            .then(() => setHasSubmitted(prevValue => !prevValue))
+        }
+
     }
 
     useEffect(() => {
@@ -74,7 +101,7 @@ const BoardView = () => {
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) return "The board was not found or not yours"
-    let lists = board.lists
+
 
     return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -116,8 +143,8 @@ const BoardView = () => {
                                             <ListColumn
                                                 list={list}
                                                 setHasSubmitted={setHasSubmitted}
+                                                placeholder={provided.placeholder}
                                             >
-                                                {provided.placeholder}
                                             </ListColumn>
                                         </div>
                                     )}
