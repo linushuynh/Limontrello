@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 // import { useDispatch } from "react-redux";
-import { CardDetailModal } from "./context/CardDetailsModal";
 // import { loadBoardsThunk } from "../store/board";
+import { CardDetailModal } from "./context/CardDetailsModal";
 import styles from "./cssModules/SingleCard.module.css"
 import SingleCardDetails from "./SingleCardDetails";
+import { Draggable } from "react-beautiful-dnd";
 
-const SingleCard = ({ card, setHasSubmitted }) => {
-    // const dispatch = useDispatch()
+const SingleCard = ({ card, setHasSubmitted, provided, innerRef }) => {
     const [showCardDetailsModal, setShowCardDetailsModal] = useState(false)
 
     const openCardDetails = () => {
@@ -17,7 +17,13 @@ const SingleCard = ({ card, setHasSubmitted }) => {
 
     return (
         <>
-            <div className={styles.cardContainer} onClick={openCardDetails} >
+            <div
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                ref={innerRef}
+                className={styles.cardContainer}
+                onClick={openCardDetails}
+            >
                 <div className={styles.cardTitle}>
                     {card.title}
                 </div>
