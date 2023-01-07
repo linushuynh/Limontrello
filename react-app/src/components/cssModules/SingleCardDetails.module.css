@@ -41,6 +41,32 @@
     margin-bottom: 20px;
 }
 
+.titleXcontainer {
+    display: flex;
+}
+
+#Xbutton {
+    /* background-color:#d1d1d1; */
+    color: #8b8b8b;
+    padding: 2px 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 29px;
+}
+
+#Xbutton:hover {
+    background-color:#d1d1d1;
+
+}
+
+#Xbutton:hover:active {
+    background-color:#c0c0c0;
+    /* background-color:#b2b2b2; */
+}
+
 #titleText {
     font-size: 22px;
     font-weight: 600;
@@ -48,7 +74,7 @@
     cursor: pointer;
     overflow-wrap: break-word;
     border: 2px solid rgb(244,245,247);
-    border: none;
+    /* border: none; */
     font-family: 'Inter Tight', sans-serif;
     background-color: rgb(244,245,247);
     resize: none;
@@ -69,7 +95,7 @@
     color: #5E6C84;
     text-indent: 2px;
     margin-top: 10px;
-
+    margin-left: 2px;
 }
 
 .bodyContainer {
@@ -105,6 +131,7 @@
     align-items: center;
     gap: 10px;
     height: 32px;
+    margin-left: 2px;
 }
 
 #descriptionBox {
@@ -120,6 +147,7 @@
     background-color: rgb(244,245,247);
     resize: none;
     overflow-y: hidden;
+
 }
 
 #descriptionBox:focus {
@@ -129,18 +157,6 @@
     box-sizing: border-box;
     outline: none;
 }
-
-/* #editDescriptionBox {
-    font-size: 15px;
-    font-weight: 400;
-    height: 100px;
-    width: 94.5%;
-    resize: none;
-    font-family: 'Inter Tight', sans-serif;
-    outline: none;
-    overflow-x: hidden;
-    box-sizing: border-box;
-} */
 
 .editButton {
     font-weight: 400;
@@ -194,4 +210,8 @@
 
 .noShow {
     display: none;
+}
+
+.moreOptions > span {
+    color: #5E6C84;
 }

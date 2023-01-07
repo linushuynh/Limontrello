@@ -19,6 +19,7 @@
     justify-content: space-between;
     height: 35px;
     text-indent: 10px;
+    user-select: none;
 }
 
 .listName {
@@ -49,6 +50,7 @@
     height: 95%;
     overflow-y: auto;
     overflow-x: hidden;
+    color: #172B4D;
 }
 
 .singleCard {
@@ -63,6 +65,7 @@
     display: flex;
     justify-content: center;
     margin-top: 5px;
+    user-select: none;
 }
 
 .addCardButton {
@@ -84,4 +87,8 @@
 .addCardButton:hover {
     cursor: pointer;
     background-color: #dcdcdc;
+}
+
+.placeholder{
+    background-color: rgb(149, 149, 149);
 }

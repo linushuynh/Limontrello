@@ -18,12 +18,11 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
-      console.log("error data",data)
       if (data) {
         setErrors(data)
       }
     } else {
-      setErrors(["Passwords do not match."])
+      setErrors(["The passwords must match."])
     }
   };
 
@@ -57,11 +56,7 @@ const SignUpForm = () => {
         <div className={styles.welcomeText}>
           Sign up for your account
         </div>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
+
         <div className={styles.inputContainer}>
           <input
             type='email'
@@ -105,6 +100,11 @@ const SignUpForm = () => {
             className={styles.inputBar}
             required={true}
           ></input>
+        </div>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind} className="errors">{error}</div>
+          ))}
         </div>
         <div className={styles.disclaimer}>
           By signing up, you confirm that you've read and accepted our <span>Terms of Service</span> and <span>Privacy Policy.</span>
