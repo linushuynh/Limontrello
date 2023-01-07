@@ -30,9 +30,8 @@
     overflow: hidden;
     text-indent: 5px;
     padding-top: 5px;
+    white-space: normal;
     word-wrap: break-word;
-    /* white-space: pre-wrap; */
-    overflow-wrap: break-word;
 }
 
 .inputArea:focus {

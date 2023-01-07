@@ -47,7 +47,6 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
         <div className={styles.outerContainer}>
             <div className={styles.iconColumn}>
                 <div className={styles.titleIconContainer}>
-                    {/* <span class="material-symbols-outlined">team_dashboard</span> */}
                     <span className={`styles.titleIcon material-symbols-outlined`}>web</span>
                 </div>
                 <div className={styles.descriptionIconContainer}>
@@ -56,13 +55,16 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
             </div>
             <div className={styles.bigBody}>
                 <div className={styles.headerContainer}>
+                    <div className={styles.titleXcontainer}>
                     <input
                         id={styles.titleText}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         onBlur={submitEdit}
                         maxLength={50}
-                    />
+                        />
+                    <span className="material-symbols-outlined" onClick={() => setShowCardDetailsModal(false)} id={styles.Xbutton}>close</span>
+                    </div>
                     <div id={styles.listText} >in list {selectedList.name}</div>
                 </div>
                 <div className={styles.bodyContainer} >

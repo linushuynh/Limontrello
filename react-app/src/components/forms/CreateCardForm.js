@@ -54,6 +54,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
                     className={styles.inputArea}
                     ref={textRef}
                     maxLength={100}
+                    type="text"
                     />
                 </div>
                 <div className={styles.titleCount}>
