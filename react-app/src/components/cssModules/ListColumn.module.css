@@ -50,6 +50,7 @@
     height: 95%;
     overflow-y: auto;
     overflow-x: hidden;
+    color: #172B4D;
 }
 
 .singleCard {
@@ -86,4 +87,8 @@
 .addCardButton:hover {
     cursor: pointer;
     background-color: #dcdcdc;
+}
+
+.placeholder{
+    background-color: rgb(149, 149, 149);
 }

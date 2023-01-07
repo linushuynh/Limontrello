@@ -4,9 +4,7 @@ import CreateCardForm from "./forms/CreateCardForm";
 import { Draggable } from "react-beautiful-dnd";
 import SingleCard from "./SingleCard";
 
-
-
-const ListColumn = ({ list, placeholder }) => {
+const ListColumn = ({ list, provided, isDraggingOver }) => {
     const cards = list.cards
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
@@ -21,7 +19,7 @@ const ListColumn = ({ list, placeholder }) => {
 
     if (!list) return null
     return (
-        <div className={styles.listColumnContainer}>
+        <div className={styles.listColumnContainer} ref={provided.innerRef} {...provided.droppableProps}>
             <div className={styles.listHeader}>
                 <div className={styles.listName}>
                     {list.name}
@@ -31,25 +29,22 @@ const ListColumn = ({ list, placeholder }) => {
                 </div> */}
             </div>
             <div className={styles.cardsContainer}>
-
-                    {cards.map((card, index) => (
-                        <div key={card.id} className={styles.singleCard}>
-                        <Draggable
-                            draggableId={card.title}
-                            index={index}
-                        >
-                            {(provided) => (
+                {cards.map((card, index) => (
+                    <div key={card.id} className={styles.singleCard}>
+                        <Draggable draggableId={card.title} index={index}>
+                            {(provided, snapshot) => (
                                 <SingleCard
                                     provided={provided}
                                     innerRef={provided.innerRef}
                                     card={card}
                                     index={index}
+                                    isDragging={snapshot.isDragging}
                                 />
                             )}
                         </Draggable>
-                        </div>
-                    ))}
-                {placeholder}
+                    </div>
+                ))}
+                {provided.placeholder}
                 <div className={styles.addCardContainer}>
                     { showAddCardModal ?
                         <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />

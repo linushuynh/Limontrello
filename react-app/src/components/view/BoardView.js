@@ -24,7 +24,7 @@ const BoardView = () => {
     const [name, setName] = useState(board.name)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    const [cardList, setCardList] = useState(lists)
+    const [cardLists, setCardLists] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -66,27 +66,33 @@ const BoardView = () => {
 
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
-        // Return if card is dropped in same spot
-        // if (destination.droppableId === source.droppableId && destination.index === source.index) {
-        //     return
-        // }
-
         // Return if card is dropped outside of droppable
         if (!destination) {
             return
         }
 
-        if (destination.droppableId === source.droppableId) {
-            console.log("card list", cardList)
-            let sourceList = cardList.find(list => list.name === source.droppableId)
-            console.log("source list", sourceList)
-            let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
-            console.log("grabbed card", grabbedCard)
-        }
+        // if (destination.droppableId === source.droppableId) {
+        //     //set new state
+        //     let newState = Array.from(cardLists)
+        //     console.log('newstate before', newState)
+        //     // find the list of the card
+        //     let sourceList = newState.find(list => list.name === source.droppableId)
+        //     // grab the array of cards from list
+        //     let sourceListCards = sourceList?.cards
+        //     console.log("source list before", sourceList)
+        //     // console.log("source list cards", sourceListCards)
+        //     // grab the card object
+        //     let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
+        //     // find index of card
+        //     console.log("grabbed card", grabbedCard)
+        //     let cardIndex = sourceListCards.findIndex(card => card.title === draggableId)
+        //     // console.log('card index', cardIndex)
+        //     sourceListCards.splice(source.index, 1)
+        //     sourceListCards.splice(destination.index, 0, grabbedCard)
+        // }
 
         // If card is dropped in different list column, send thunk to move it
         if (destination.droppableId !== source.droppableId) {
-            console.log("start of drop")
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
             let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
@@ -97,9 +103,7 @@ const BoardView = () => {
             }
             dispatch(editCardThunk(input, grabbedCard.id))
             .then(() => setHasSubmitted(prevValue => !prevValue))
-            .then(() => console.log("end of drop"))
         }
-
     }
 
     useEffect(() => {
@@ -146,14 +150,13 @@ const BoardView = () => {
                             {lists.map((list) => (
                                 <Droppable droppableId={list.name} key={list.id}>
                                     {(provided, snapshot) => (
-                                        <div key={list.id}
-                                            ref={provided.innerRef}
-                                            {...provided.droppableProps}
-                                        >
+                                        <div key={list.id} >
                                             <ListColumn
                                                 list={list}
                                                 setHasSubmitted={setHasSubmitted}
                                                 placeholder={provided.placeholder}
+                                                provided={provided}
+                                                isDraggingOver={snapshot.isDraggingOver}
                                             >
                                             </ListColumn>
                                         </div>

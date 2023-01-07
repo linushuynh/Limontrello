@@ -5,7 +5,7 @@ import { CardDetailModal } from "./context/CardDetailsModal";
 import styles from "./cssModules/SingleCard.module.css"
 import SingleCardDetails from "./SingleCardDetails";
 
-const SingleCard = ({ card, setHasSubmitted, provided, innerRef }) => {
+const SingleCard = ({ card, provided, innerRef, isDragging }) => {
     const [showCardDetailsModal, setShowCardDetailsModal] = useState(false)
 
     const openCardDetails = () => {
@@ -20,7 +20,7 @@ const SingleCard = ({ card, setHasSubmitted, provided, innerRef }) => {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 ref={innerRef}
-                className={styles.cardContainer}
+                className={isDragging? `${styles.tiltContainer}` : styles.cardContainer}
                 onClick={openCardDetails}
             >
                 <div className={styles.cardTitle}>
@@ -28,7 +28,7 @@ const SingleCard = ({ card, setHasSubmitted, provided, innerRef }) => {
                 </div>
             </div>
             {showCardDetailsModal && (<CardDetailModal onClose={() => setShowCardDetailsModal(false) }>
-                <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} setHasSubmitted={setHasSubmitted} />
+                <SingleCardDetails card={card} setShowCardDetailsModal={setShowCardDetailsModal} />
             </CardDetailModal>
             )}
         </>
