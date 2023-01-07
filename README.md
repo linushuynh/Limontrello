@@ -65,3 +65,16 @@ npm start
 ```
 
 **Then you can visit localhost:3000 to view your local version of Limontrello!**
+
+## 📷 Screenshots
+
+### Sign Up Page
+![image](https://user-images.githubusercontent.com/109188075/211121260-9e91ed1d-bf89-4490-a3bf-b14490ca284f.png)
+
+### Dashboard
+![image](https://user-images.githubusercontent.com/109188075/211121661-db485c3e-6944-4717-962f-3cf3c3e7aadf.png)
+
+
+### Main Board View
+![image](https://user-images.githubusercontent.com/109188075/211121437-6db9aff8-138f-434d-882a-0a17171c25df.png)
+
