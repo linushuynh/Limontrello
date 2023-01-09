@@ -10,7 +10,7 @@ import { SubmittedContext } from "../context/SubmittedContext";
 import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
-import pikarun from "../../assets/pikarun.gif"
+import NotFound from "./404";
 
 const BoardView = () => {
     const currentUser = useSelector(state => state.session.user)
@@ -20,7 +20,7 @@ const BoardView = () => {
     const dispatch = useDispatch()
     let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
-    const [name, setName] = useState(board.name)
+    const [name, setName] = useState(board?.name)
     const [loaded, setLoaded] = useState(false)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
@@ -42,11 +42,6 @@ const BoardView = () => {
         setSelectEdit(false)
     }
 
-    const pikarunCheck = () => {
-        if (loaded) {
-            return styles.hidden
-        } else return styles.pikarun
-    }
 
     // Same function as above but separate to prevent blur on blur loop
     const submitForm = async (e) => {
@@ -122,7 +117,11 @@ const BoardView = () => {
 
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
-    if (!board) return "The board was not found or not yours"
+    if (!board) {
+        return (
+            <NotFound />
+        )
+    }
 
 
     return (
@@ -173,9 +172,6 @@ const BoardView = () => {
                                 </Droppable>
                                 )
                             )}
-                            <div className={styles.pikaContainer}>
-                                <img alt="pikarun" src={pikarun} className={pikarunCheck()}></img>
-                            </div>
                         </div>
                     {/* <div className={showEditBar? styles.editBar : styles.hidden}>
                         Edit Board here

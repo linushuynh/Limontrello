@@ -47,12 +47,14 @@
     display: flex;
     align-items: center;
     color: white;
-    background-color: #5381FE;
+    background-color: #4576fc;
     height: 100%;
     padding-left: 20px;
     padding-right: 20px;
     font-weight: 400;
     cursor: pointer;
+    /* border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px; */
 }
 
 #signupButton:hover {
@@ -82,6 +84,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* gap: 25px; */
     max-width: 400px;
 }
 
@@ -97,6 +100,31 @@
     color: #FFFFFF;
     margin-top: 15px;
 }
+
+.introSignupButton {
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #4576fc;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px 18px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 100ms;
+    border-radius: 6px;
+    user-select: none;
+    margin-top: 35px;
+}
+
+.introSignupButton:hover {
+    background-color: #2c54c2;
+}
+
+.introSignupButton:hover:active {
+    background-color: #2749a8;
+}
+
 
 .teamImgContainer {
     display: flex;
