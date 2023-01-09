@@ -55,7 +55,6 @@ export const editCardThunk = (input, cardId) => async (dispatch) => {
             list_id: listId
         })
     })
-    console.log("IN CARD THUNK")
     const data = await response.json()
     return data
 }

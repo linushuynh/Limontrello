@@ -10,6 +10,7 @@ import { SubmittedContext } from "../context/SubmittedContext";
 import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
+import pikarun from "../../assets/pikarun.gif"
 
 const BoardView = () => {
     const currentUser = useSelector(state => state.session.user)
@@ -20,6 +21,7 @@ const BoardView = () => {
     let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board.name)
+    const [loaded, setLoaded] = useState(false)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
     // const [cardLists, setCardLists] = useState(lists)
@@ -38,6 +40,12 @@ const BoardView = () => {
         setHasSubmitted(prevValue => !prevValue)
         await dispatch(updateBoardThunk(input))
         setSelectEdit(false)
+    }
+
+    const pikarunCheck = () => {
+        if (loaded) {
+            return styles.hidden
+        } else return styles.pikarun
     }
 
     // Same function as above but separate to prevent blur on blur loop
@@ -99,6 +107,7 @@ const BoardView = () => {
                 description: grabbedCard.description,
                 listId: destinationList.id
             }
+            setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
             .then(() => setHasSubmitted(prevValue => !prevValue))
         }
@@ -108,6 +117,7 @@ const BoardView = () => {
         dispatch(getUserThunk(currentUser.id))
         dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
+        setLoaded(true)
     }, [dispatch, hasSubmitted, currentUser.id])
 
 
@@ -155,6 +165,7 @@ const BoardView = () => {
                                                 placeholder={provided.placeholder}
                                                 provided={provided}
                                                 isDraggingOver={snapshot.isDraggingOver}
+                                                loaded={loaded}
                                             >
                                             </ListColumn>
                                         </div>
@@ -162,6 +173,9 @@ const BoardView = () => {
                                 </Droppable>
                                 )
                             )}
+                            <div className={styles.pikaContainer}>
+                                <img alt="pikarun" src={pikarun} className={pikarunCheck()}></img>
+                            </div>
                         </div>
                     {/* <div className={showEditBar? styles.editBar : styles.hidden}>
                         Edit Board here

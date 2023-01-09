@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import styles from '../cssModules/SignupForm.module.css'
+import loadingCircle from "../../assets/yellowloadingcircle.svg"
 
-const SignUpForm = () => {
+const SignUpForm = ({ loaded, setLoaded }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -17,9 +18,11 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
+      setLoaded(false)
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+        setLoaded(true)
       }
     } else {
       setErrors(["The passwords must match."])
@@ -111,6 +114,9 @@ const SignUpForm = () => {
         </div>
         <div className={styles.inputContainer}>
           <button type='submit' className={styles.loginButton}>Sign up</button>
+        </div>
+        <div className={loaded? styles.hidden : styles.circleContainer}>
+          <img alt='loadingCircle' src={loadingCircle} className={styles.loadingCircle} />
         </div>
       </form>
       <hr className={styles.hrBar} />

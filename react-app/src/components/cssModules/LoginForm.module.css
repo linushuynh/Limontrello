@@ -102,3 +102,20 @@
     font-weight: 300;
     color: #4D4D4D;
 }
+
+.circleContainer {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+}
+
+.loadingCircle {
+    width: 50%;
+    height: 100%;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
+}

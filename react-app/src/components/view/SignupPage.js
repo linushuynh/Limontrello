@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../cssModules/LoginPage.module.css"
 import limontrello from "../../assets/limontrello.png"
 import bottomLeft from "../../assets/bottom-left-trello.svg"
@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 
 const SignupPage = () => {
     const history = useHistory()
+    const [loaded, setLoaded] = useState(true)
 
     const redirectHome = () => {
         history.push("/")
@@ -24,7 +25,7 @@ const SignupPage = () => {
                     Limontrello
                 </div>
                 <div className={styles.formNbarContainer}>
-                    <SignUpForm />
+                    <SignUpForm loaded={loaded} setLoaded={setLoaded} />
                     <div>
                         <hr className={styles.hrBar} />
                         <div className={styles.footerContainer}>
