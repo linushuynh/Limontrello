@@ -68,6 +68,9 @@ npm start
 
 ## 📷 Screenshots
 
+### Landing
+![image](https://user-images.githubusercontent.com/109188075/211251771-6178d9f0-83cc-4219-a8e5-a731db11e800.png)
+
 ### Sign Up Page
 ![image](https://user-images.githubusercontent.com/109188075/211121260-9e91ed1d-bf89-4490-a3bf-b14490ca284f.png)
 
