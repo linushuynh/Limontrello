@@ -12,8 +12,6 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
 
 const BoardView = () => {
-    // const selectedBoard = useSelector(state => state.boards.selectedBoard)
-    // const savedBoards = useSelector(state => state.boards.savedBoards)
     const currentUser = useSelector(state => state.session.user)
     const [selectEdit, setSelectEdit] = useState(false)
     const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
@@ -24,7 +22,7 @@ const BoardView = () => {
     const [name, setName] = useState(board.name)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    const [cardLists, setCardLists] = useState(lists)
+    // const [cardLists, setCardLists] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
