@@ -10,10 +10,9 @@ import { SubmittedContext } from "../context/SubmittedContext";
 import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
+import NotFound from "./404";
 
 const BoardView = () => {
-    // const selectedBoard = useSelector(state => state.boards.selectedBoard)
-    // const savedBoards = useSelector(state => state.boards.savedBoards)
     const currentUser = useSelector(state => state.session.user)
     const [selectEdit, setSelectEdit] = useState(false)
     const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
@@ -21,10 +20,11 @@ const BoardView = () => {
     const dispatch = useDispatch()
     let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
-    const [name, setName] = useState(board.name)
+    const [name, setName] = useState(board?.name)
+    const [loaded, setLoaded] = useState(false)
     // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    const [cardLists, setCardLists] = useState(lists)
+    // const [cardLists, setCardLists] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -41,6 +41,7 @@ const BoardView = () => {
         await dispatch(updateBoardThunk(input))
         setSelectEdit(false)
     }
+
 
     // Same function as above but separate to prevent blur on blur loop
     const submitForm = async (e) => {
@@ -101,6 +102,7 @@ const BoardView = () => {
                 description: grabbedCard.description,
                 listId: destinationList.id
             }
+            setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
             .then(() => setHasSubmitted(prevValue => !prevValue))
         }
@@ -110,11 +112,16 @@ const BoardView = () => {
         dispatch(getUserThunk(currentUser.id))
         dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
+        setLoaded(true)
     }, [dispatch, hasSubmitted, currentUser.id])
 
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
-    if (!board) return "The board was not found or not yours"
+    if (!board) {
+        return (
+            <NotFound />
+        )
+    }
 
 
     return (
@@ -157,6 +164,7 @@ const BoardView = () => {
                                                 placeholder={provided.placeholder}
                                                 provided={provided}
                                                 isDraggingOver={snapshot.isDraggingOver}
+                                                loaded={loaded}
                                             >
                                             </ListColumn>
                                         </div>

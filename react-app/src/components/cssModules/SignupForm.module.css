@@ -65,7 +65,8 @@
     outline: none;
     border: none;
     border-radius: 4px;
-    background-color: #0052CC;
+
+    background-color: #0065ff;
     color: #FFFFFF;
     cursor: pointer;
     font-family: 'Inter Tight', sans-serif;
@@ -73,7 +74,11 @@
 }
 
 .loginButton:hover {
-    background-color: #0065ff;
+    background-color: #0052CC;
+}
+
+.loginButton:hover:active {
+    background-color: #05439f;
 }
 
 .hrBar {
@@ -96,4 +101,21 @@
 
 .signupContainer:hover {
     text-decoration: underline;
+}
+
+.circleContainer {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+}
+
+.loadingCircle {
+    width: 50%;
+    height: 100%;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
 }

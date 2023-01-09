@@ -8,6 +8,7 @@ import { authenticate } from './store/session';
 import LoginPage from './components/view/LoginPage';
 import SignupPage from './components/view/SignupPage';
 import Landing from './components/view/Landing';
+import NotFound from './components/view/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,7 +44,7 @@ function App() {
           <BoardView />
         </ProtectedRoute>
         <Route>
-          <h1>This is 404, render 404 component here</h1>
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>

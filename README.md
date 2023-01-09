@@ -78,3 +78,6 @@ npm start
 ### Main Board View
 ![image](https://user-images.githubusercontent.com/109188075/211121437-6db9aff8-138f-434d-882a-0a17171c25df.png)
 
+### Example Drag n Drop
+![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/109188075/211144776-ab4b6b14-a887-4059-85ab-d05a80a9c3fc.gif)
+

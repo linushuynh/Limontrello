@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginForm from "../auth/LoginForm";
 import styles from "../cssModules/LoginPage.module.css"
 import bottomLeft from "../../assets/bottom-left-trello.svg"
@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
     const history = useHistory()
+    const [loaded, setLoaded] = useState(true)
 
     const redirectHome = () => {
         history.push("/")
@@ -24,7 +25,7 @@ const LoginPage = () => {
                     Limontrello
                 </div>
                 <div className={styles.formNbarContainer}>
-                    <LoginForm />
+                    <LoginForm loaded={loaded} setLoaded={setLoaded} />
                     <div>
                         <hr className={styles.hrBar} />
                         <div className={styles.footerContainer}>
@@ -50,7 +51,6 @@ const LoginPage = () => {
                                     </a>
                                     </div>
                                     <div>
-
                                     <a
                                     className={styles.linkedInContainer}
                                     href="https://www.linkedin.com/in/linus-huynh-2457a9238/"

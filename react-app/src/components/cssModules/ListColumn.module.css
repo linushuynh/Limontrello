@@ -40,6 +40,10 @@
     background-color: #cacaca;
 }
 
+.hidden {
+    display: none;
+}
+
 .cardsContainer {
     /* border: 1px salmon solid; */
     width: 100%;

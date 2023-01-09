@@ -7,7 +7,6 @@ import snowmountains from "../assets/snowmountain.jpg"
 import styles from "./cssModules/Sidebar.module.css"
 
 
-
 const Sidebar = ({ boards, setName }) => {
     // const [isSelected, setIsSelected] = useState("")
     const history = useHistory()
@@ -17,11 +16,20 @@ const Sidebar = ({ boards, setName }) => {
     const firstLetter = currentUser.username[0].toUpperCase()
     // const { setHasSubmitted } = useContext(SubmittedContext)
 
-    const highlightCheck = (mainClass) => {
+    // Apply sideBarHighlight className when on dashboard
+    const dashBoardHighlightCheck = (mainClass) => {
         if (location.pathname === "/dashboard") {
             return `${mainClass} sideBarHighlight`
         }
         return mainClass
+    }
+
+    // Apply sideBarHighlight className to current selected board
+    const boardHighlightCheck = (boardId) => {
+        if (+location.pathname[location.pathname.length - 1] === +boardId) {
+            return `${styles.boardItem} sideBarHighlight`
+        }
+        return styles.boardItem
     }
 
     const redirectBoard = async (eachBoard) => {
@@ -52,7 +60,7 @@ const Sidebar = ({ boards, setName }) => {
                 </div>
                 <div className={styles.hrContainer}><hr className={styles.hrBar} /></div>
                 <div className={styles.centeredContainer}>
-                    <div className={highlightCheck(styles.dashboardContainer)} onClick={redirectDash}>
+                    <div className={dashBoardHighlightCheck(styles.dashboardContainer)} onClick={redirectDash}>
                         <span className="material-symbols-outlined" id={styles.dashboardIcon}>grid_view</span>
                         <span>Dashboard</span>
                     </div>
@@ -61,7 +69,7 @@ const Sidebar = ({ boards, setName }) => {
                         {/* <span className="material-symbols-outlined">add</span> */}
                     </div>
                     {boards.map((eachBoard) =>(
-                        <div key={eachBoard.id} className={styles.boardItem} onClick={() => redirectBoard(eachBoard)}>
+                        <div key={eachBoard.id} className={boardHighlightCheck(eachBoard.id)} onClick={() => redirectBoard(eachBoard)}>
                                 <img alt="boardIcon" src={snowmountains} className={styles.boardIcon} ></img>
                             {eachBoard.name}
                         </div>

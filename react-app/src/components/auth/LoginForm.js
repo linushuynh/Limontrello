@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-// import { loadBoardsThunk } from '../../store/board';
 import { login } from '../../store/session';
 import styles from '../cssModules/LoginForm.module.css'
+import loadingCircle from "../../assets/yellowloadingcircle.svg"
 
-const LoginForm = () => {
+const LoginForm = ({ loaded, setLoaded }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,10 +15,14 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+    setLoaded(false)
     const data = await dispatch(login(email, password));
-    // await dispatch(getUserThunk())
     if (data) {
       setErrors(data);
+      setLoaded(true);
+    } else {
+      // await dispatch(getUserThunk())
+      setLoaded(true);
     }
   };
 
@@ -39,7 +43,12 @@ const LoginForm = () => {
   }
 
   const loginDemo = async () => {
-    await dispatch(login('demo@aa.io', 'password'))
+    setLoaded(false)
+    const data = await dispatch(login('demo@aa.io', 'password'))
+    if (data) {
+      setErrors(data);
+      setLoaded(true);
+    }
   }
 
   return (
@@ -79,7 +88,9 @@ const LoginForm = () => {
         <div className={styles.inputContainer}>
           <button type='submit' className={styles.loginButton}>Continue</button>
         </div>
-
+        <div className={loaded? styles.hidden : styles.circleContainer}>
+          <img alt='loadingCircle' src={loadingCircle} className={styles.loadingCircle} />
+        </div>
       </form>
       <hr className={styles.hrBar} />
       <div className={styles.footerTextContainer}>

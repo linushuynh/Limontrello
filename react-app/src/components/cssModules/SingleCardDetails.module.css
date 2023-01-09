@@ -147,7 +147,6 @@
     background-color: rgb(244,245,247);
     resize: none;
     overflow-y: hidden;
-
 }
 
 #descriptionBox:focus {
@@ -183,6 +182,7 @@
     cursor: pointer;
     font-size: 15px;
     transition: all 0.1s;
+    margin-bottom: 7px;
 }
 
 .deleteButton:hover {
