@@ -24,15 +24,15 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
 
     }, [showEditCard])
 
-    const submitEdit = async () => {
+    const submitEdit = () => {
         let input = {
             title,
             description,
             listId: selectedList.id
         }
-        await dispatch(editCardThunk(input, card.id))
-        setShowEditCard(false)
-        setHasSubmitted(prev => !prev)
+        dispatch(editCardThunk(input, card.id))
+        .then(() => setHasSubmitted(prev => !prev))
+        .then(() => setShowEditCard(false))
     }
 
     const handleDelete = async () => {
