@@ -192,6 +192,7 @@
 .editFooter {
     display: flex;
     justify-content: space-between;
+    font-size: 15px;
 }
 
 .saveButton {
@@ -200,12 +201,19 @@
     background-color: #0086d3;
     color: #F5F6F7;
     padding: 8px 12px;
+    outline: none;
+    border: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+}
+
+.saveButton:hover {
+    background-color: #006dad;
 }
 
 .charCount {
     position: relative;
     right: 5%;
-    font-size: 15px;
 }
 
 .noShow {

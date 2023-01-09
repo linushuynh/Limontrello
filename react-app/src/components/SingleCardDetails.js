@@ -24,7 +24,8 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
 
     }, [showEditCard])
 
-    const submitEdit = () => {
+    const submitEdit = (e) => {
+        e.preventDefault()
         let input = {
             title,
             description,
@@ -78,6 +79,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                 </div>
                             )}
                             </div>
+                            <form onSubmit={submitEdit}>
                                 <textarea
                                     value={description}
                                     onChange={e => setDescription(e.target.value)}
@@ -87,11 +89,13 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                     id={styles.descriptionBox}
                                     maxLength={255}
                                     placeholder={"Give this card a description..."}
-                                />
+                                    />
                                 <div className={showEditCard ? styles.editFooter : styles.noShow }>
-                                    <div className={styles.saveButton} onClick={submitEdit} >Save</div>
+                                    <div>(Click off the box to save)</div>
+                                    {/* <button className={styles.saveButton} type='submit'>Save</button> */}
                                     <div className={styles.charCount}>{description.length}/255 characters</div>
                                 </div>
+                            </form>
                         </div>
                     </div>
                     <div className={styles.moreOptions}>
