@@ -53,7 +53,7 @@ const LoginPage = () => {
                                     <div>
                                     <a
                                     className={styles.linkedInContainer}
-                                    href="https://www.linkedin.com/in/linus-huynh-2457a9238/"
+                                    href="https://www.linkedin.com/in/linus-huynh/"
                                     target="_blank"
                                     rel="noreferrer"
                                     >
