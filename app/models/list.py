@@ -17,6 +17,14 @@ class CardList(db.Model):
         "Card", cascade="all, delete-orphan", back_populates="list"
     )
 
+    @property
+    def _name(self):
+        return self.name
+
+    @_name.setter
+    def _name(self, new_name):
+        self.name = new_name
+
     def to_dict(self):
         return {
             'id': self.id,

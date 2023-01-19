@@ -49,7 +49,7 @@ def create_list():
     return { 'errors' : validation_errors_to_error_messages(form.errors)}, 401
 
 
-@list_routes.route('/<int:list_id>', methods=["PUT"])
+@list_routes.route('/<int:list_id>/edit', methods=["PUT"])
 @login_required
 def update_list(list_id):
     """
