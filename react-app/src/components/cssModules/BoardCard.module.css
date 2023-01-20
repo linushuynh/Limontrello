@@ -10,6 +10,40 @@
     border-radius: 4px;
 }
 
+.snowmountainContainer {
+    width: 100%;
+    min-width: 280px;
+    height: 90px;
+    /* background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg); */
+    background-image: url('../../assets/snowmountain.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+}
+
+.forestContainer {
+    width: 100%;
+    min-width: 280px;
+    height: 90px;
+    background-image: url('../../assets/forest.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+}
+
+.beachContainer {
+    width: 100%;
+    min-width: 280px;
+    height: 90px;
+    background-image: url('../../assets/beach.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+}
+
 .boardCard {
     width: 100%;
     height: 100%;

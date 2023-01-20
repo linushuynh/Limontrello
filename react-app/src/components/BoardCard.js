@@ -32,8 +32,19 @@ const BoardCard = ({ board, hasClicked, setHasClicked, currentUserId }) => {
         setShowDeleteModal(false)
     }
 
+    const displayBackground = (background) => {
+        if (background === "snowmountain") {
+            return styles.snowmountainContainer
+        } else if (background === "forest") {
+            return styles.forestContainer
+        } else if (background === "beach") {
+            return styles.beachContainer
+        }
+        return styles.container
+    }
+
     return (
-        <div className={styles.container} >
+        <div className={displayBackground(board?.background)} >
             <div className={styles.boardCard} onClick={redirectClick}>
                 <span className={styles.nameText}>{board.name}</span>
             </div>

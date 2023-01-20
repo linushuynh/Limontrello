@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <div className={setNavClass()}>
           <div>
-            <div className={setTitleClass()} onClick={redirectHome}>
+            <div className={setTitleClass()}>
               <div className={styles.iconContainer}>
                 <img src={icon} alt="icon" className="trelloIcon" />
               </div>
