@@ -47,7 +47,7 @@
     user-select: none;
 }
 
-.title:hover {
+/* .title:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -55,7 +55,7 @@
 .titleBoard:hover {
     text-decoration: underline;
     cursor: pointer;
-}
+} */
 
 /* .icon {
     height: 28px;

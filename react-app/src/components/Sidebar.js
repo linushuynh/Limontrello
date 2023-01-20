@@ -2,7 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { selectBoardAction } from "../store/board";
-import snowmountains from "../assets/snowmountain.jpg"
+import snowmountain from "../assets/snowmountain.jpg"
+import forest from "../assets/forest.jpg"
+import beach from "../assets/beach.jpg"
 // import { SubmittedContext } from "./context/SubmittedContext";
 import styles from "./cssModules/Sidebar.module.css"
 
@@ -46,6 +48,18 @@ const Sidebar = ({ boards, setName }) => {
         history.push(`/dashboard`)
     }
 
+    // Conditionally renders icon
+    const displayBackground = (background) => {
+        if (background === "snowmountain") {
+            return snowmountain
+        } else if (background === "forest") {
+            return forest
+        } else if (background === "beach") {
+            return beach
+        }
+        return snowmountain
+    }
+
     return (
         <>
             <div className={styles.outerContainer}>
@@ -70,7 +84,7 @@ const Sidebar = ({ boards, setName }) => {
                     </div>
                     {boards.map((eachBoard) =>(
                         <div key={eachBoard.id} className={boardHighlightCheck(eachBoard.id)} onClick={() => redirectBoard(eachBoard)}>
-                                <img alt="boardIcon" src={snowmountains} className={styles.boardIcon} ></img>
+                                <img alt="boardIcon" src={displayBackground(eachBoard.background)} className={styles.boardIcon} ></img>
                             {eachBoard.name}
                         </div>
                         ))}

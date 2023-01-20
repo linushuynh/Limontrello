@@ -33,7 +33,7 @@
     height: fit-content;
     padding-top: 8px;
     padding-bottom: 8px;
-    transform: rotate(8deg);
+    /* transform: rotate(8deg); */
     background-color: #FFDD7F;
     margin: 5px 0px;
     font-size: 14px;

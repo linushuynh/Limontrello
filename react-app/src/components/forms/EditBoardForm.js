@@ -15,7 +15,7 @@ const EditBoardForm = ({ board, setShowEditModal, setHasSubmitted }) => {
         e.preventDefault();
         let input = {
             name: name,
-            background: "default",
+            background: board.background,
             private: false,
             boardId: board.id
         }
