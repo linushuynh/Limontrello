@@ -1,7 +1,29 @@
-.backgroundImg {
+.snowmountainContainer {
     width: 100%;
     height: 100%;
     background: url('../../assets/snowmountain.jpg'), url(https://wallpaper.dog/large/5526740.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
+.forestContainer {
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/forest.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
+.beachContainer {
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/beach.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

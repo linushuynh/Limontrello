@@ -1,4 +1,4 @@
-# Limontrello
+# [![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Limontrello%20🍋&width=1000&height=350)](https://github.com/Akshay090/svg-banners)
 
 [Limontrello](https://limontrello.onrender.com/) is a website inspired by [Trello](https://trello.com/home). Limontrello is a great tool for productivity and organizing tasks. Each user is able to make as many boards as they desire and within those boards they are able to make cards that can be labeled. 
 
