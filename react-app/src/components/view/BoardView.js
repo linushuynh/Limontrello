@@ -33,7 +33,7 @@ const BoardView = () => {
         }
         let input = {
             name: name,
-            background: "default",
+            background: board.background,
             private: false,
             boardId: board.id
         }
@@ -51,7 +51,7 @@ const BoardView = () => {
         }
         let input = {
             name: name,
-            background: "default",
+            background: board.background,
             private: false,
             boardId: board.id
         }
@@ -71,26 +71,6 @@ const BoardView = () => {
         if (!destination) {
             return
         }
-
-        // if (destination.droppableId === source.droppableId) {
-        //     //set new state
-        //     let newState = Array.from(cardLists)
-        //     console.log('newstate before', newState)
-        //     // find the list of the card
-        //     let sourceList = newState.find(list => list.name === source.droppableId)
-        //     // grab the array of cards from list
-        //     let sourceListCards = sourceList?.cards
-        //     console.log("source list before", sourceList)
-        //     // console.log("source list cards", sourceListCards)
-        //     // grab the card object
-        //     let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
-        //     // find index of card
-        //     console.log("grabbed card", grabbedCard)
-        //     let cardIndex = sourceListCards.findIndex(card => card.title === draggableId)
-        //     // console.log('card index', cardIndex)
-        //     sourceListCards.splice(source.index, 1)
-        //     sourceListCards.splice(destination.index, 0, grabbedCard)
-        // }
 
         // If card is dropped in different list column, send thunk to move it
         if (destination.droppableId !== source.droppableId) {
@@ -116,6 +96,17 @@ const BoardView = () => {
     }, [dispatch, hasSubmitted, currentUser.id])
 
 
+    const displayBackground = (background) => {
+        if (background === "snowmountain") {
+            return styles.snowmountainContainer
+        } else if (background === "forest") {
+            return styles.forestContainer
+        } else if (background === "beach") {
+            return styles.beachContainer
+        }
+        return styles.container
+    }
+
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) {
         return (
@@ -126,7 +117,7 @@ const BoardView = () => {
 
     return (
     <DragDropContext onDragEnd={onDragEnd}>
-        <div className={styles.backgroundImg}>
+        <div className={displayBackground(board?.background)}>
             <div className={styles.outerContainer}>
                 <NavBar />
                 <div className={styles.bodyContainer}>

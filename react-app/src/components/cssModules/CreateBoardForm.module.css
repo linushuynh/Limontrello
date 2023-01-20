@@ -1,7 +1,7 @@
 .outerContainer {
     /* border: 1px solid black; */
     box-shadow: 0px 0px 12px 0px rgb(168, 168, 168);
-    border-radius: 4px;
+    border-radius: 5px;
     position: relative;
     left: 0;
     top: 0;
@@ -9,12 +9,12 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
-    height: 350px;
+    height: 470px;
     background-color: rgb(255, 255, 255);
 }
 
 .createBoardText {
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -24,6 +24,31 @@
 
 #hrBar {
     border: #aeaeae 1px solid;
+}
+
+.snowmountainPreviewContainer > img {
+    background-image: url('../../assets/snowmountain.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    padding: 5px;
+}
+.forestPreviewContainer > img {
+    background-image: url('../../assets/forest.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    padding: 5px;
+}
+.beachPreviewContainer > img {
+    background-image: url('../../assets/beach.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    padding: 5px;
 }
 
 .formContainer {
@@ -41,6 +66,8 @@
 .boardTitleContainer {
     /* border: 1px solid black; */
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .boardTitleText {
@@ -115,4 +142,41 @@
     font-size: 15px;
     color: #707D92;
     margin-bottom: 10px;
+}
+
+.optionsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgContainer {
+    width: 30%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundOption {
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    transition: box-shadow 75ms;
+    cursor: pointer;
+    margin-top: 5px;
+    user-select: none;
+}
+
+.backgroundOption:hover {
+    box-shadow: 0px 0px 10px rgb(168, 168, 168);
+}
+
+.highlightedBackgroundOption {
+    box-shadow: 0px 0px 10px 2px #EAB82C;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    transition: box-shadow 75ms;
+    cursor: pointer;
+    margin-top: 5px;
+    user-select: none;
 }
