@@ -29,11 +29,6 @@ const NavBar = () => {
     }
   }
 
-  const redirectHome = async () => {
-    await dispatch(loadBoardsThunk())
-    history.push("/dashboard")
-  }
-
   return (
     <div className={setNavClass()}>
           <div>

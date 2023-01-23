@@ -21,6 +21,7 @@ def create_card():
         new_card = Card(
             title = data['title'],
             description = data['description'],
+            position = data['position'],
             list_id = data['list_id']
         )
         db.session.add(new_card)
@@ -48,6 +49,7 @@ def update_card(card_id):
         data = form.data
         card.title = data["title"]
         card.description = data["description"]
+        card.position = data["position"]
         card.list_id = data["list_id"]
 
         db.session.commit()
