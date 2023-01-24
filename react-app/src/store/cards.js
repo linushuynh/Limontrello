@@ -119,6 +119,7 @@ export default function reducer (state = initialState, action) {
             return newState
         case EDIT_CARD:
             let selectedCard = newState[action.payload.id]
+            console.log("THIS IS SELECTEDCARD TITLE ********", action.payload['title'] === selectedCard.title)
             selectedCard.description = action.payload.description
             selectedCard.list_id = action.payload.list_id
             // This edits the title but changing title makes React DnD lose track of draggable

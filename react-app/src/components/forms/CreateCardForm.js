@@ -10,7 +10,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
     const currentUser = useSelector(state => state.session.user)
     const board = useSelector(state => state.boards.selectedBoard)
     const lists = board?.lists.find(list => list.id === listId)
-    console.log(`list ${listId}'s cards:`,lists.cards)
+    // console.log(`list ${listId}'s cards:`,lists.cards)
     const textRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
 

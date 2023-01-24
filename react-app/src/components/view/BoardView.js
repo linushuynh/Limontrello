@@ -82,17 +82,15 @@ const BoardView = () => {
                 description: grabbedCard.description,
                 listId: destinationList.id
             }
-            setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
             .then(() => setHasSubmitted(prevValue => !prevValue))
         }
     }
 
     useEffect(() => {
-        dispatch(getUserThunk(currentUser.id))
+        // dispatch(getUserThunk(currentUser.id))
         dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
-        setLoaded(true)
     }, [dispatch, hasSubmitted])
 
 
@@ -113,7 +111,6 @@ const BoardView = () => {
             <NotFound />
         )
     }
-
 
     return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -145,7 +142,7 @@ const BoardView = () => {
                             </div> */}
                         </form>
                         <div className={styles.listsContainer}>
-                            {lists.map((list) => (
+                            {lists?.map((list) => (
                                 <Droppable droppableId={list.name} key={list.id}>
                                     {(provided, snapshot) => (
                                         <div key={list.id} >

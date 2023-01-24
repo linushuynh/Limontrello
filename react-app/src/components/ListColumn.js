@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./cssModules/ListColumn.module.css"
 import CreateCardForm from "./forms/CreateCardForm";
 import { Draggable } from "react-beautiful-dnd";
@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadCardsAction } from "../store/cards";
 
 const ListColumn = ({ list, provided, isDraggingOver }) => {
+    // Compare before and after lists to see if they should update/re-render
+    // const shouldUpdate = useMemo(() => list !== list, [list])
     const dispatch = useDispatch()
     // Grab cards from state and filter out to display appropriate cards by list id
     const cardsArr = useSelector(state => Object.values(state.cards))
     let cards = cardsArr.filter(card => card.list_id === list.id)
-    console.log("cards before ***********", cards)
-    // Sort the cardsfrom lowest to highest values using position property
+    console.log(`List ${list.id}'s cards before ***********`, cards)
+    // Sort the cards from lowest to highest values using position property
     cards = cards?.sort((a, b) => {
         return a?.position - b?.position
     })

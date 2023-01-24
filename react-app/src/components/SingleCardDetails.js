@@ -21,7 +21,6 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
             descriptionRef.current.focus()
             descriptionRef.current.setSelectionRange(description.length, description.length)
         }
-
     }, [showEditCard])
 
     const submitEdit = (e) => {
