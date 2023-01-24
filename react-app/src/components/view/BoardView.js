@@ -93,7 +93,7 @@ const BoardView = () => {
         dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
         setLoaded(true)
-    }, [dispatch, hasSubmitted, currentUser.id])
+    }, [dispatch, hasSubmitted])
 
 
     const displayBackground = (background) => {

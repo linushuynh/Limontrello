@@ -8,10 +8,13 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    // let board = useSelector(state => state.boards.selectedBoard)
-    let textRef = useRef(null)
+    const board = useSelector(state => state.boards.selectedBoard)
+    const lists = board?.lists.find(list => list.id === listId)
+    console.log(`list ${listId}'s cards:`,lists.cards)
+    const textRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
 
+    // Places text cursor and scrolls into view
     useEffect(() => {
         textRef.current.focus()
         textRef.current.scrollIntoView()
@@ -20,11 +23,6 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
     const closeCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(false)
-        // let index = displayAddButtons.indexOf(listId)
-        // console.log('index', index)
-        // console.log('displayaddbuttons before', displayAddButtons)
-        // let newArr = displayAddButtons.splice(index, 1)
-        // console.log('displayaddbuttons after', displayAddButtons)
         setDisplayAddButtons()
     }
 
@@ -33,6 +31,7 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
             let input = {
                 title,
                 description: "",
+                position: lists.cards.length,
                 listId
             }
             setShowAddCardModal(false)
