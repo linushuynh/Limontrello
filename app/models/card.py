@@ -9,6 +9,7 @@ class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
+    position = db.Column(db.Integer)
     list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
 
     list = db.relationship(
@@ -34,11 +35,20 @@ class Card(db.Model):
     def _description(self, new_description):
         self.description = new_description
 
+    @property
+    def _position():
+        return self.position
+
+    @_position.setter
+    def _position(self, new_position):
+        self.position = new_position
+
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
             'description': self.description,
+            'position': self.position,
             'list_id': self.list_id,
             'comments': [comment.to_dict() for comment in self.comments]
         }
