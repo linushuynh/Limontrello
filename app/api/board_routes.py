@@ -22,6 +22,17 @@ def get_user_boards():
         }
 
 
+@board_routes.route('<int:board_id>', methods=["GET"])
+@login_required
+def get_board_by_id(board_id):
+    """
+    Query for a board by its id
+    """
+    board = Board.query.filter(Board.id == board_id).one()
+
+    return board.to_dict()
+
+
 @board_routes.route('', methods=["POST"])
 @login_required
 def create_board():

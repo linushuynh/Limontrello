@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadBoardsThunk, selectBoardAction, updateBoardThunk } from "../../store/board";
+import { loadBoardsThunk, loadSelectedBoardThunk, selectBoardAction, updateBoardThunk } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import styles from "../cssModules/BoardView.module.css"
 import ListColumn from "../ListColumn";
@@ -18,13 +18,20 @@ const BoardView = () => {
     const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
     const { boardId } = useParams()
     const dispatch = useDispatch()
-    let board = currentUser.boards.find(bored => +bored.id === +boardId)
+    const board = useSelector(state => state.boards.selectedBoard)
+    // let board = currentUser.boards.find(bored => +bored.id === +boardId)
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board?.name)
     const [loaded, setLoaded] = useState(false)
-    // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    // const [cardLists, setCardLists] = useState(lists)
+
+    useEffect(() => {
+        // dispatch(getUserThunk(currentUser.id))
+        dispatch(loadBoardsThunk())
+        dispatch(loadSelectedBoardThunk(boardId))
+        dispatch(selectBoardAction(board))
+    }, [dispatch, hasSubmitted])
+
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -61,10 +68,7 @@ const BoardView = () => {
         document.activeElement.blur();
     }
 
-    // const flipEditBar = () => {
-    //     setShowEditBar(prevValue => !prevValue)
-    // }
-
+    // Function for drag and drop behavior
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
         // Return if card is dropped outside of droppable
@@ -80,18 +84,13 @@ const BoardView = () => {
             let input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
-                listId: destinationList.id
+                listId: destinationList.id,
+                position: destination.index
             }
             dispatch(editCardThunk(input, grabbedCard.id))
             .then(() => setHasSubmitted(prevValue => !prevValue))
         }
     }
-
-    useEffect(() => {
-        // dispatch(getUserThunk(currentUser.id))
-        dispatch(loadBoardsThunk())
-        dispatch(selectBoardAction(board))
-    }, [dispatch, hasSubmitted])
 
 
     const displayBackground = (background) => {
@@ -105,10 +104,10 @@ const BoardView = () => {
         return styles.container
     }
 
-    // If board does not exist for this user, Maybe redirect to 404 page later on
+    // After refreshing page and on first render, display loading screen
     if (!board) {
         return (
-            <NotFound />
+            <h1 style={{ textAlign: "center" }}>LOADING...</h1>
         )
     }
 
@@ -119,7 +118,7 @@ const BoardView = () => {
                 <NavBar />
                 <div className={styles.bodyContainer}>
                     <div className={styles.boardListContainer}>
-                        <Sidebar boards={usersBoards} name={name} setName={setName} />
+                        <Sidebar name={name} setName={setName} />
                     </div>
                     <div className={styles.backgroundOpacity}>
                     <div className={styles.mainContainer}>

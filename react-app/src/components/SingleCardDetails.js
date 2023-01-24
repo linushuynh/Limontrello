@@ -6,28 +6,32 @@ import { deleteCardThunk, editCardThunk } from "../store/cards";
 import styles from "./cssModules/SingleCardDetails.module.css"
 import { SubmittedContext } from "./context/SubmittedContext";
 
-const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
+const SingleCardDetails = ({ cardId, setShowCardDetailsModal}) => {
     const dispatch = useDispatch()
+    const cards = useSelector(state => state.cards)
+    const card = cards[cardId]
     const lists = useSelector(state => state.boards.selectedBoard.lists)
     const selectedList = lists.find(list => list.id = card.list_id)
+    console.log("SELECTED LIST *********", selectedList)
     const [showEditCard, setShowEditCard] = useState(false)
     const [title, setTitle] = useState(card.title)
     const [description, setDescription] = useState(card.description)
     const descriptionRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
 
-    useEffect(() => {
-        if (showEditCard) {
-            descriptionRef.current.focus()
-            descriptionRef.current.setSelectionRange(description.length, description.length)
-        }
-    }, [showEditCard])
+    // useEffect(() => {
+    //     if (showEditCard) {
+    //         descriptionRef.current.focus()
+    //         descriptionRef.current.setSelectionRange(description.length, description.length)
+    //     }
+    // }, [showEditCard])
 
     const submitEdit = (e) => {
         e.preventDefault()
         let input = {
             title,
             description,
+            position: card.position,
             listId: selectedList.id
         }
         dispatch(editCardThunk(input, card.id))
@@ -41,7 +45,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
         setHasSubmitted(prev => !prev)
     }
 
-    if (!card) return null
+    // if (!card) return null
 
     return (
         <div className={styles.outerContainer}>

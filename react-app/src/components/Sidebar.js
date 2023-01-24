@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { selectBoardAction } from "../store/board";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { loadBoardsThunk, loadSelectedBoardThunk, selectBoardAction } from "../store/board";
 import snowmountain from "../assets/snowmountain.jpg"
 import forest from "../assets/forest.jpg"
 import beach from "../assets/beach.jpg"
-// import { SubmittedContext } from "./context/SubmittedContext";
+import { SubmittedContext } from "./context/SubmittedContext";
 import styles from "./cssModules/Sidebar.module.css"
 
 
-const Sidebar = ({ boards, setName }) => {
+const Sidebar = ({ setName }) => {
     // const [isSelected, setIsSelected] = useState("")
+    const { setHasSubmitted } = useContext(SubmittedContext)
+    const boards = useSelector(state => state.boards.savedBoards)
+    const { boardId } = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
     const location = useLocation()
     const currentUser = useSelector(state => state.session.user)
     const firstLetter = currentUser.username[0].toUpperCase()
-    // const { setHasSubmitted } = useContext(SubmittedContext)
+
+    useEffect(() => {
+        dispatch(loadBoardsThunk())
+    }, [])
 
     // Apply sideBarHighlight className when on dashboard
     const dashBoardHighlightCheck = (mainClass) => {
@@ -40,7 +46,7 @@ const Sidebar = ({ boards, setName }) => {
         if (setName) {
             setName(eachBoard.name)
         }
-        // setHasSubmitted(prevValue => !prevValue)
+
     }
 
     const redirectDash = async () => {
@@ -59,6 +65,8 @@ const Sidebar = ({ boards, setName }) => {
         }
         return snowmountain
     }
+
+    if (!boards) return null
 
     return (
         <>
@@ -82,7 +90,7 @@ const Sidebar = ({ boards, setName }) => {
                         <span>Your Boards</span>
                         {/* <span className="material-symbols-outlined">add</span> */}
                     </div>
-                    {boards.map((eachBoard) =>(
+                    {Object.values(boards).map((eachBoard) =>(
                         <div key={eachBoard.id} className={boardHighlightCheck(eachBoard.id)} onClick={() => redirectBoard(eachBoard)}>
                                 <img alt="boardIcon" src={displayBackground(eachBoard.background)} className={styles.boardIcon} ></img>
                             {eachBoard.name}

@@ -54,6 +54,15 @@ export const loadBoardsThunk = () => async (dispatch) => {
     return data
 }
 
+export const loadSelectedBoardThunk = (boardId) => async (dispatch) => {
+    const response = await fetch(`/api/boards/${boardId}`)
+
+    const data = await response.json()
+    await dispatch(selectBoardAction(data))
+    return data
+}
+
+
 export const createBoardThunk = (input) => async (dispatch) => {
     let { name, background } = input
     const response = await fetch(`/api/boards`,{
