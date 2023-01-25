@@ -74,6 +74,7 @@ const BoardView = () => {
 
         // If card is dropped in different list column, send thunk to move it
         if (destination.droppableId !== source.droppableId) {
+            // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
             let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
