@@ -44,7 +44,7 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
             <div className={styles.cardsContainer}>
                 {cards.map((card, index) => (
                     <div key={card.id} className={styles.singleCard}>
-                        <Draggable draggableId={card.title} index={index}>
+                        <Draggable draggableId={card.id.toString()} index={index}>
                             {(provided, snapshot) => (
                                 <SingleCard
                                     provided={provided}

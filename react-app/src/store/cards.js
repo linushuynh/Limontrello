@@ -128,8 +128,8 @@ export default function reducer (state = initialState, action) {
             return newState
         case DELETE_CARD:
             const { cardId } = action
-            delete newState[cardId]
-            return newState
+            delete state[cardId]
+            return state
         default:
             return state
     }
