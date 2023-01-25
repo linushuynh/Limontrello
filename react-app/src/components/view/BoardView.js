@@ -77,6 +77,7 @@ const BoardView = () => {
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
             let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
+            console.log("THIS IS GRABBED CARD*************",grabbedCard)
             let input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
@@ -146,7 +147,7 @@ const BoardView = () => {
                         </form>
                         <div className={styles.listsContainer}>
                             {lists.map((list) => (
-                                <Droppable droppableId={list.name} key={list.id}>
+                                <Droppable droppableId={list.name} key={`${list.id}${list.name}`}>
                                     {(provided, snapshot) => (
                                         <div key={list.id} >
                                             <ListColumn
