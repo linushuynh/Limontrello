@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 class CardForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    description = StringField('Description')
+    title = StringField('title', validators=[DataRequired()])
+    description = StringField('description')
     list_id = IntegerField('list_id', validators=[DataRequired()])

@@ -8,8 +8,9 @@ class Board(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    background = db.Column(db.String(255), default="default")
+    background = db.Column(db.String(255), default="snowmountain")
     private = db.Column(db.Boolean, default=False)
+    list_order = db.Column(db.Text, default='[]')
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
     lists = db.relationship(
@@ -27,6 +28,21 @@ class Board(db.Model):
     def _name(self, new_name):
         self.name = new_name
 
+    @property
+    def _background(self):
+        return self.background
+
+    @_background.setter
+    def _background(self, new_background):
+        self.background = new_background
+
+    @property
+    def _list_order(self):
+        return self.list_order
+
+    @_list_order.setter
+    def _list_order(self, new_list_order):
+        self.list_order = new_list_order
 
     def to_dict(self):
         return {
@@ -34,6 +50,7 @@ class Board(db.Model):
             'user_id': self.user_id,
             'name': self.name,
             'background': self.background,
+            'list_order': self.list_order,
             'private': self.private,
             'lists': [list.to_dict() for list in self.lists]
         }

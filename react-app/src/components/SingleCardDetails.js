@@ -39,7 +39,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const handleDelete = async () => {
         await dispatch(deleteCardThunk(card.id))
         setShowCardDetailsModal(false)
-        setHasSubmitted(prev => !prev)
+        setHasSubmitted(prevValue => !prevValue)
     }
 
     if (!card) return null

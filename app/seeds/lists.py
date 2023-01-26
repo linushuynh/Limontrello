@@ -5,11 +5,13 @@ from app.models import db, CardList, environment, SCHEMA
 def seed_lists():
     new_list1 = CardList(
         name = "To-Do",
-        board_id = 1
+        board_id = 1,
+        card_order = '[2,3,4]'
     )
     new_list2 = CardList(
         name = "In Progress",
-        board_id = 1
+        board_id = 1,
+        card_order = '[1]'
     )
     new_list3 = CardList(
         name = "Complete",

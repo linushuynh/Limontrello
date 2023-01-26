@@ -4,9 +4,9 @@ from app.models import db, Board, environment, SCHEMA
 # Adds a demo user, you can add other boards here if you want
 def seed_boards():
     starterBoard = Board(
-        name='My First Board', background='snowmountain', private=False, user_id = 1)
+        name='My First Board', background='snowmountain', private=False, user_id = 1, list_order='[1,2,3]')
     secondBoard = Board(
-        name='Project Tasks', background='snowmountain', private=False, user_id = 1)
+        name='Project Tasks', background='forest', private=False, user_id = 1, list_order='[4,5,6]')
 
     db.session.add(starterBoard)
     db.session.add(secondBoard)
