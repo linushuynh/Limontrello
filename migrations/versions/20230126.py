@@ -1,8 +1,8 @@
-"""Revised migration
+"""Create tables
 
-Revision ID: e8d4088d2bfa
-Revises: dd5469298da2
-Create Date: 2023-01-26 14:50:14.163190
+Revision ID: df99b6cec616
+Revises:
+Create Date: 2023-01-26 15:49:39.321463
 
 """
 from alembic import op
@@ -13,8 +13,8 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'e8d4088d2bfa'
-down_revision = 'dd5469298da2'
+revision = 'df99b6cec616'
+down_revision = None
 branch_labels = None
 depends_on = None
 
