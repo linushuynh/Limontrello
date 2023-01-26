@@ -22,9 +22,7 @@ const BoardView = () => {
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board?.name)
     const [loaded, setLoaded] = useState(false)
-    // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    // const [cardLists, setCardLists] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -76,7 +74,7 @@ const BoardView = () => {
         if (destination.droppableId !== source.droppableId) {
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
-            let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
+            let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
             let input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
@@ -146,7 +144,7 @@ const BoardView = () => {
                         </form>
                         <div className={styles.listsContainer}>
                             {lists.map((list) => (
-                                <Droppable droppableId={list.name} key={list.id}>
+                                <Droppable droppableId={list.name} key={`${list.id}${list.name}`}>
                                     {(provided, snapshot) => (
                                         <div key={list.id} >
                                             <ListColumn
