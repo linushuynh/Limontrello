@@ -77,12 +77,13 @@ const BoardView = () => {
             // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
-            let grabbedCard = sourceList?.cards.find(card => card.title === draggableId)
-            console.log("THIS IS GRABBED CARD*************",grabbedCard)
+            let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
+
             let input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
-                listId: destinationList.id
+                listId: destinationList.id,
+                position: destination.index
             }
             setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
