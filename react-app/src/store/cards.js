@@ -42,7 +42,7 @@ export const deleteCardAction = (cardId) => {
 
 
 export const createCardThunk = (input, currentUserId) => async (dispatch) => {
-    let { title, description, listId, position } = input
+    let { title, description, listId } = input
     const response = await fetch("/api/cards", {
         method: "POST",
         headers: {
@@ -51,7 +51,6 @@ export const createCardThunk = (input, currentUserId) => async (dispatch) => {
         body: JSON.stringify({
             title,
             description,
-            position,
             list_id: listId
         })
     })
@@ -77,7 +76,7 @@ export const deleteCardThunk = (cardId) => async (dispatch) => {
 }
 
 export const editCardThunk = (input, cardId) => async (dispatch) => {
-    const { title, description, listId, position } = input
+    const { title, description, listId } = input
     const response = await fetch(`/api/cards/${cardId}`, {
         method: "PUT",
         headers: {
@@ -86,7 +85,6 @@ export const editCardThunk = (input, cardId) => async (dispatch) => {
         body: JSON.stringify({
             title,
             description,
-            position,
             list_id: listId
         })
     })
@@ -96,7 +94,6 @@ export const editCardThunk = (input, cardId) => async (dispatch) => {
         id: cardId,
         title,
         description,
-        position,
         list_id: listId
     }))
     const data = await response.json()

@@ -30,7 +30,6 @@ const CreateCardForm = ({ listId, setShowAddCardModal, displayAddButtons, setDis
             let input = {
                 title,
                 description: "",
-                position: lists.cards.length,
                 listId
             }
             setShowAddCardModal(false)
