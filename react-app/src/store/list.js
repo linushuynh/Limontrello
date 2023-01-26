@@ -30,3 +30,32 @@ export const deleteListAction = (payload) => {
     }
 }
 
+// THUNKS
+
+export const createListThunk = (input) => async (dispatch) => {
+    const { name, boardId } = input
+
+    const response = await fetch(`/api/lists`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            board_id: boardId
+        })
+    })
+
+    const data = await response.json()
+    await dispatch(createListAction(data))
+    return data
+}
+
+
+
+// REDUCER
+const initialState = {}
+
+export default function reducer (state = initialState, action) {
+    
+}
