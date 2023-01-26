@@ -12,3 +12,4 @@ class BoardForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), name_check])
     background = StringField('Background')
     private = BooleanField('Private')
+    list_order = StringField('list_order')

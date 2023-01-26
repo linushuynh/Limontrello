@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./cssModules/ListColumn.module.css"
 import CreateCardForm from "./forms/CreateCardForm";
 import { Draggable } from "react-beautiful-dnd";
 import SingleCard from "./SingleCard";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCardsAction } from "../store/cards";
 
 const ListColumn = ({ list, provided, isDraggingOver }) => {
-    const cards = list.cards
+    const dispatch = useDispatch()
+    // Grab cards from state and filter out to display appropriate cards by list id
+    const cardsArr = useSelector(state => Object.values(state.cards))
+    let cards = cardsArr.filter(card => card.list_id === list.id)
+
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
-    // const [alreadyOpen, setAlreadyOpen] = useState(false)
 
     const openCardForm = (e) => {
         e.preventDefault()
@@ -16,6 +21,10 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
         // if (alreadyOpen && displayAddButtons == list.id)
         setDisplayAddButtons(list.id)
     }
+
+    useEffect(() => {
+        dispatch(loadCardsAction(list.cards))
+    }, [])
 
     if (!list) return null
     return (
@@ -31,7 +40,7 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
             <div className={styles.cardsContainer}>
                 {cards.map((card, index) => (
                     <div key={card.id} className={styles.singleCard}>
-                        <Draggable draggableId={card.title} index={index}>
+                        <Draggable draggableId={card.id.toString()} index={index}>
                             {(provided, snapshot) => (
                                 <SingleCard
                                     provided={provided}
