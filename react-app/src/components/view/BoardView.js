@@ -22,9 +22,7 @@ const BoardView = () => {
     let usersBoards = currentUser.boards
     const [name, setName] = useState(board?.name)
     const [loaded, setLoaded] = useState(false)
-    // const [showEditBar, setShowEditBar] = useState(false)
     let lists = board?.lists
-    // const [cardLists, setCardLists] = useState(lists)
 
     // Called when the board title input is deselected
     const submitEdit = async () => {
@@ -83,7 +81,6 @@ const BoardView = () => {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
                 listId: destinationList.id,
-                position: destination.index
             }
             setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
