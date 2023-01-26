@@ -76,10 +76,11 @@ const BoardView = () => {
             let sourceList = lists.find(list => list.name === source.droppableId)
             let destinationList = lists.find(list => list.name === destination.droppableId)
             let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
+
             let input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
-                listId: destinationList.id
+                listId: destinationList.id,
             }
             setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
@@ -89,7 +90,7 @@ const BoardView = () => {
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
-        dispatch(loadBoardsThunk())
+        // dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
         setLoaded(true)
     }, [dispatch, hasSubmitted])
