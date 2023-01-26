@@ -11,10 +11,6 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
     // Grab cards from state and filter out to display appropriate cards by list id
     const cardsArr = useSelector(state => Object.values(state.cards))
     let cards = cardsArr.filter(card => card.list_id === list.id)
-    // Sort the cardsfrom lowest to highest values using position property
-    cards = cards?.sort((a, b) => {
-        return a?.position - b?.position
-    })
 
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [displayAddButtons, setDisplayAddButtons] = useState()
