@@ -93,7 +93,7 @@ const BoardView = () => {
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
-        dispatch(loadBoardsThunk())
+        // dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
         setLoaded(true)
     }, [dispatch, hasSubmitted])

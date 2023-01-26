@@ -8,7 +8,8 @@ class CardList(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    position = db.Column(db.Integer)
+    color = db.Column(db.String(100))
+    card_order = db.Column(db.Text, default='[]')
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
 
     board = db.relationship(
@@ -27,17 +28,26 @@ class CardList(db.Model):
         self.name = new_name
 
     @property
-    def _position():
-        return self.position
+    def _color(self):
+        return self.color
 
-    @_position.setter
-    def _position(self, new_position):
-        self.position = new_position
+    @_color.setter
+    def _name(self, new_color):
+        self.color = new_color
+
+    @property
+    def _card_order():
+        return self.card_order
+
+    @_card_order.setter
+    def _card_order(self, new_card_order):
+        self.card_order = new_card_order
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'position': self.position,
+            'color': self.color,
+            'card_order': self.card_order,
             'cards': [card.to_dict() for card in self.cards]
         }
