@@ -11,6 +11,7 @@ import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
 import NotFound from "./404";
+import CreateListForm from "../forms/CreateListForm";
 
 const BoardView = () => {
     const currentUser = useSelector(state => state.session.user)
@@ -58,10 +59,6 @@ const BoardView = () => {
         setSelectEdit(false)
         document.activeElement.blur();
     }
-
-    // const flipEditBar = () => {
-    //     setShowEditBar(prevValue => !prevValue)
-    // }
 
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
@@ -163,10 +160,8 @@ const BoardView = () => {
                                 </Droppable>
                                 )
                             )}
+                            <CreateListForm />
                         </div>
-                    {/* <div className={showEditBar? styles.editBar : styles.hidden}>
-                        Edit Board here
-                    </div> */}
                     </div>
                     </div>
                 </div>

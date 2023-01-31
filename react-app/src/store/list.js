@@ -51,11 +51,51 @@ export const createListThunk = (input) => async (dispatch) => {
     return data
 }
 
+export const editListThunk = (input) => async (dispatch) => {
+    const { name, listId } = input
+    const response = await fetch(`/api/lists/${listId}/edit`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name
+        })
+    })
 
+    const data = await response.json()
+    await dispatch(editListAction(data))
+    return data
+}
+
+export const deleteListThunk = (listId) => async (dispatch) => {
+    const response = await fetch(`/api/lists/${listId}/delete`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    const data = await response.json()
+    await dispatch(deleteListAction(listId))
+    return data
+}
 
 // REDUCER
 const initialState = {}
 
 export default function reducer (state = initialState, action) {
-    
+    let newState = { ...state }
+    switch(action.type) {
+        case CREATE_LIST:
+            newState = { ...newState, [action.payload.id]: action.payload }
+        case EDIT_LIST:
+            newState[action.payload.id] = action.payload
+            return newState
+        case DELETE_LIST:
+            delete newState[action.payload]
+            return newState
+        default:
+            return state
+    }
 }

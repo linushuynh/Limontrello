@@ -1,0 +1,27 @@
+.addListContainer {
+    width: 220px;
+    height: fit-content;
+    max-height: 100%;
+    margin-left: 15px;
+    display: flex;
+    border-radius: 3px;
+    background-color: rgb(235, 236, 240, 0.5);
+    font-size: 15px;
+    color: #7B8698;
+    cursor: pointer;
+}
+
+
+.closedStyle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 0.4rem;
+    border-radius: 3px;
+}
+
+.closedStyle:hover {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220, 0.8);
+}
