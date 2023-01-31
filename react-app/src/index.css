@@ -27,3 +27,21 @@ body {
     margin-bottom: 10px;
     user-select: none;
 }
+
+* > button {
+    all: unset;
+    text-align: center;
+    /* font-family: 'Inter Tight', sans-serif; */
+}
+
+/* * > input {
+    font-family: 'Inter Tight', sans-serif;
+}
+
+* > textarea {
+    font-family: 'Inter Tight', sans-serif;
+} */
+
+* > :is(button, input, textarea) {
+    font-family: 'Inter Tight', sans-serif;
+}

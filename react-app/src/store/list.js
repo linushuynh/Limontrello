@@ -47,6 +47,7 @@ export const createListThunk = (input) => async (dispatch) => {
     })
 
     const data = await response.json()
+    console.log("returned data")
     await dispatch(createListAction(data))
     return data
 }
@@ -89,6 +90,7 @@ export default function reducer (state = initialState, action) {
     switch(action.type) {
         case CREATE_LIST:
             newState = { ...newState, [action.payload.id]: action.payload }
+            return newState
         case EDIT_LIST:
             newState[action.payload.id] = action.payload
             return newState
