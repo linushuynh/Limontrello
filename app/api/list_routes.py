@@ -80,9 +80,10 @@ def delete_list(list_id):
     Queries for a list then deletes it
     """
     selected_list = CardList.query.get(list_id)
-
     if not selected_list:
         return { "error": "List couldn't be found" }, 404
 
     db.session.delete(selected_list)
     db.session.commit()
+
+    return { "message": "Successfully deleted"}, 200

@@ -19,11 +19,12 @@
     height: 35px;
     text-indent: 10px;
     user-select: none;
+    width: 100%;
 }
 
 .listName {
-    /* width: 85%; */
-    /* border: rgb(23, 43, 77, 0) 2px solid; */
+    overflow: hidden;
+    text-overflow: ellipsis;
     border: rgb(2, 106, 167, 0) 2px solid;
 }
 
@@ -45,8 +46,8 @@
 .listButtons {
     display: flex;
     align-items: center;
+    position: relative;
 }
-
 
 .listOption {
     display: flex;
@@ -73,7 +74,6 @@
 }
 
 .cardsContainer {
-    /* border: 1px salmon solid; */
     width: 100%;
     box-sizing: border-box;
     display: flex;

@@ -9,6 +9,8 @@ import editicon from "../assets/editicon.svg"
 import deleteicon from "../assets/deleteicon.svg"
 import { deleteListThunk, editListThunk } from "../store/list";
 import { SubmittedContext } from "./context/SubmittedContext";
+import { DeleteListModal } from "./context/DeleteListModal";
+import DeleteListForm from "./forms/DeleteListForm";
 
 const ListColumn = ({ list, provided, isDraggingOver }) => {
     const dispatch = useDispatch()
@@ -17,15 +19,16 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
     let cards = cardsArr.filter(card => card.list_id === list.id)
     const [showAddCardModal, setShowAddCardModal] = useState("")
     const [showEditMode, setShowEditMode] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [displayAddButtons, setDisplayAddButtons] = useState()
     const [name, setName] = useState(list.name)
     const editRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
 
-    const openCardForm = (e) => {
+    const flipCardForm = (e) => {
         e.preventDefault()
         setShowAddCardModal(true)
-        // if (alreadyOpen && displayAddButtons == list.id)
+        // if (alreadyflip && displayAddButtons == list.id)
         setDisplayAddButtons(list.id)
     }
 
@@ -44,8 +47,13 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
         setHasSubmitted(prev => !prev)
     }
 
-    const submitDelete = async (e) => {
+    const flipDeleteModal = (e) => {
         e.preventDefault()
+        setShowDeleteModal(!showDeleteModal)
+    }
+
+    const submitDelete = async () => {
+        setShowDeleteModal(false)
         await dispatch(deleteListThunk(list.id))
         setHasSubmitted(prev => !prev)
     }
@@ -76,17 +84,20 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
                         />
                     </form>
                 ) : (
-                <div className={styles.listName}>
-                    {list.name}
-                </div>
+                    <div className={styles.listName}>
+                        {list.name}
+                    </div>
                 )}
                 <div className={styles.listButtons}>
                     <button className={styles.listOption} onClick={flipEditModal}>
                         <img alt="editicon" src={editicon}></img>
                     </button>
-                    <button className={styles.listOption}>
+                    <button className={styles.listOption} onClick={e => flipDeleteModal(e)}>
                         <img alt="deleteicon" src={deleteicon}></img>
                     </button>
+                    {showDeleteModal && <DeleteListModal onClose={() => setShowDeleteModal(false)} >
+                        <DeleteListForm listName={list.name} submitDelete={submitDelete} flipDeleteModal={flipDeleteModal} />
+                    </DeleteListModal>}
                 </div>
             </div>
             {/* Maps out each card and renders it as a Draggable item */}
@@ -111,7 +122,7 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
                     { showAddCardModal ?
                         <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />
                         :
-                        <div onClick={openCardForm} className={styles.addCardButton}>
+                        <div onClick={flipCardForm} className={styles.addCardButton}>
                             <span className="material-symbols-outlined" id={styles.plusSign}>add</span>
                             Add a card
                         </div>

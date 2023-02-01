@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCardThunk, editCardThunk } from "../store/cards";
-// import { getUserThunk } from "../store/session";
-// import { loadBoardsThunk, saveBoardsAction, selectBoardAction } from "../store/board";
 import styles from "./cssModules/SingleCardDetails.module.css"
 import { SubmittedContext } from "./context/SubmittedContext";
 
@@ -91,8 +89,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                     placeholder={"Give this card a description..."}
                                     />
                                 <div className={showEditCard ? styles.editFooter : styles.noShow }>
-                                    <div>(Click off the box to save)</div>
-                                    {/* <button className={styles.saveButton} type='submit'>Save</button> */}
+                                    <button className={styles.saveButton} type='submit'>Save</button>
                                     <div className={styles.charCount}>{description.length}/255 characters</div>
                                 </div>
                             </form>
