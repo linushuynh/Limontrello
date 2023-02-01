@@ -22,21 +22,50 @@
 }
 
 .listName {
-    width: 85%;
+    /* width: 85%; */
+    /* border: rgb(23, 43, 77, 0) 2px solid; */
+    border: rgb(2, 106, 167, 0) 2px solid;
 }
 
-.ellipses {
+
+.editForm > input {
+    border-radius: 3px;
+    border: rgb(2, 106, 167, 0) 2px solid;
+    outline: none;
+    width: 87%;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+.editForm > input:focus {
+    outline: none;
+    border: #026AA7 2px solid;
+}
+
+.listButtons {
     display: flex;
-    align-items: flex-start;
-    width: 15%;
-    height: 80%;
+    align-items: center;
+}
+
+
+.listOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
     border-radius: 4px;
     margin-right: 5px;
 }
 
-.ellipses:hover {
-    background-color: #cacaca;
+.listOption:hover {
+    background-color: rgb(202, 202, 202, 0.75);
+}
+
+.listOption > img {
+    color: #7B8698;
+    width: 1.4rem;
 }
 
 .hidden {

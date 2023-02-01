@@ -21,9 +21,9 @@ ReactDOM.render(
           <CreateBoardModalProvider>
             <EditBoardModalProvider>
               <DeleteBoardModalProvider>
-                <CardDetailModalProvider>
-                  <App />
-                </CardDetailModalProvider>
+                  <CardDetailModalProvider>
+                    <App />
+                  </CardDetailModalProvider>
               </DeleteBoardModalProvider>
             </EditBoardModalProvider>
           </CreateBoardModalProvider>

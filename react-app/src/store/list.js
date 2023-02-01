@@ -47,7 +47,6 @@ export const createListThunk = (input) => async (dispatch) => {
     })
 
     const data = await response.json()
-    console.log("returned data")
     await dispatch(createListAction(data))
     return data
 }
@@ -65,6 +64,7 @@ export const editListThunk = (input) => async (dispatch) => {
     })
 
     const data = await response.json()
+    console.log("errors",data.errors)
     await dispatch(editListAction(data))
     return data
 }

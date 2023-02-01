@@ -66,7 +66,6 @@ def update_list(list_id):
     if form.validate_on_submit():
         data = form.data
         selected_list.name = data['name']
-        selected_list.board_id = data['board_id']
 
         db.session.commit()
         return selected_list.to_dict()

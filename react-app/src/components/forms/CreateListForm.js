@@ -16,6 +16,7 @@ const CreateListForm = () => {
 
     const flipOpenState = (e) => {
         e.preventDefault()
+        setName("")
         setIsOpen(!isOpen)
     }
 
@@ -25,7 +26,6 @@ const CreateListForm = () => {
             name,
             boardId: +boardId
         }
-        console.log("first stage", input)
         setIsOpen(!isOpen)
         await dispatch(createListThunk(input))
         setHasSubmitted(prev => !prev)
