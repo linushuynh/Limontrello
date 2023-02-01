@@ -20,7 +20,7 @@ def create_comment():
         data = form.data
         new_comment = Comment(
             content = data['content'],
-            user_id = data['user_id'],
+            user_id = current_user.id,
             card_id = data['card_id']
         )
         db.session.add(new_comment)
