@@ -1,7 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
-import { loadBoardsThunk } from '../store/board';
+import { useLocation } from 'react-router-dom';
+// import { loadBoardsThunk } from '../store/board';
 // import { getUserThunk } from '../store/session';
 import LogoutButton from './auth/LogoutButton';
 import styles from "./cssModules/NavBar.module.css"
@@ -9,8 +8,6 @@ import icon from "../assets/limontrello.png"
 
 const NavBar = () => {
   // const currentUser = useSelector(state => state.session.user)
-  const history = useHistory()
-  const dispatch = useDispatch()
   const location = useLocation()
 
   const setNavClass = () => {

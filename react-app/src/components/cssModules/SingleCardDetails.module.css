@@ -75,7 +75,6 @@
     overflow-wrap: break-word;
     border: 2px solid rgb(244,245,247);
     /* border: none; */
-    font-family: 'Inter Tight', sans-serif;
     background-color: rgb(244,245,247);
     resize: none;
 }
@@ -142,7 +141,6 @@
     cursor: pointer;
     overflow-wrap: break-word;
     border: 2px solid rgb(244,245,247);
-    font-family: 'Inter Tight', sans-serif;
     outline: rgb(244,245,247);
     background-color: rgb(244,245,247);
     resize: none;
@@ -203,7 +201,6 @@
     padding: 8px 12px;
     outline: none;
     border: none;
-    font-family: 'Inter Tight', sans-serif;
     font-size: 16px;
 }
 

@@ -1,0 +1,91 @@
+.addListContainer {
+    width: 220px;
+    height: fit-content;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: rgb(235, 236, 240, 0.7);
+    font-size: 15px;
+    color: #7B8698;
+}
+
+
+.closedStyle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.3rem 0.4rem;
+    border-radius: 3px;
+    user-select: none;
+}
+
+.closedStyle:hover {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220, 0.8);
+}
+
+.openStyle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 93%;
+    height: 100%;
+    padding: 0.3rem 0rem;
+    border-radius: 3px;
+}
+
+.inputBar {
+    line-height: 1.6rem;
+    border-radius: 4px;
+    border: rgb(2, 106, 167, 0) 2px solid;
+    font-size: 15px;
+    text-indent: 0.4rem;
+    margin: 0.2rem 0rem;
+}
+
+.inputBar:focus {
+    border: #026AA7 2px solid;
+    outline: none;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.addListButton {
+    cursor: pointer;
+    background-color: #0086d3;
+    color: #F5F6F7;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 7px 10px;
+}
+
+.addListButton:hover {
+    background-color: #016EAD;
+}
+
+.Xbutton {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(235, 236, 240, 0.5);
+    color: #6B778C;
+    transition: background-color 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem 0.3rem;
+}
+
+.Xbutton:hover {
+    background-color: rgba(235, 236, 240, 0.8);
+    color: black;
+
+}

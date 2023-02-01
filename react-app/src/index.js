@@ -10,6 +10,7 @@ import { CreateBoardModalProvider } from './components/context/CreateBoardModal'
 import { EditBoardModalProvider } from './components/context/EditBoardModal';
 import { CardDetailModalProvider } from './components/context/CardDetailsModal';
 import { DeleteBoardModalProvider } from './components/context/DeleteBoardModal';
+import { DeleteListModalProvider } from './components/context/DeleteListModal';
 
 const store = configureStore();
 
@@ -21,9 +22,11 @@ ReactDOM.render(
           <CreateBoardModalProvider>
             <EditBoardModalProvider>
               <DeleteBoardModalProvider>
-                <CardDetailModalProvider>
-                  <App />
-                </CardDetailModalProvider>
+                <DeleteListModalProvider>
+                  <CardDetailModalProvider>
+                    <App />
+                  </CardDetailModalProvider>
+                </DeleteListModalProvider>
               </DeleteBoardModalProvider>
             </EditBoardModalProvider>
           </CreateBoardModalProvider>
