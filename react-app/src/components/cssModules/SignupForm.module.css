@@ -38,7 +38,6 @@
     border-radius: 4px;
     text-indent: 5px;
     transition: all 0.3s;
-    font-family: 'Inter Tight', sans-serif;
 }
 
 .inputBar:focus {
@@ -69,7 +68,6 @@
     background-color: #0065ff;
     color: #FFFFFF;
     cursor: pointer;
-    font-family: 'Inter Tight', sans-serif;
     font-size: 15px;
 }
 

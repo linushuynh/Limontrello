@@ -3,9 +3,8 @@
     width: 220px;
     height: fit-content;
     max-height: 100%;
-    /* margin-top: 10px; */
-    margin-left: 15px;
-    margin-right: 0px;
+    /* margin-left: 15px;
+    margin-right: 0px; */
     display: flex;
     flex-direction: column;
     border-radius: 3px;
@@ -20,24 +19,54 @@
     height: 35px;
     text-indent: 10px;
     user-select: none;
+    width: 100%;
 }
 
 .listName {
-    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: rgb(2, 106, 167, 0) 2px solid;
 }
 
-.ellipses {
+
+.editForm > input {
+    border-radius: 3px;
+    border: rgb(2, 106, 167, 0) 2px solid;
+    outline: none;
+    width: 87%;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+.editForm > input:focus {
+    outline: none;
+    border: #026AA7 2px solid;
+}
+
+.listButtons {
     display: flex;
-    align-items: flex-start;
-    width: 15%;
-    height: 80%;
+    align-items: center;
+    position: relative;
+}
+
+.listOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
     border-radius: 4px;
     margin-right: 5px;
 }
 
-.ellipses:hover {
-    background-color: #cacaca;
+.listOption:hover {
+    background-color: rgb(202, 202, 202, 0.75);
+}
+
+.listOption > img {
+    color: #7B8698;
+    width: 1.4rem;
 }
 
 .hidden {
@@ -45,7 +74,6 @@
 }
 
 .cardsContainer {
-    /* border: 1px salmon solid; */
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -79,7 +107,6 @@
     height: 30px;
     width: 93%;
     border-radius: 4px;
-    font-family: 'Inter Tight', sans-serif;
     font-size: 15px;
     color: #7B8698;
     text-align: left;
