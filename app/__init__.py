@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.board_routes import board_routes
 from .api.list_routes import list_routes
 from .api.card_routes import card_routes
+from .api.comment_routes import comment_routes
 from .seeds import seed_commands
 from .config import Config
 

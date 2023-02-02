@@ -1,7 +1,7 @@
 // Action Types
-const CREATE_COMMENT = 'comments/CREATE_COMMENT'
-const EDIT_COMMENT = 'comments/EDIT_COMMENT'
-const DELETE_COMMENT = 'comments/DELETE_COMMENT'
+// const CREATE_COMMENT = 'comments/CREATE_COMMENT'
+// const EDIT_COMMENT = 'comments/EDIT_COMMENT'
+// const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 
 
 // Thunks
