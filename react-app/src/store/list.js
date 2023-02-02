@@ -66,7 +66,6 @@ export const editListThunk = (input) => async (dispatch) => {
     })
 
     const data = await response.json()
-    console.log("errors",data.errors)
     await dispatch(editListAction(data))
     return data
 }

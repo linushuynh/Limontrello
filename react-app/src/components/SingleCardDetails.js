@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteCardThunk, editCardThunk } from "../store/cards";
 import styles from "./cssModules/SingleCardDetails.module.css"
 import { SubmittedContext } from "./context/SubmittedContext";
+import CommentForm from "./forms/CommentForm";
 
 const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const dispatch = useDispatch()
@@ -13,16 +14,17 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const [description, setDescription] = useState(card.description)
     const descriptionRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
+    const comments = card?.comments
 
     useEffect(() => {
         if (showEditCard) {
             descriptionRef.current.focus()
             descriptionRef.current.setSelectionRange(description.length, description.length)
         }
-
+    // eslint-disable-next-line
     }, [showEditCard])
 
-    const submitEdit = (e) => {
+    const submitEditDescription = (e) => {
         e.preventDefault()
         let input = {
             title,
@@ -59,7 +61,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                         id={styles.titleText}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
-                        onBlur={submitEdit}
+                        onBlur={submitEditDescription}
                         maxLength={50}
                         />
                     <span className="material-symbols-outlined" onClick={() => setShowCardDetailsModal(false)} id={styles.Xbutton}>close</span>
@@ -70,19 +72,19 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                     <div className={styles.bodyDetails}>
                         <div className={styles.detailContainer}>
                             <div className={styles.categoryTitle}>
-                            Description
+                            <span>Description</span>
                             {!showEditCard && (
                                 <div className={styles.editButton} onClick={() => setShowEditCard(true)} >
                                     Edit
                                 </div>
                             )}
                             </div>
-                            <form onSubmit={submitEdit}>
+                            <form onSubmit={submitEditDescription}>
                                 <textarea
                                     value={description}
                                     onChange={e => setDescription(e.target.value)}
                                     onClick={() => setShowEditCard(true)}
-                                    onBlur={submitEdit}
+                                    onBlur={submitEditDescription}
                                     ref={descriptionRef}
                                     id={styles.descriptionBox}
                                     maxLength={255}
@@ -94,6 +96,7 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                 </div>
                             </form>
                         </div>
+                        <CommentForm comments={comments} cardId={card.id} />
                     </div>
                     <div className={styles.moreOptions}>
                         <div className={styles.deleteButton} onClick={handleDelete} >

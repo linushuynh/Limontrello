@@ -5,7 +5,6 @@ import { getUserThunk } from "../../store/session";
 import styles from "../cssModules/Dashboard.module.css"
 import NavBar from "../NavBar";
 import BoardCard from "../BoardCard";
-// import { Modal } from "./context/Modal.js"
 import { CreateBoardModal } from "../context/CreateBoardModal";
 import CreateBoardForm from "../forms/CreateBoardForm";
 import { saveBoardsAction } from "../../store/board";
@@ -39,6 +38,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getUserThunk(currentUserId))
         dispatch(saveBoardsAction(boards))
+    // eslint-disable-next-line
     }, [dispatch, currentUserId])
 
 

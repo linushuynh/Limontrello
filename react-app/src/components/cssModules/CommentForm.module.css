@@ -1,0 +1,146 @@
+.form {
+    width: 100%;
+    height: fit-content;
+    color: #172B4D;
+}
+
+.header {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 32px;
+    margin-left: 2px;
+}
+
+.activeInputContainer {
+    width: 97%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 7px #CCCCCC;
+    border-radius: 3px;
+}
+
+.inactiveInputContainer {
+    width: 97%;
+    height: fit-content;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 7px #CCCCCC;
+    display: flex;
+    border-radius: 3px;
+}
+
+.inputBar {
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+    line-height: 22px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 3px;
+    margin: 0.5rem;
+    /* text-indent: 0.5rem; */
+    cursor: pointer;
+}
+
+.inputBar:focus {
+    border: none;
+    cursor: auto;
+}
+
+.button {
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #0086d3;
+    color: #F5F6F7;
+    padding: 8px 8px;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    border: none;
+    font-size: 16px;
+    width: max-content;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.button:hover {
+    background-color: #006dad;
+}
+
+.button:disabled {
+    background-color: #F5F6F7;
+    color: #ADB5C0;
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.commentFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.commentFooter > div {
+    font-size: 15px;
+}
+
+.Xbutton {
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: rgba(235, 236, 240, 0.5);
+    color: #6B778C;
+    padding: 6px 6px;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    border: none;
+    font-size: 16px;
+    width: max-content;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.Xbutton:hover {
+    background-color: rgba(235, 236, 240, 0.8);
+    color: black;
+
+}
+
+.commentContainer {
+    width: 97%;
+    height: fit-content;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 7px #CCCCCC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 3px;
+    margin: 1rem 0rem;
+}
+
+.commentContainer > span {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+    color: rgb(255, 109, 109);
+}
+
+.commentContainer > span:hover {
+    background-color: #CCCCCC;
+}
+
+.commentText {
+    text-indent: 0.5rem;
+    font-size: 15px;
+}
