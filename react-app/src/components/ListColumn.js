@@ -60,7 +60,7 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
 
     useEffect(() => {
         dispatch(loadCardsAction(list.cards))
-    }, [dispatch])
+    }, [dispatch, list.cards])
 
     // Select the input when toggling edit mode for list column
     useEffect(() => {

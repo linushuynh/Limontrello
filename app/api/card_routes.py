@@ -69,4 +69,4 @@ def delete_card(card_id):
     db.session.delete(card)
     db.session.commit()
 
-    return { "message": "Successfully deleted card"}
+    return { "message": "Successfully deleted card" }

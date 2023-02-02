@@ -8,7 +8,6 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
     const [title, setTitle] = useState("")
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    const board = useSelector(state => state.boards.selectedBoard)
     const textRef = useRef(null)
     const { setHasSubmitted } = useContext(SubmittedContext)
 

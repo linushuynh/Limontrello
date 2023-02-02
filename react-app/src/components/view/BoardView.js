@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadBoardsThunk, selectBoardAction, updateBoardThunk } from "../../store/board";
+import { selectBoardAction, updateBoardThunk } from "../../store/board";
 import { getUserThunk } from "../../store/session";
 import styles from "../cssModules/BoardView.module.css"
 import ListColumn from "../ListColumn";
@@ -88,10 +88,10 @@ const BoardView = () => {
 
     useEffect(() => {
         dispatch(getUserThunk(currentUser.id))
-        // dispatch(loadBoardsThunk())
         dispatch(selectBoardAction(board))
         dispatch(loadListsAction(lists))
         setLoaded(true)
+    // eslint-disable-next-line
     }, [dispatch, hasSubmitted])
 
 
