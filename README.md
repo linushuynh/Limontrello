@@ -1,17 +1,11 @@
 # [![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Limontrello%20🍋&width=1000&height=350)](https://github.com/Akshay090/svg-banners)
 
-[Limontrello](https://limontrello.onrender.com/) is a website inspired by [Trello](https://trello.com/home). Limontrello is a great tool for productivity and organizing tasks. Each user is able to make as many boards as they desire and within those boards they are able to make cards that can be labeled. 
+[Limontrello](https://limontrello.onrender.com/) is a website inspired by [Trello](https://trello.com/home). Limontrello is a great tool for productivity and organizing tasks. Each user is able to make as many boards as they desire and within those boards they are able to make cards that can be labeled.
 
 Limontrello also utilizes the [React Beautiful DnD](https://github.com/atlassian/react-beautiful-dnd) package to allow users to drag and drop cards.
 
 ### Live Site: [Limontrello](https://limontrello.onrender.com/)
 
-## ✅ Wiki Link
-
-- [Database Schema](https://github.com/linushuynh/Limontrello/wiki/DB-Schema-1.1)
-- [Feature List](https://github.com/linushuynh/Limontrello/wiki/Features-List)
-- [Redux State Shape](https://github.com/linushuynh/Limontrello/wiki/Redux-Shape)
-- [User Stories](https://github.com/linushuynh/Limontrello/wiki/User-Stories)
 
 **Frameworks, Platforms and Libraries:**
 
@@ -24,6 +18,146 @@ Limontrello also utilizes the [React Beautiful DnD](https://github.com/atlassian
 **Hosting:**
 
 ![Render](https://img.shields.io/badge/Render-informational?style=for-the-badge&logo=render&logoColor=%5bdec3)
+
+## ✅ Wiki Link
+
+- [Database Schema](https://github.com/linushuynh/Limontrello/wiki/DB-Schema-1.1)
+- [Feature List](https://github.com/linushuynh/Limontrello/wiki/Features-List)
+- [Redux State Shape](https://github.com/linushuynh/Limontrello/wiki/Redux-Shape)
+- [User Stories](https://github.com/linushuynh/Limontrello/wiki/User-Stories)
+
+## 📷 Screenshots
+
+### Landing
+![image](https://user-images.githubusercontent.com/109188075/211251771-6178d9f0-83cc-4219-a8e5-a731db11e800.png)
+
+### Sign Up Page
+![image](https://user-images.githubusercontent.com/109188075/211121260-9e91ed1d-bf89-4490-a3bf-b14490ca284f.png)
+
+### Dashboard
+<img width="1919" alt="Screenshot 2023-02-07 230651" src="https://user-images.githubusercontent.com/109188075/217458827-92bbe043-44bb-4fd2-b39a-65a57ecdf0e6.png">
+
+
+### Main Board View
+<img width="1594" alt="Screenshot 2023-02-07 230920" src="https://user-images.githubusercontent.com/109188075/217459082-152c1375-5489-46f3-9228-0a0b83c0bfc8.png">
+
+
+### Example Drag n Drop
+![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/109188075/211144776-ab4b6b14-a887-4059-85ab-d05a80a9c3fc.gif)
+
+
+## ✂️ Code Snippets
+
+### Snippet 1 (Create board API route)
+#### *The following code is snipped from from API board routes and gets hit when a request to create a new board is sent to /api/boards*
+```bash
+@board_routes.route('', methods=["POST"])
+@login_required
+def create_board():
+    """
+    Create a new board for the user and append 3 lists for the new board to
+    start with
+    """
+    form = BoardForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = form.data
+        new_board = Board(
+            name = data["name"],
+            background = data["background"],
+            private = data["private"],
+            user_id = current_user.id
+        )
+        db.session.add(new_board)
+        db.session.commit()
+
+        # Add 3 default lists to newly created boards
+        if len(new_board.lists) < 1:
+            new_list1 = CardList(
+                name = "To-Do",
+                board_id = new_board.id
+            )
+            new_list2 = CardList(
+                name = "In Progress",
+                board_id = new_board.id
+            )
+            new_list3 = CardList(
+                name = "Complete",
+                board_id = new_board.id
+            )
+            new_board.lists.append(new_list1)
+            new_board.lists.append(new_list2)
+            new_board.lists.append(new_list3)
+            db.session.add(new_board)
+            db.session.commit()
+
+        return new_board.to_dict()
+
+    return {'error': validation_errors_to_error_messages(form.errors)}, 401
+```
+
+### Snippet 2 (Create Card Component)
+#### *This snippet of code showcases the component responsible for proving the form to allow the user to create a new card*
+```bash
+const CreateCardForm = ({ listId, setShowAddCardModal }) => {
+    const [title, setTitle] = useState("")
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.session.user)
+    const textRef = useRef(null)
+    const { setHasSubmitted } = useContext(SubmittedContext)
+
+    // Places text cursor and scrolls into view
+    useEffect(() => {
+        textRef.current.focus()
+        textRef.current.scrollIntoView()
+    }, [textRef])
+
+    const closeCardForm = (e) => {
+        e.preventDefault()
+        setShowAddCardModal(false)
+    }
+
+    const submitNewCard = async (e) => {
+        e.preventDefault()
+            let input = {
+                title,
+                description: "",
+                listId
+            }
+            setShowAddCardModal(false)
+            await dispatch(createCardThunk(input, currentUser.id))
+            setHasSubmitted(prev => !prev)
+    }
+
+    return (
+        <div className={styles.formContainer}>
+            <form className={styles.form}>
+                <div className={styles.inputContainer}>
+                    <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Enter a title for this card..."
+                    className={styles.inputArea}
+                    ref={textRef}
+                    maxLength={100}
+                    type="text"
+                    />
+                </div>
+                <div className={styles.titleCount}>
+                    {title.length}/100 characters
+                </div>
+                <div className={styles.buttonsContainer}>
+                    <button type="submit" className={styles.addCardButton} onClick={submitNewCard}>Add card</button>
+                    <button onClick={closeCardForm} className={styles.Xbutton}>
+                        <span className="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    )
+}
+```
 
 ## 💻 Run Limontrello on Local
 
@@ -57,7 +191,7 @@ Start the backend of the server
 pipenv run flask run
 ```
 
-Open another terminal window(make sure you're in the root directory) then run 
+Open another terminal window(make sure you're in the root directory) then run
 
 ```bash
 cd react-app
@@ -65,22 +199,3 @@ npm start
 ```
 
 **Then you can visit localhost:3000 to view your local version of Limontrello!**
-
-## 📷 Screenshots
-
-### Landing
-![image](https://user-images.githubusercontent.com/109188075/211251771-6178d9f0-83cc-4219-a8e5-a731db11e800.png)
-
-### Sign Up Page
-![image](https://user-images.githubusercontent.com/109188075/211121260-9e91ed1d-bf89-4490-a3bf-b14490ca284f.png)
-
-### Dashboard
-![image](https://user-images.githubusercontent.com/109188075/211121661-db485c3e-6944-4717-962f-3cf3c3e7aadf.png)
-
-
-### Main Board View
-![image](https://user-images.githubusercontent.com/109188075/211121437-6db9aff8-138f-434d-882a-0a17171c25df.png)
-
-### Example Drag n Drop
-![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/109188075/211144776-ab4b6b14-a887-4059-85ab-d05a80a9c3fc.gif)
-
