@@ -35,11 +35,12 @@ Limontrello also utilizes the [React Beautiful DnD](https://github.com/atlassian
 ![image](https://user-images.githubusercontent.com/109188075/211121260-9e91ed1d-bf89-4490-a3bf-b14490ca284f.png)
 
 ### Dashboard
-![image](https://user-images.githubusercontent.com/109188075/211121661-db485c3e-6944-4717-962f-3cf3c3e7aadf.png)
+<img width="1919" alt="Screenshot 2023-02-07 230651" src="https://user-images.githubusercontent.com/109188075/217458827-92bbe043-44bb-4fd2-b39a-65a57ecdf0e6.png">
 
 
 ### Main Board View
-![image](https://user-images.githubusercontent.com/109188075/211121437-6db9aff8-138f-434d-882a-0a17171c25df.png)
+<img width="1594" alt="Screenshot 2023-02-07 230920" src="https://user-images.githubusercontent.com/109188075/217459082-152c1375-5489-46f3-9228-0a0b83c0bfc8.png">
+
 
 ### Example Drag n Drop
 ![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/109188075/211144776-ab4b6b14-a887-4059-85ab-d05a80a9c3fc.gif)
