@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     /* Add this back in to avoid scroll bar */
-    /* margin-right: 20px; */
+    margin-right: 1rem;
     height: 100%;
     font-weight: 500;
     font-size: 19px;
@@ -74,18 +74,34 @@
     gap: 50px;
     width: 100%;
     /* Temporary height */
-    height: 100vh;
+    height: 60vh;
     /* height: 550px; */
-    background: rgb(212,164,36);
-    background: linear-gradient(90deg, rgba(212,164,36,1) 0%, rgba(254,249,83,1) 100%);
+    /* background: rgb(212,164,36); */
+    background: linear-gradient(0deg, rgba(212,164,36,1) 0%, rgb(234, 227, 15) 100%);
+}
+
+.waves {
+    user-select: none;
+    width: 100%;
+    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #E6FCFF 100%);
+}
+
+.section {
+    height: 10rem;
+    position: absolute;
+    top: 49rem;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
 }
 
 .introTextContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* gap: 25px; */
     max-width: 400px;
+    transform: translateY(5rem);
 }
 
 .introTextHeader {
@@ -129,6 +145,7 @@
 .teamImgContainer {
     display: flex;
     align-items: center;
+    transform: translateY(10rem);
 }
 
 .teamImgContainer > img {

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "../cssModules/Landing.module.css"
 import icon from "../../assets/limontrello.png"
+import waves from "../../assets/limonwaves.svg"
 
 const Landing = () => {
     const currentUser = useSelector(state => state.session.user)
@@ -34,6 +35,15 @@ const Landing = () => {
                         <img src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1140&fm=webp" alt="pic" />
                     </div>
                 </div>
+                <img src={waves} alt="waves" className={styles.waves} />
+                <section className={styles.section}>
+                    <div>
+                        Limontrello 101
+                    </div>
+                    <div>
+                        A productivity powerhouse
+                    </div>
+                </section>
             </div>
 
             <div className={styles.navContainer}>
