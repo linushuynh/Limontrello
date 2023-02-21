@@ -74,10 +74,9 @@
     gap: 50px;
     width: 100%;
     /* Temporary height */
-    height: 60vh;
+    height: 45vh;
     /* height: 550px; */
-    /* background: rgb(212,164,36); */
-    background: linear-gradient(0deg, rgba(212,164,36,1) 0%, rgb(234, 227, 15) 100%);
+    background: linear-gradient(90deg, rgba(212,164,36,1) 0%, rgb(254,249,83) 100%);
 }
 
 .waves {
@@ -93,7 +92,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    
+
 }
 
 .introTextContainer {

@@ -32,10 +32,11 @@ const Landing = () => {
                         <div className={styles.introSignupButton} onClick={redirectSignup}>Sign up - it's free!</div>
                     </div>
                     <div className={styles.teamImgContainer}>
-                        <img src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1140&fm=webp" alt="pic" />
+                        <img src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1140&fm=webp" alt="teampic" draggable="false" />
                     </div>
                 </div>
-                <img src={waves} alt="waves" className={styles.waves} />
+                <img src={waves} alt="waves" className={styles.waves} draggable="false" />
+
                 <section className={styles.section}>
                     <div>
                         Limontrello 101
