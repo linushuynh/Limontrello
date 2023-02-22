@@ -53,8 +53,6 @@
     padding-right: 20px;
     font-weight: 400;
     cursor: pointer;
-    /* border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px; */
 }
 
 #signupButton:hover {
@@ -64,35 +62,67 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     height: fit-content;
+    margin-top: 60px;
+    position: relative;
 }
 
-.gradientContainer {
+.gradient {
     display: flex;
     justify-content: center;
-    gap: 50px;
     width: 100%;
     /* Temporary height */
-    height: 45vh;
-    /* height: 550px; */
+    height: 25rem;
     background: linear-gradient(90deg, rgba(212,164,36,1) 0%, rgb(254,249,83) 100%);
+    position: absolute;
+    z-index: -1;
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .waves {
     user-select: none;
     width: 100%;
-    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #E6FCFF 100%);
+    /* background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #E6FCFF 100%); */
+    overflow: hidden;
+    position: absolute;
+    top: 25rem;
+    z-index: -1;
 }
 
+
 .section {
-    height: 10rem;
-    position: absolute;
-    top: 49rem;
+    margin-top: 11rem;
+    height: 25rem;
+    /* position: absolute; */
+    /* top: 49rem; */
     display: flex;
-    width: 100%;
+    width: 65%;
+    max-width: 1024px;
     flex-direction: column;
 
+}
+
+.miniHeader {
+    font-size: 1.1rem;
+}
+
+.sectionHeader {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sectionInfo {
+    width: 50%;
+    font-size: 1.4rem;
 }
 
 .introTextContainer {
@@ -144,7 +174,7 @@
 .teamImgContainer {
     display: flex;
     align-items: center;
-    transform: translateY(10rem);
+    transform: translateY(5rem);
 }
 
 .teamImgContainer > img {
