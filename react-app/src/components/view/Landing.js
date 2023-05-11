@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import styles from "../cssModules/Landing.module.css"
 import icon from "../../assets/limontrello.png"
 import waves from "../../assets/limonwaves.svg"
@@ -13,13 +14,10 @@ const Landing = () => {
         history.push("/dashboard")
     }
 
-    const redirectLogin = () => {
-        history.push("/login")
-    }
+    const redirectLogin = () => history.push("/login")
 
-    const redirectSignup = () => {
-        history.push("/signup")
-    }
+    const redirectSignup = () => history.push("/signup")
+
 
     return (
         <>
@@ -49,6 +47,30 @@ const Landing = () => {
                     </div>
                     <div className={styles.sectionInfo}>
                         Simple, flexible, and powerful. All it takes are boards, lists, and cards to get a clear view of who’s doing what and what needs to get done.
+                    </div>
+
+                    <div className={styles.carousel}>
+                        <button className={styles.carousel_board}>
+                            <div className={styles.carousel_item}>
+                                <p>Boards</p>
+                                <div>Limontrello boards keep tasks organized and work moving forward. In a glance, see everything from "things to do" to "aww yeah, we did it!"</div>
+                            </div>
+                        </button>
+                        <button className={styles.carousel_list}>
+                            <div className={styles.carousel_item}>
+                                <p>Lists</p>
+                                <div>The different stages of a task. Start as simple as To Do, Doing or Done—or build a workflow custom fit to your team’s needs. There’s no wrong way to Limontrello.</div>
+                            </div>
+                        </button>
+                        <button className={styles.carousel_card}>
+                            <div className={styles.carousel_item}>
+                                <p>Cards</p>
+                                <div>Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists to show their status.</div>
+                            </div>
+                        </button>
+                        <div className={styles.carousel_img}>
+
+                        </div>
                     </div>
                 </section>
             </div>
