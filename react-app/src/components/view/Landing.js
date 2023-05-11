@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import styles from "../cssModules/Landing.module.css"
 import icon from "../../assets/limontrello.png"
 import waves from "../../assets/limonwaves.svg"
@@ -8,19 +9,15 @@ import waves from "../../assets/limonwaves.svg"
 const Landing = () => {
     const currentUser = useSelector(state => state.session.user)
     const history = useHistory()
-    const [selectCarousel, setSelectCarousel] = useState("board")
 
     if (currentUser) {
         history.push("/dashboard")
     }
 
-    const redirectLogin = () => {
-        history.push("/login")
-    }
+    const redirectLogin = () => history.push("/login")
 
-    const redirectSignup = () => {
-        history.push("/signup")
-    }
+    const redirectSignup = () => history.push("/signup")
+
 
     return (
         <>
