@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 
 // Utils
-import displayBackground from "../../../utils/displayBackground";
+import displayBackground from "../../../utils/displayBackgrounds/boardviewBackground";
 
 // Contexts and Thunks
 import { SubmittedContext } from "../../context/SubmittedContext";

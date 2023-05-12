@@ -3,7 +3,7 @@
     min-width: 280px;
     height: 90px;
     /* background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg); */
-    background-image: url('../../assets/snowmountain.jpg');
+    background-image: url('../../../assets/snowmountain.jpg');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@
     min-width: 280px;
     height: 90px;
     /* background-image: url(https://wallpapers.com/images/hd/high-resolution-snowy-mountains-ot20ffiso90727lu.jpg); */
-    background-image: url('../../assets/snowmountain.jpg');
+    background-image: url('../../../assets/snowmountain.jpg');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -26,7 +26,7 @@
     width: 100%;
     min-width: 280px;
     height: 90px;
-    background-image: url('../../assets/forest.jpg');
+    background-image: url('../../../assets/forest.jpg');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -37,7 +37,7 @@
     width: 100%;
     min-width: 280px;
     height: 90px;
-    background-image: url('../../assets/beach.jpg');
+    background-image: url('../../../assets/beach.jpg');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;

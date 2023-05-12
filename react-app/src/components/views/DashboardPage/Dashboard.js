@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./Dashboard.module.css"
 
 // Inner Components
-import BoardCard from "../../BoardCard";
+import BoardPanel from "./BoardPanel";
 import NavBar from "../../NavBar";
 import Sidebar from "../../Sidebar";
 import CreateBoardForm from "../../forms/CreateBoardForm";
@@ -106,7 +106,7 @@ const Dashboard = () => {
                                 {/* Display every board from user */}
                                 {boards && boards.map((board) => (
                                     <div key={board.id}>
-                                        <BoardCard board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} currentUserId={currentUser.id} />
+                                        <BoardPanel board={board} hasClicked={hasClicked} setHasClicked={setHasClicked} />
                                     </div>
                                 ))}
                             </div>
