@@ -16,7 +16,7 @@ import { SubmittedContext } from "../../../context/SubmittedContext";
 import { DeleteListModal } from "../../../context/DeleteListModal";
 
 // Inner Components
-import SingleCard from "../../../SingleCard";
+import SingleCard from "./DraggableCard/SingleCard";
 import CreateCardForm from "../../../forms/CreateCardForm";
 import DeleteListForm from "../../../forms/DeleteListForm";
 
