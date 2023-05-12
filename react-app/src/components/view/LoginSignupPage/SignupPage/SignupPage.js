@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import LoginForm from "../auth/LoginForm";
-import styles from "../cssModules/LoginPage.module.css"
-import bottomLeft from "../../assets/bottom-left-trello.svg"
-import bottomRight from "../../assets/bottom-right-trello.svg"
-import limontrello from "../../assets/limontrello.png"
-import atlassian from "../../assets/atlassian-logo.svg"
-import linkedin from "../../assets/linkedin.png"
-import github from "../../assets/github.svg"
 import { useHistory } from "react-router-dom";
 
-const LoginPage = () => {
+import SignUpForm from "../../../auth/SignUpForm";
+
+import styles from "../LoginPage/LoginPage.module.css"
+
+import limontrello from "../../../../assets/limontrello.png"
+import linkedin from "../../../../assets/linkedin.png"
+import github from "../../../../assets/github.svg"
+import atlassian from "../../../../assets/atlassian-logo.svg"
+import bottomLeft from "../../../../assets/bottom-left-trello.svg"
+import bottomRight from "../../../../assets/bottom-right-trello.svg"
+
+
+const SignupPage = () => {
     const history = useHistory()
     const [loaded, setLoaded] = useState(true)
 
-    const redirectHome = () => {
-        history.push("/")
-    }
+    // Takes user to landing page when function is called
+    const redirectHome = () => history.push("/")
 
     return (
         <div className={styles.pageContainer}>
@@ -25,15 +28,16 @@ const LoginPage = () => {
                     Limontrello
                 </div>
                 <div className={styles.formNbarContainer}>
-                    <LoginForm loaded={loaded} setLoaded={setLoaded} />
-                    <div>
+                    <SignUpForm loaded={loaded} setLoaded={setLoaded} />
+                    {/* Footer Section */}
+                    <section>
                         <hr className={styles.hrBar} />
                         <div className={styles.footerContainer}>
                             <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
                         </div>
                         <div className={styles.aboutMeContainer}>
                             <div className={styles.nameCard}>
-                                <div className={styles.linkContainer}>
+                            <div className={styles.linkContainer}>
                                 <div>Linus Huynh</div>
                                     <div>
                                     <a
@@ -47,13 +51,13 @@ const LoginPage = () => {
                                         src={github}
                                         alt="github-icon"
                                         />
-                                        {/* <div className={styles.gitText}>Github</div> */}
                                     </a>
                                     </div>
                                     <div>
+
                                     <a
                                     className={styles.linkedInContainer}
-                                    href="https://www.linkedin.com/in/linus-huynh/"
+                                    href="https://www.linkedin.com/in/linus-huynh-2457a9238/"
                                     target="_blank"
                                     rel="noreferrer"
                                     >
@@ -62,15 +66,16 @@ const LoginPage = () => {
                                             alt="linkedIn-icon"
                                             className={styles.linkedInImg}
                                             />
-                                        {/* <span className={styles.linkedInText}>LinkedIn</span> */}
                                     </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
+
+            {/* Bottom left and right worker SVG's */}
             <div className={styles.backgroundImgContainer}>
                     <img src={bottomLeft} alt="bottomLeft" className={styles.leftImg} />
                     <img src={bottomRight} alt="bottomRight" className={styles.rightImg} />
@@ -79,4 +84,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage;
+export default SignupPage;

@@ -2,26 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import styles from "../cssModules/Landing.module.css"
-import icon from "../../assets/limontrello.png"
-import waves from "../../assets/limonwaves.svg"
+import styles from "./Landing.module.css"
+import icon from "../../../assets/limontrello.png"
+import waves from "../../../assets/limonwaves.svg"
+
 
 const Landing = () => {
     const currentUser = useSelector(state => state.session.user)
     const history = useHistory()
 
+    // Redirect user to dashboard if currentuser is already logged in
     if (currentUser) {
         history.push("/dashboard")
     }
 
+    // Take users to login/signup page accordingly
     const redirectLogin = () => history.push("/login")
-
     const redirectSignup = () => history.push("/signup")
-
 
     return (
         <>
             <div className={styles.mainContainer}>
+                {/* Intro section with moving waves */}
                 <div className={styles.gradient} />
                 <img src={waves} alt="waves" className={styles.waves} draggable="false" />
                 <section>
@@ -37,6 +39,7 @@ const Landing = () => {
                     </div>
                 </section>
 
+                {/* Second section */}
                 <div className={styles.gradient2} />
                 <section className={styles.section}>
                     <div className={styles.miniHeader}>
@@ -75,6 +78,7 @@ const Landing = () => {
                 </section>
             </div>
 
+            {/* Landing Navbar */}
             <div className={styles.navContainer}>
                 <div className={styles.limontrelloContainer}>
                     <div className={styles.iconContainer}>

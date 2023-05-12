@@ -10,7 +10,7 @@ import { SubmittedContext } from "../context/SubmittedContext";
 import Sidebar from "../Sidebar";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { editCardThunk } from "../../store/cards";
-import NotFound from "./404";
+import NotFound from "./NotFoundPage/NotFound";
 import CreateListForm from "../forms/CreateListForm";
 import { loadListsAction } from "../../store/list";
 
