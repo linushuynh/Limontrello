@@ -1,7 +1,7 @@
 .snowmountainContainer {
     width: 100%;
     height: 100%;
-    background: url('../../assets/snowmountain.jpg'), url(https://wallpaper.dog/large/5526740.jpg);
+    background: url('../../../assets/snowmountain.jpg'), url(https://wallpaper.dog/large/5526740.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -12,7 +12,7 @@
 .forestContainer {
     width: 100%;
     height: 100%;
-    background: url('../../assets/forest.jpg');
+    background: url('../../../assets/forest.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@
 .beachContainer {
     width: 100%;
     height: 100%;
-    background: url('../../assets/beach.jpg');
+    background: url('../../../assets/beach.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

@@ -7,12 +7,12 @@ import { authenticate } from './store/session';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Components
-import Dashboard from './components/view/Dashboard'
-import BoardView from './components/view/BoardView'
-import LoginPage from './components/view/LoginSignupPage/LoginPage/LoginPage';
-import SignupPage from './components/view/LoginSignupPage/SignupPage/SignupPage';
-import Landing from './components/view/LandingPage/Landing';
-import NotFound from './components/view/NotFoundPage/NotFound';
+import Dashboard from './components/views/DashboardPage/Dashboard'
+import BoardView from './components/views/BoardPage/BoardView'
+import LoginPage from './components/views/LoginSignupPage/LoginPage/LoginPage';
+import SignupPage from './components/views/LoginSignupPage/SignupPage/SignupPage';
+import Landing from './components/views/LandingPage/Landing';
+import NotFound from './components/views/NotFoundPage/NotFound';
 
 
 function App() {
