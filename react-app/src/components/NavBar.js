@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// import { loadBoardsThunk } from '../store/board';
-// import { getUserThunk } from '../store/session';
+
+// Other components
 import LogoutButton from './auth/LogoutButton';
+
+// CSS and assets
 import styles from "./cssModules/NavBar.module.css"
 import icon from "../assets/limontrello.png"
 
+
 const NavBar = () => {
-  // const currentUser = useSelector(state => state.session.user)
   const location = useLocation()
 
   const setNavClass = () => {
