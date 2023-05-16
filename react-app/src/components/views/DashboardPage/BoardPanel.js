@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 
 // Utils
-import displayBackground from "../../../utils/displayBackgrounds/boardpanelBackground"
+import displayBackground from "./utils/boardpanelBackground"
 
 // CSS import
 import styles from "./BoardPanel.module.css"

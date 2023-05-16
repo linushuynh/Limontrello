@@ -7,7 +7,7 @@ import styles from "./Dashboard.module.css"
 
 // Inner Components
 import BoardPanel from "./BoardPanel";
-import NavBar from "../../NavBar";
+import NavBar from "../../globalComponents/NavBar/NavBar.js";
 import Sidebar from "../../Sidebar";
 import CreateBoardForm from "../../forms/CreateBoardForm";
 

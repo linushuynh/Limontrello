@@ -1,8 +1,8 @@
-import styles from "../../components/views/BoardPage/BoardView.module.css"
+import styles from "../BoardPanel.module.css"
 
-// This function takes in a background attribute and outputs the css style background specifically using BoardView styling
+// This function takes in a background attribute and outputs the css style background specifically using BoardPanel styling
 
-const boardviewBackground = (background) => {
+const boardpanelBackground = (background) => {
     switch(background) {
         case "snowmountain":
             return styles.snowmountainContainer
@@ -15,4 +15,4 @@ const boardviewBackground = (background) => {
     }
 }
 
-export default boardviewBackground;
+export default boardpanelBackground;

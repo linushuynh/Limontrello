@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 
 // Utils
-import displayBackground from "../../../utils/displayBackgrounds/boardviewBackground";
+import displayBackground from "./utils/boardviewBackground.js";
 
 // Contexts and Thunks
 import { SubmittedContext } from "../../context/SubmittedContext";
@@ -18,7 +18,7 @@ import styles from "./BoardView.module.css"
 
 // Inner Components
 import ListColumn from "./Lists/ListColumn";
-import NavBar from "../../NavBar";
+import NavBar from "../../globalComponents/NavBar/NavBar.js";
 import Sidebar from "../../Sidebar";
 import CreateListForm from "../../forms/CreateListForm";
 import NotFound from "../NotFoundPage/NotFound";
