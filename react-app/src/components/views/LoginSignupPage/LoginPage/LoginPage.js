@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import styles from "../cssModules/LoginPage.module.css"
-import limontrello from "../../assets/limontrello.png"
-import bottomLeft from "../../assets/bottom-left-trello.svg"
-import bottomRight from "../../assets/bottom-right-trello.svg"
-import SignUpForm from "../auth/SignUpForm";
-import atlassian from "../../assets/atlassian-logo.svg"
-import linkedin from "../../assets/linkedin.png"
-import github from "../../assets/github.svg"
 import { useHistory } from "react-router-dom";
 
-const SignupPage = () => {
+import LoginForm from "../../../auth/LoginForm";
+
+import styles from "./LoginPage.module.css"
+
+import limontrello from "../../../../assets/limontrello.png"
+import linkedin from "../../../../assets/linkedin.png"
+import github from "../../../../assets/github.svg"
+import atlassian from "../../../../assets/atlassian-logo.svg"
+import bottomLeft from "../../../../assets/bottom-left-trello.svg"
+import bottomRight from "../../../../assets/bottom-right-trello.svg"
+
+
+const LoginPage = () => {
     const history = useHistory()
     const [loaded, setLoaded] = useState(true)
 
-    const redirectHome = () => {
-        history.push("/")
-    }
+    // Takes user to landing page when function is called
+    const redirectHome = () => history.push("/")
 
     return (
         <div className={styles.pageContainer}>
@@ -25,15 +28,16 @@ const SignupPage = () => {
                     Limontrello
                 </div>
                 <div className={styles.formNbarContainer}>
-                    <SignUpForm loaded={loaded} setLoaded={setLoaded} />
-                    <div>
+                    <LoginForm loaded={loaded} setLoaded={setLoaded} />
+                    {/* Footer section */}
+                    <section>
                         <hr className={styles.hrBar} />
                         <div className={styles.footerContainer}>
                             <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
                         </div>
                         <div className={styles.aboutMeContainer}>
                             <div className={styles.nameCard}>
-                            <div className={styles.linkContainer}>
+                                <div className={styles.linkContainer}>
                                 <div>Linus Huynh</div>
                                     <div>
                                     <a
@@ -47,14 +51,12 @@ const SignupPage = () => {
                                         src={github}
                                         alt="github-icon"
                                         />
-                                        {/* <div className={styles.gitText}>Github</div> */}
                                     </a>
                                     </div>
                                     <div>
-
                                     <a
                                     className={styles.linkedInContainer}
-                                    href="https://www.linkedin.com/in/linus-huynh-2457a9238/"
+                                    href="https://www.linkedin.com/in/linus-huynh/"
                                     target="_blank"
                                     rel="noreferrer"
                                     >
@@ -63,15 +65,16 @@ const SignupPage = () => {
                                             alt="linkedIn-icon"
                                             className={styles.linkedInImg}
                                             />
-                                        {/* <span className={styles.linkedInText}>LinkedIn</span> */}
                                     </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
+
+            {/* Bottom left and right worker SVG's */}
             <div className={styles.backgroundImgContainer}>
                     <img src={bottomLeft} alt="bottomLeft" className={styles.leftImg} />
                     <img src={bottomRight} alt="bottomRight" className={styles.rightImg} />
@@ -80,4 +83,4 @@ const SignupPage = () => {
     )
 }
 
-export default SignupPage;
+export default LoginPage;

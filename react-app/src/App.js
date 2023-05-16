@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import Dashboard from './components/view/Dashboard'
-import BoardView from './components/view/BoardView'
+
+// Authentication protection
 import { authenticate } from './store/session';
-import LoginPage from './components/view/LoginPage';
-import SignupPage from './components/view/SignupPage';
-import Landing from './components/view/Landing';
-import NotFound from './components/view/404';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+
+// Components
+import Dashboard from './components/views/DashboardPage/Dashboard'
+import BoardView from './components/views/BoardPage/BoardView'
+import LoginPage from './components/views/LoginSignupPage/LoginPage/LoginPage';
+import SignupPage from './components/views/LoginSignupPage/SignupPage/SignupPage';
+import Landing from './components/views/LandingPage/Landing';
+import NotFound from './components/views/NotFoundPage/NotFound';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
