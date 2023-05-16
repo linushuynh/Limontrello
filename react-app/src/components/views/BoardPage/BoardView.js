@@ -19,7 +19,7 @@ import styles from "./BoardView.module.css"
 // Inner Components
 import ListColumn from "./Lists/ListColumn";
 import NavBar from "../../globalComponents/NavBar/NavBar.js";
-import Sidebar from "../../Sidebar";
+import Sidebar from "../../globalComponents/SideBar/Sidebar.js";
 import CreateListForm from "../../forms/CreateListForm";
 import NotFound from "../NotFoundPage/NotFound";
 

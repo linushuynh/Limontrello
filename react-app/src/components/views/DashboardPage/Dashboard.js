@@ -8,7 +8,7 @@ import styles from "./Dashboard.module.css"
 // Inner Components
 import BoardPanel from "./BoardPanel";
 import NavBar from "../../globalComponents/NavBar/NavBar.js";
-import Sidebar from "../../Sidebar";
+import Sidebar from "../../globalComponents/SideBar/Sidebar.js";
 import CreateBoardForm from "../../forms/CreateBoardForm";
 
 // Thunks and Modals
