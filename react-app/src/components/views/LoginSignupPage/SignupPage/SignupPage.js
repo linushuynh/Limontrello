@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+// Other components
 import SignUpForm from "../../../auth/SignUpForm";
+import Footer from "../Footer.js";
 
+// CSS Styles
 import styles from "../LoginPage/LoginPage.module.css"
 
+// Assets
 import limontrello from "../../../../assets/limontrello.png"
-import linkedin from "../../../../assets/linkedin.png"
-import github from "../../../../assets/github.svg"
-import atlassian from "../../../../assets/atlassian-logo.svg"
 import bottomLeft from "../../../../assets/bottom-left-trello.svg"
 import bottomRight from "../../../../assets/bottom-right-trello.svg"
 
@@ -29,49 +30,7 @@ const SignupPage = () => {
                 </div>
                 <div className={styles.formNbarContainer}>
                     <SignUpForm loaded={loaded} setLoaded={setLoaded} />
-                    {/* Footer Section */}
-                    <section>
-                        <hr className={styles.hrBar} />
-                        <div className={styles.footerContainer}>
-                            <img alt="atlassianImg" src={atlassian} className={styles.atlassian} />
-                        </div>
-                        <div className={styles.aboutMeContainer}>
-                            <div className={styles.nameCard}>
-                            <div className={styles.linkContainer}>
-                                <div>Linus Huynh</div>
-                                    <div>
-                                    <a
-                                    className={styles.gitContainer}
-                                    href="https://github.com/linushuynh"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    >
-                                        <img
-                                        className={styles.githubImg}
-                                        src={github}
-                                        alt="github-icon"
-                                        />
-                                    </a>
-                                    </div>
-                                    <div>
-
-                                    <a
-                                    className={styles.linkedInContainer}
-                                    href="https://www.linkedin.com/in/linus-huynh-2457a9238/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    >
-                                        <img
-                                            src={linkedin}
-                                            alt="linkedIn-icon"
-                                            className={styles.linkedInImg}
-                                            />
-                                    </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <Footer />
                 </div>
             </div>
 
