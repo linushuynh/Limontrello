@@ -5,6 +5,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd"
 
 // Utils
 import displayBackground from "./utils/boardviewBackground.js";
+import { submitEdit, submitForm } from "./utils/submitFunctions.js";
 
 // Contexts and Thunks
 import { SubmittedContext } from "../../context/SubmittedContext";
@@ -41,40 +42,6 @@ const BoardView = () => {
     const [name, setName] = useState(board?.name)
     let lists = board?.lists
 
-    // Called when the board title input is deselected
-    const submitEdit = async () => {
-        if (name === "") {
-            setName(board.name)
-        }
-        let input = {
-            name: name,
-            background: board.background,
-            private: false,
-            boardId: board.id
-        }
-        setHasSubmitted(prevValue => !prevValue)
-        await dispatch(updateBoardThunk(input))
-        setSelectEdit(false)
-    }
-
-
-    // Same function as above but separate to prevent blur on blur loop
-    const submitForm = async (e) => {
-        e.preventDefault();
-        if (name === "") {
-            setName(board.name)
-        }
-        let input = {
-            name: name,
-            background: board.background,
-            private: false,
-            boardId: board.id
-        }
-        await dispatch(updateBoardThunk(input))
-        setHasSubmitted(prevValue => !prevValue)
-        setSelectEdit(false)
-        document.activeElement.blur();
-    }
 
     // After drag is let go, this function is run to update the new data
     const onDragEnd = result => {
@@ -114,74 +81,75 @@ const BoardView = () => {
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) {
-        return (
-            <NotFound />
-        )
+        return ( <NotFound /> )
     }
 
     return (
-    <DragDropContext onDragEnd={onDragEnd}>
-        {/* Styles specific background based on board's background property */}
-        <div className={displayBackground(board?.background)}>
-            <div className={styles.outerContainer}>
-                {/* Navbar at top */}
-                <NavBar />
+        <DragDropContext onDragEnd={onDragEnd}>
+            {/* Styles specific background based on board's background property */}
+            <div className={displayBackground(board?.background)}>
+                <div className={styles.outerContainer}>
+                    {/* Navbar at top */}
+                    <NavBar />
 
-                {/* Content below the Navbar */}
-                <div className={styles.bodyContainer}>
-                    {/* Sidebar on left */}
-                    <div className={styles.boardListContainer}>
-                        <Sidebar boards={currentUser.boards} name={name} setName={setName} />
-                    </div>
-                    {/* Main content on right of Sidebar */}
-                    <div className={styles.backgroundOpacity}>
-                        <div className={styles.mainContainer}>
-                            {/* Form to edit board name */}
-                            <form onSubmit={submitForm} className={styles.boardHeader}>
-                                <div className={styles.nameNcharCount}>
-                                    <input
-                                        className={styles.boardName}
-                                        value={name}
-                                        onChange={e => setName(e.target.value)}
-                                        maxLength={20}
-                                        onBlur={submitEdit}
-                                        onClick={() => setSelectEdit(true)}
-                                        />
-                                    {selectEdit && <div className={styles.editCharCount}>
-                                        {name.length}/20 characters
-                                    </div>}
+                    {/* Content below the Navbar */}
+                    <div className={styles.bodyContainer}>
+                        {/* Sidebar on left */}
+                        <div className={styles.boardListContainer}>
+                            <Sidebar boards={currentUser.boards} name={name} setName={setName} />
+                        </div>
+                        {/* Main content on right of Sidebar */}
+                        <div className={styles.backgroundOpacity}>
+                            <div className={styles.mainContainer}>
+                                {/* Form to edit board name */}
+                                <form onSubmit={(e) => submitForm(e, name, board, setName, setHasSubmitted, dispatch, setSelectEdit)} className={styles.boardHeader}>
+                                    <div className={styles.nameNcharCount}>
+                                        {/* Display the board name and can be clicked to edit */}
+                                        <input
+                                            className={styles.boardName}
+                                            value={name}
+                                            onChange={e => setName(e.target.value)}
+                                            maxLength={20}
+                                            onBlur={() => submitEdit(name, board, setName, setHasSubmitted, dispatch, setSelectEdit)}
+                                            onClick={() => setSelectEdit(true)}
+                                            />
+
+                                        {/* Character count conditionally renders in edit mode */}
+                                        {selectEdit && <div className={styles.editCharCount}>
+                                            {name.length}/20 characters
+                                        </div>}
+                                    </div>
+                                </form>
+
+                                {/* Iterate and display all the current board's lists as droppables */}
+                                <div className={styles.listsContainer}>
+                                    {lists.map((list) => (
+                                        <Droppable droppableId={list.name} key={`${list.id}${list.name}`}>
+                                            {(provided, snapshot) => (
+                                                <div key={list.id} >
+                                                    <ListColumn
+                                                        list={list}
+                                                        setHasSubmitted={setHasSubmitted}
+                                                        placeholder={provided.placeholder}
+                                                        provided={provided}
+                                                        isDraggingOver={snapshot.isDraggingOver}
+                                                        loaded={loaded}
+                                                    >
+                                                    </ListColumn>
+                                                </div>
+                                            )}
+                                        </Droppable>
+                                        )
+                                    )}
+                                    {/* Button to create new list */}
+                                    <CreateListForm />
                                 </div>
-                            </form>
-
-                            {/* Iterate and display all the current board's lists as droppables */}
-                            <div className={styles.listsContainer}>
-                                {lists.map((list) => (
-                                    <Droppable droppableId={list.name} key={`${list.id}${list.name}`}>
-                                        {(provided, snapshot) => (
-                                            <div key={list.id} >
-                                                <ListColumn
-                                                    list={list}
-                                                    setHasSubmitted={setHasSubmitted}
-                                                    placeholder={provided.placeholder}
-                                                    provided={provided}
-                                                    isDraggingOver={snapshot.isDraggingOver}
-                                                    loaded={loaded}
-                                                >
-                                                </ListColumn>
-                                            </div>
-                                        )}
-                                    </Droppable>
-                                    )
-                                )}
-                                {/* Button to create new list */}
-                                <CreateListForm />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </DragDropContext>
+        </DragDropContext>
     )
 }
 
