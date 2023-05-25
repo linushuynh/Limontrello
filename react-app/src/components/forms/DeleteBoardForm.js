@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../cssModules/DeleteBoardForm.module.css"
 
-const DeleteBoardForm = ({ clickDelete, closeModal }) => {
+const DeleteBoardForm = ({ deleteBoard, closeModal }) => {
     return (
         <div className={styles.outerContainer}>
             <div className={styles.XbuttonContainer} >
@@ -10,7 +10,7 @@ const DeleteBoardForm = ({ clickDelete, closeModal }) => {
             <div>Delete this board?</div>
             <div className={styles.confirmContainer}>
                 <div className={styles.cancelButton} onClick={closeModal}>Cancel</div>
-                <div onClick={clickDelete} className={styles.deleteButton}>Confirm</div>
+                <div onClick={deleteBoard} className={styles.deleteButton}>Confirm</div>
             </div>
         </div>
     )
