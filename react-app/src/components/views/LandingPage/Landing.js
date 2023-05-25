@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// Assets
 import styles from "./Landing.module.css"
 import icon from "../../../assets/limontrello.png"
 import waves from "../../../assets/limonwaves.svg"
