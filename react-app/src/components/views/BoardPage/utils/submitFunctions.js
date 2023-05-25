@@ -14,7 +14,7 @@ export const submitEdit = async (name, board, setName, setHasSubmitted, dispatch
         private: false,
         boardId: board.id
     }
-    
+
     setHasSubmitted(prevValue => !prevValue)
     await dispatch(updateBoardThunk(input))
     setSelectEdit(false)

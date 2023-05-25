@@ -9,7 +9,7 @@ import { submitEdit, submitForm } from "./utils/submitFunctions.js";
 
 // Contexts and Thunks
 import { SubmittedContext } from "../../context/SubmittedContext";
-import { selectBoardAction, updateBoardThunk } from "../../../store/board";
+import { selectBoardAction } from "../../../store/board";
 import { getUserThunk } from "../../../store/session";
 import { editCardThunk } from "../../../store/cards";
 import { loadListsAction } from "../../../store/list";
@@ -41,7 +41,6 @@ const BoardView = () => {
     // Extracting data from current users's boards
     const [name, setName] = useState(board?.name)
     let lists = board?.lists
-
 
     // After drag is let go, this function is run to update the new data
     const onDragEnd = result => {
@@ -77,7 +76,6 @@ const BoardView = () => {
         setLoaded(true)
     // eslint-disable-next-line
     }, [dispatch, hasSubmitted])
-
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) {
@@ -141,6 +139,7 @@ const BoardView = () => {
                                         </Droppable>
                                         )
                                     )}
+
                                     {/* Button to create new list */}
                                     <CreateListForm />
                                 </div>
