@@ -3,29 +3,26 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 
 // Utils
-import displayBackground from "./utils/boardpanelBackground"
+import displayBackground from "./utils/boardpanelBackground.js"
+import useRedirectToBoard from "./utils/useRedirectToBoard.js"
 
 // CSS import
 import styles from "./BoardPanel.module.css"
 
 // Thunks and Actions
-import { deleteBoardThunk, selectBoardAction } from "../../../store/board"
+import { deleteBoardThunk } from "../../../store/board"
 import { DeleteBoardModal } from "../../context/DeleteBoardModal"
 
 // Other Components
 import DeleteBoardForm from "../../forms/DeleteBoardForm"
 
 
+
 const BoardPanel = ({ board, hasClicked, setHasClicked }) => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
-    // Sends user to new board url using the id of the board panel clicked
-    const redirectClick = async () => {
-        await dispatch(selectBoardAction(board))
-        history.push(`/b/${board.id}`)
-    }
+    const redirectBoard = useRedirectToBoard(board)
 
     // This will send the thunk to delete board from database
     const clickDelete = () => {
@@ -41,7 +38,7 @@ const BoardPanel = ({ board, hasClicked, setHasClicked }) => {
     return (
         <div className={displayBackground(board?.background)} >
             {/* Display name of board panel */}
-            <div className={styles.boardCard} onClick={redirectClick}>
+            <div className={styles.boardCard} onClick={() => redirectBoard()}>
                 <span className={styles.nameText}>{board.name}</span>
             </div>
 
