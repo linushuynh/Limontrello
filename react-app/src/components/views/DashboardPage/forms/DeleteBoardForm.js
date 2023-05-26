@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../cssModules/DeleteBoardForm.module.css"
+import styles from "./DeleteBoardForm.module.css"
 
 const DeleteBoardForm = ({ deleteBoard, closeModal }) => {
     return (

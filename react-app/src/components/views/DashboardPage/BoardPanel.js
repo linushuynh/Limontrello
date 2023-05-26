@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import useDeleteBoard from "./utils/useDeleteBoard.js"
 
 // Utils
 import displayBackground from "./utils/boardpanelBackground.js"
@@ -8,12 +9,10 @@ import useRedirectToBoard from "./utils/useRedirectToBoard.js"
 import styles from "./BoardPanel.module.css"
 
 // Thunks and Actions
-import { deleteBoardThunk } from "../../../store/board"
 import { DeleteBoardModal } from "../../context/DeleteBoardModal"
 
 // Other Components
-import DeleteBoardForm from "../../forms/DeleteBoardForm"
-import useDeleteBoard from "./utils/useDeleteBoard.js"
+import DeleteBoardForm from "./forms/DeleteBoardForm.js"
 
 
 const BoardPanel = ({ board, setHasClicked }) => {
