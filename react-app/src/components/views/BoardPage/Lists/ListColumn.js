@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Draggable } from "react-beautiful-dnd";
+import { useSubmitDelete, useSubmitEdit } from "./utils/listHooks";
 
 // Styles and assets
 import styles from "./ListColumn.module.css"
@@ -9,13 +9,13 @@ import deleteicon from "../../../../assets/deleteicon.svg"
 
 // Actions and thunks
 import { loadCardsAction } from "../../../../store/cards";
-import { deleteListThunk, editListThunk } from "../../../../store/list";
 
 // Contexts and modals
-import { SubmittedContext } from "../../../context/SubmittedContext";
 import { DeleteListModal } from "../../../context/DeleteListModal";
+import useToggleState from "../../../../utils/hooks/useToggleState.js";
 
 // Inner Components
+import { Draggable } from "react-beautiful-dnd";
 import SingleCard from "./DraggableCard/SingleCard";
 import CreateCardForm from "../../../forms/CreateCardForm";
 import DeleteListForm from "../../../forms/DeleteListForm";
@@ -25,17 +25,21 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
     const dispatch = useDispatch()
     const editRef = useRef(null)
 
-    // Toggle-able states for re-render
-    const [showEditMode, setShowEditMode] = useState(false)
-    const [showDeleteModal, setShowDeleteModal] = useState(false)
-    const [displayAddButtons, setDisplayAddButtons] = useState()
+    // Toggle-able states and contexts for re-render
+    const [showEditMode, flipEditMode] = useToggleState(false)
+    const [showDeleteModal, flipShowDeleteModal] = useToggleState(false)
+    const [showAddCardModal, flipAddCardModal] = useToggleState(false)
 
     // Grab cards from state and filter out to display appropriate cards by list id
     const cardsArr = useSelector(state => Object.values(state.cards))
     let cards = cardsArr.filter(card => card.list_id === list.id)
-    const [showAddCardModal, setShowAddCardModal] = useState("")
+
+    // Controlled inputs
     const [name, setName] = useState(list.name)
-    const { setHasSubmitted } = useContext(SubmittedContext)
+
+    // Hooks to call for editing and deleting lists
+    const editList = useSubmitEdit(name, list.id, flipEditMode)
+    const deleteList = useSubmitDelete(list.id, flipShowDeleteModal)
 
     // Re-render when the cards in the list changes
     useEffect(() => {
@@ -49,42 +53,8 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
         }
     }, [editRef, showEditMode])
 
-    // Flip the state to reveal form for creating new cards
-    const flipCardForm = (e) => {
-        e.preventDefault()
-        setShowAddCardModal(true)
-        setDisplayAddButtons(list.id)
-    }
-
-    // Flip the state to reveal form for deleting the list
-    const flipDeleteModal = (e) => {
-        e.preventDefault()
-        setShowDeleteModal(!showDeleteModal)
-    }
-
-    // Flip the state to edit the list name
-    const flipEditModal = () => setShowEditMode(!showEditMode)
-
-    // When called, will send thunk to submit list edits to database
-    const submitEdit = async (e) => {
-        e.preventDefault()
-        const input = {
-            name,
-            listId: list.id
-        }
-        setShowEditMode(false)
-        await dispatch(editListThunk(input))
-        setHasSubmitted(prev => !prev)
-    }
-
-    // When called, will send thunk to delete list from database
-    const submitDelete = async () => {
-        setShowDeleteModal(false)
-        await dispatch(deleteListThunk(list.id))
-        setHasSubmitted(prev => !prev)
-    }
-
     if (!list) return null
+
 
     return (
         <div className={styles.listColumnContainer} ref={provided.innerRef} {...provided.droppableProps}>
@@ -92,11 +62,11 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
             <div className={styles.listHeader}>
                 {/* Flip between edit mode and display mode */}
                 {showEditMode ? (
-                    <form className={styles.editForm} onSubmit={e => submitEdit(e)}>
+                    <form className={styles.editForm} onSubmit={editList}>
                         <input
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        onBlur={e => submitEdit(e)}
+                        onBlur={editList}
                         ref={editRef}
                         maxLength={15}
                         />
@@ -109,14 +79,14 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
 
                 {/* Pencil and Trashcan Buttons to edit and delete */}
                 <div className={styles.listButtons}>
-                    <button className={styles.listOption} onClick={flipEditModal}>
+                    <button className={styles.listOption} onClick={() => flipEditMode()}>
                         <img alt="editicon" src={editicon}></img>
                     </button>
-                    <button className={styles.listOption} onClick={e => flipDeleteModal(e)}>
+                    <button className={styles.listOption} onClick={() => flipShowDeleteModal()}>
                         <img alt="deleteicon" src={deleteicon}></img>
                     </button>
-                    {showDeleteModal && <DeleteListModal onClose={() => setShowDeleteModal(false)} >
-                        <DeleteListForm listName={list.name} submitDelete={submitDelete} flipDeleteModal={flipDeleteModal} />
+                    {showDeleteModal && <DeleteListModal onClose={() => flipShowDeleteModal(false)} >
+                        <DeleteListForm listName={list.name} deleteList={deleteList} flipDeleteModal={flipShowDeleteModal} />
                     </DeleteListModal>}
                 </div>
             </div>
@@ -143,9 +113,9 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
                 {/* Section to add new card */}
                 <div className={styles.addCardContainer}>
                     {showAddCardModal ?
-                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />
+                        <CreateCardForm flipAddCardModal={flipAddCardModal} listId={list.id} />
                         :
-                        <div onClick={flipCardForm} className={styles.addCardButton}>
+                        <div onClick={() => flipAddCardModal()} className={styles.addCardButton}>
                             <span className="material-symbols-outlined" id={styles.plusSign}>add</span>
                             Add a card
                         </div>

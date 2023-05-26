@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import useDeleteBoard from "./utils/useDeleteBoard.js"
 
 // Utils
 import displayBackground from "./utils/boardpanelBackground.js"
@@ -10,25 +9,18 @@ import useRedirectToBoard from "./utils/useRedirectToBoard.js"
 import styles from "./BoardPanel.module.css"
 
 // Thunks and Actions
-import { deleteBoardThunk } from "../../../store/board"
 import { DeleteBoardModal } from "../../context/DeleteBoardModal"
 
 // Other Components
-import DeleteBoardForm from "../../forms/DeleteBoardForm"
+import DeleteBoardForm from "./forms/DeleteBoardForm.js"
 
 
-
-const BoardPanel = ({ board, hasClicked, setHasClicked }) => {
-    const dispatch = useDispatch()
+const BoardPanel = ({ board, setHasClicked }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
+    // Custom hooks to redirect to boards and confirm delete boards
     const redirectBoard = useRedirectToBoard(board)
-
-    // This will send the thunk to delete board from database
-    const clickDelete = () => {
-        dispatch(deleteBoardThunk(board.id))
-        .then(() => setHasClicked(prevValue => !prevValue))
-    }
+    const deleteBoard = useDeleteBoard(board.id, setHasClicked)
 
     // Flips the state to open/close the modal that confirms delete
     const flipModal = () => setShowDeleteModal(!showDeleteModal)
@@ -47,7 +39,7 @@ const BoardPanel = ({ board, hasClicked, setHasClicked }) => {
 
             {/* Confirm delete modal */}
             {showDeleteModal && (<DeleteBoardModal onClose={flipModal}>
-                <DeleteBoardForm clickDelete={clickDelete} closeModal={flipModal} />
+                <DeleteBoardForm deleteBoard={deleteBoard} closeModal={flipModal} />
             </DeleteBoardModal>
             )}
         </div>
