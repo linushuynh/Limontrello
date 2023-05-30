@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+
+// Global CSS
 import './index.css';
+
+// Components and Redux Store
 import App from './App';
 import configureStore from './store';
+
+// Providers
 import { SubmittedProvider } from './components/context/SubmittedContext';
 import { ModalProvider } from './components/context/Modal';
 import { CreateBoardModalProvider } from './components/context/CreateBoardModal';
