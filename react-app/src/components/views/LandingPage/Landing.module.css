@@ -1,0 +1,237 @@
+.navContainer {
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: white;
+    color: #172B4D;
+}
+
+.limontrelloContainer {
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    /* Add this back in to avoid scroll bar */
+    margin-right: 1rem;
+    height: 100%;
+    font-weight: 500;
+    font-size: 19px;
+}
+
+#loginButton {
+    display: flex;
+    align-items: center;
+    color: #172B4D;
+    cursor: pointer;
+    height: 100%;
+    padding: 0px 20px;
+    /* border-radius: 40px; */
+    /* margin-right: 10px; */
+}
+
+#loginButton:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+#signupButton {
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #4576fc;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+#signupButton:hover {
+    background-color: #2c54c2;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    margin-top: 60px;
+    position: relative;
+}
+
+.gradient {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Temporary height */
+    height: 25rem;
+    background: linear-gradient(90deg, rgba(212,164,36,1) 0%, rgb(254,249,83) 100%);
+    position: absolute;
+    z-index: -1;
+}
+
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.waves {
+    user-select: none;
+    width: 100%;
+    /* background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #E6FCFF 100%); */
+    overflow: hidden;
+    position: absolute;
+    top: 25rem;
+    z-index: -1;
+}
+
+
+.section {
+    margin-top: 23rem;
+    height: 30rem;
+    /* position: absolute; */
+    /* top: 49rem; */
+    display: flex;
+    width: 65%;
+    max-width: 1024px;
+    flex-direction: column;
+    position: relative;
+}
+
+.gradient2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Temporary height */
+    height: 46rem;
+    background: linear-gradient(180deg, rgb(255, 255, 255) 10%, rgb(230,252,255) 55%);
+    position: absolute;
+    top: 53rem;
+    z-index: -2;
+}
+
+.miniHeader {
+    font-size: 1.1rem;
+}
+
+.sectionHeader {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sectionInfo {
+    width: 50%;
+    font-size: 1.4rem;
+}
+
+.introTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    transform: translateY(1rem);
+}
+
+.introTextHeader {
+    font-size: 48px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.introTextSubheader {
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+
+.introSignupButton {
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #4576fc;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px 18px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 100ms;
+    border-radius: 6px;
+    user-select: none;
+    margin-top: 35px;
+}
+
+.introSignupButton:hover {
+    background-color: #2c54c2;
+}
+
+.introSignupButton:hover:active {
+    background-color: #2749a8;
+}
+
+.teamImgContainer {
+    display: flex;
+    align-items: center;
+    transform: translateY(5rem);
+}
+
+.teamImgContainer > img {
+    /* margin-top: 80px; */
+    width: 632px;
+    height: 558px;
+}
+
+.limontrelloIcon {
+    height: 38px;
+    width: 38px;
+    border-radius: 3px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.carousel {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1em 2em;
+    grid-auto-flow: row;
+    justify-content: stretch;
+  }
+
+.carousel_item > p {
+    font-weight: 600;
+}
+
+.carousel_board {
+    all: unset;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.carousel_list {
+    all: unset;
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.carousel_card {
+    all: unset;
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.carousel_img {
+    grid-area: 1 / 2 / 4 / 3;
+}

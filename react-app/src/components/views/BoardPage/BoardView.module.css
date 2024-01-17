@@ -1,0 +1,167 @@
+.snowmountainContainer {
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/snowmountain.jpg'), url(https://wallpaper.dog/large/5526740.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
+.forestContainer {
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/forest.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
+.beachContainer {
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/beach.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+}
+
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.headerContainer {
+    display: flex;
+    height: 50px;
+}
+
+.bodyContainer {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+}
+
+.boardListContainer {
+    width: 260px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContainer {
+    width: 100%;
+    /*
+    HEIGHT HERE ADJUSTS THE SPACE AT THE BOTTOM, DECREASE TO 97% WHEN X-AXIS SCROLLBAR IMPLEMENTED
+    */
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* background-color: rgb(0, 0, 0, 0.1); */
+}
+
+.boardHeader {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid purple; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nameNcharCount {
+    display: flex;
+    align-content: center;
+}
+
+.ellipses {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 14px;
+    background-color: rgba(40, 40, 40, 0.12);
+    transition: all 75ms;
+    color: #172B4D;
+    user-select: none;
+}
+
+.ellipses:hover {
+    background-color: rgba(0, 0, 0, 0.18);
+}
+
+.boardName {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 15px;
+    color: #172B4D;
+    width: 690px;
+    border: 2px solid rgb(244,245,247, 0);
+    background-color: rgb(244,245,247, 0);
+    resize: none;
+    cursor: pointer;
+}
+
+.boardName:focus {
+    cursor: text;
+    outline: #FED053;
+    border: 2px solid #FED053;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    background-color: white;
+}
+
+.editCharCount {
+    margin-left: 10px;
+    color: #172B4D;
+    font-weight: 500;
+}
+
+.listsContainer {
+    width: 100%;
+    height: 97%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: auto;
+    gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+/* .hidden {
+    width: 1%;
+    transform: translate(150%);
+    background-color: rgb(0, 0, 0, 0.1);
+    transform-origin: top left;
+} */
+
+.backgroundOpacity {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
