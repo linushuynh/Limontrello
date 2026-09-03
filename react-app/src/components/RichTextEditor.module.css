@@ -1,0 +1,110 @@
+.editorContainer {
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background-color: rgb(244,245,247);
+}
+
+.editorContainer:focus-within {
+    border-color: #0086d3;
+}
+
+.editing {
+    border-color: #0086d3;
+}
+
+.toolbar {
+    display: flex;
+    gap: 3px;
+    padding: 5px;
+    border-bottom: 1px solid #dfe1e6;
+    background-color: #eaecef;
+}
+
+.toolbarButton {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    color: #172b4d;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbarButton:hover,
+.activeButton {
+    background-color: #d1d5db;
+}
+
+.toolbarButton span {
+    font-size: 18px;
+}
+
+.editorContent {
+    min-height: 100px;
+    padding: 8px 10px;
+    color: #172b4d;
+    cursor: text;
+}
+
+.editorContent :global(.ProseMirror) {
+    min-height: 84px;
+    outline: none;
+    caret-color: #172b4d !important;
+}
+
+.editorContent :global(.ProseMirror p),
+.editorContent :global(.ProseMirror h2),
+.editorContent :global(.ProseMirror blockquote),
+.editorContent :global(.ProseMirror pre),
+.editorContent :global(.ProseMirror ul),
+.editorContent :global(.ProseMirror ol) {
+    margin: 0 0 8px;
+}
+
+.editorContent :global(.ProseMirror h2) {
+    font-size: 18px;
+}
+
+.editorContent :global(.ProseMirror ul),
+.editorContent :global(.ProseMirror ol) {
+    padding-left: 24px;
+}
+
+.editorContent :global(.ProseMirror blockquote) {
+    border-left: 3px solid #0086d3;
+    padding-left: 10px;
+    color: #5e6c84;
+}
+
+.editorContent :global(.ProseMirror pre) {
+    padding: 8px;
+    border-radius: 3px;
+    background-color: #172b4d;
+    color: #f4f5f7;
+    overflow-x: auto;
+}
+
+.editorContent :global(.ProseMirror a) {
+    color: #0065a8;
+    text-decoration: underline;
+}
+
+.editorContent :global(.ProseMirror p.is-editor-empty:first-child::before) {
+    content: attr(data-placeholder);
+    color: #5e6c84;
+    pointer-events: none;
+    float: left;
+    height: 0;
+}
+
+.readOnly {
+    border-color: transparent;
+}
+
+.readOnly .editorContent {
+    padding-left: 0;
+}

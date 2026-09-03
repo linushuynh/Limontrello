@@ -159,43 +159,70 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
 }
 ```
 
+## Fork and Contribute
+
+1. Open the [Limontrello repository](https://github.com/linushuynh/Limontrello) on GitHub and select **Fork**.
+2. Clone your fork and enter the project directory:
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/Limontrello.git
+    cd Limontrello
+    ```
+
+3. Add the original repository as `upstream` so you can sync future changes:
+
+    ```bash
+    git remote add upstream https://github.com/linushuynh/Limontrello.git
+    ```
+
+4. Create a feature branch, make your changes, and push it to your fork:
+
+    ```bash
+    git checkout -b your-feature-name
+    git add .
+    git commit -m "feat: describe your change"
+    git push -u origin your-feature-name
+    ```
+
+5. Open a pull request from your fork's branch to the Limontrello repository.
+
+To sync your local copy with the original repository:
+
+```bash
+git fetch upstream
+git checkout dev
+git merge upstream/dev
+```
+
 ## 💻 Run Limontrello on Local
 
 Clone the project
 
 ```bash
 git clone https://github.com/linushuynh/Limontrello.git
+cd Limontrello
 ```
 
-Install dependencies
+Install the backend and frontend dependencies:
 
 ```bash
+pipenv install -r requirements.txt
 cd react-app
 npm install
 cd ..
-pipenv install -r requirements.txt
-pipenv run
-flask db upgrade
-flask seed all
 ```
 
-Setup the Environment Variables
+Create a root `.env` file from `.env.example` and configure `SECRET_KEY`,
+`DATABASE_URL`, and `SCHEMA` for your local environment.
 
-To run this project, you will need to add a .env file in the root of your directory
-To do this, duplicate(copy/paste) the **.env.example** file in the root directory then rename the copy to **.env**
-Make sure the SECREY_KEY, DATABASE_URL, and SCHEMA are the same.
-
-Start the backend of the server
+Apply the database migrations and seed the local database:
 
 ```bash
-pipenv run flask run
+pipenv run flask db upgrade
+pipenv run flask seed all
 ```
 
-Open another terminal window(make sure you're in the root directory) then run
+The React development server proxies API requests to Flask at
+`http://localhost:5001`.
 
-```bash
-cd react-app
-npm start
-```
-
-**Then you can visit localhost:3000 to view your local version of Limontrello!**
+Open [http://localhost:3000](http://localhost:3000) to use the local app.

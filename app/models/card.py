@@ -8,7 +8,7 @@ class Card(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255))
+    description = db.Column(db.Text())
     list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
 
     list = db.relationship(

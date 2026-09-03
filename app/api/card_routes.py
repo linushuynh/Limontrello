@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Card, db, CardList
 from ..forms.card_form import CardForm
+from ..utils.rich_text import sanitize_rich_text
 from .auth_routes import validation_errors_to_error_messages, authorized
 
 card_routes = Blueprint('cards', __name__)
@@ -20,7 +21,7 @@ def create_card():
         data = form.data
         new_card = Card(
             title = data['title'],
-            description = data['description'],
+            description = sanitize_rich_text(data['description']),
             list_id = data['list_id']
         )
         db.session.add(new_card)
@@ -47,7 +48,7 @@ def update_card(card_id):
     if card and form.validate_on_submit():
         data = form.data
         card.title = data["title"]
-        card.description = data["description"]
+        card.description = sanitize_rich_text(data["description"])
         card.list_id = data["list_id"]
 
         db.session.commit()
