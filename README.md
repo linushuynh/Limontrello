@@ -165,37 +165,30 @@ Clone the project
 
 ```bash
 git clone https://github.com/linushuynh/Limontrello.git
+cd Limontrello
+git checkout rich-text
 ```
 
-Install dependencies
+Install the backend and frontend dependencies:
 
 ```bash
+pipenv install -r requirements.txt
 cd react-app
 npm install
 cd ..
-pipenv install -r requirements.txt
-pipenv run
-flask db upgrade
-flask seed all
 ```
 
-Setup the Environment Variables
+Create a root `.env` file from `.env.example` and configure `SECRET_KEY`,
+`DATABASE_URL`, and `SCHEMA` for your local environment.
 
-To run this project, you will need to add a .env file in the root of your directory
-To do this, duplicate(copy/paste) the **.env.example** file in the root directory then rename the copy to **.env**
-Make sure the SECREY_KEY, DATABASE_URL, and SCHEMA are the same.
-
-Start the backend of the server
+Apply the database migrations and seed the local database:
 
 ```bash
-pipenv run flask run
+pipenv run flask db upgrade
+pipenv run flask seed all
 ```
 
-Open another terminal window(make sure you're in the root directory) then run
+The React development server proxies API requests to Flask at
+`http://localhost:5001`.
 
-```bash
-cd react-app
-npm start
-```
-
-**Then you can visit localhost:3000 to view your local version of Limontrello!**
+Open [http://localhost:3000](http://localhost:3000) to use the local app.
