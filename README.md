@@ -159,6 +159,41 @@ const CreateCardForm = ({ listId, setShowAddCardModal }) => {
 }
 ```
 
+## Fork and Contribute
+
+1. Open the [Limontrello repository](https://github.com/linushuynh/Limontrello) on GitHub and select **Fork**.
+2. Clone your fork and enter the project directory:
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/Limontrello.git
+    cd Limontrello
+    ```
+
+3. Add the original repository as `upstream` so you can sync future changes:
+
+    ```bash
+    git remote add upstream https://github.com/linushuynh/Limontrello.git
+    ```
+
+4. Create a feature branch, make your changes, and push it to your fork:
+
+    ```bash
+    git checkout -b your-feature-name
+    git add .
+    git commit -m "feat: describe your change"
+    git push -u origin your-feature-name
+    ```
+
+5. Open a pull request from your fork's branch to the Limontrello repository.
+
+To sync your local copy with the original repository:
+
+```bash
+git fetch upstream
+git checkout dev
+git merge upstream/dev
+```
+
 ## 💻 Run Limontrello on Local
 
 Clone the project
@@ -166,7 +201,6 @@ Clone the project
 ```bash
 git clone https://github.com/linushuynh/Limontrello.git
 cd Limontrello
-git checkout rich-text
 ```
 
 Install the backend and frontend dependencies:
