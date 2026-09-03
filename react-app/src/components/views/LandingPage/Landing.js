@@ -72,11 +72,12 @@ const Landing = () => {
                                 <div>Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists to show their status.</div>
                             </div>
                         </button>
-                        <div className={styles.carousel_img}>
+                        {/* <div className={styles.carousel_img}>
 
-                        </div>
+                        </div> */}
                     </div>
                 </section>
+                
             </div>
 
             {/* Landing Navbar */}
