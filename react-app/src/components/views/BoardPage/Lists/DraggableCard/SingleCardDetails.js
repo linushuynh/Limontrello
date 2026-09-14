@@ -20,8 +20,8 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const [showEditCard, setShowEditCard] = useState(false)
 
     // Backtracking into store to find the list the card belongs in for display
-    const lists = useSelector(state => state.boards.selectedBoard.lists)
-    const selectedList = lists.find(list => list.id = card.list_id)
+    const lists = useSelector(state => state.boards.selectedBoard?.lists ?? [])
+    const selectedList = lists.find(list => list.id === card.list_id)
 
     // Setting default state for controlled inputs using card props
     const [title, setTitle] = useState(card.title)
