@@ -10,9 +10,8 @@ import { submitEdit, submitForm } from "./utils/submitFunctions.js";
 // Contexts and Thunks
 import { SubmittedContext } from "../../context/SubmittedContext";
 import { selectBoardAction } from "../../../store/board";
-import { getUserThunk } from "../../../store/session";
+import { setUser } from "../../../store/session";
 import { editCardThunk } from "../../../store/cards";
-import { loadListsAction } from "../../../store/list";
 
 // CSS import
 import styles from "./BoardView.module.css"
@@ -31,51 +30,132 @@ const BoardView = () => {
 
     // Toggle-able states and contexts for re-renders
     const [selectEdit, setSelectEdit] = useState(false)
-    const [loaded, setLoaded] = useState(false)
-    const { hasSubmitted, setHasSubmitted } = useContext(SubmittedContext)
+    const { setHasSubmitted } = useContext(SubmittedContext)
 
     // Grabbing current user and locating board data using url parameter
     const currentUser = useSelector(state => state.session.user)
-    let board = currentUser.boards.find(b => +b.id === +boardId)
+    let board = currentUser?.boards?.find(b => +b.id === +boardId)
 
     // Extracting data from current users's boards
     const [name, setName] = useState(board?.name)
     let lists = board?.lists
 
+    const parseCardOrder = (orderValue) => {
+        if (!orderValue) {
+            return []
+        }
+
+        try {
+            const parsed = JSON.parse(orderValue)
+            return Array.isArray(parsed) ? parsed : []
+        } catch (error) {
+            return []
+        }
+    }
+
+    const applyOptimisticDragUpdate = (
+        sourceList,
+        destinationList,
+        grabbedCard,
+        sourceCardOrder,
+        destinationCardOrder,
+    ) => {
+        const optimisticUser = JSON.parse(JSON.stringify(currentUser))
+        const optimisticBoard = optimisticUser.boards.find(b => +b.id === +boardId)
+        const optimisticSourceList = optimisticBoard.lists.find(list => list.id === sourceList.id)
+        const optimisticDestinationList = optimisticBoard.lists.find(list => list.id === destinationList.id)
+
+        if (sourceList.id === destinationList.id) {
+            optimisticDestinationList.card_order = JSON.stringify(destinationCardOrder)
+            dispatch(setUser(optimisticUser))
+            return optimisticUser
+        }
+
+        const movedCard = optimisticSourceList.cards.find(card => +card.id === +grabbedCard.id)
+        movedCard.list_id = destinationList.id
+        optimisticSourceList.cards = optimisticSourceList.cards.filter(card => +card.id !== +grabbedCard.id)
+        optimisticSourceList.card_order = JSON.stringify(sourceCardOrder)
+
+        optimisticDestinationList.cards = [...optimisticDestinationList.cards, movedCard]
+        optimisticDestinationList.card_order = JSON.stringify(destinationCardOrder)
+
+        dispatch(setUser(optimisticUser))
+        return optimisticUser
+    }
+
+    const rollbackDragUpdate = (previousUser) => {
+        dispatch(setUser(previousUser))
+    }
+
+    useEffect(() => {
+        dispatch(selectBoardAction(board))
+    }, [dispatch, board])
+
     // After drag is let go, this function is run to update the new data
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
+
         // Return if card is dropped outside of droppable
         if (!destination) {
             return
         }
 
-        // If card is dropped in different list column, send thunk to move it
-        if (destination.droppableId !== source.droppableId) {
-            // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
-            let sourceList = lists.find(list => list.name === source.droppableId)
-            let destinationList = lists.find(list => list.name === destination.droppableId)
-            let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
+        const sourceList = lists.find(list => list.name === source.droppableId)
+        const destinationList = lists.find(list => list.name === destination.droppableId)
 
-            let input = {
+        if (!sourceList || !destinationList) {
+            return
+        }
+
+        const grabbedCard = sourceList.cards.find(card => card.id.toString() === draggableId.toString())
+        if (!grabbedCard) {
+            return
+        }
+
+        const sourceOrder = parseCardOrder(sourceList.card_order)
+        const destinationOrder = parseCardOrder(destinationList.card_order)
+
+        let destinationCardOrder = [...destinationOrder]
+        let sourceCardOrder = sourceOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+
+        const previousUser = JSON.parse(JSON.stringify(currentUser))
+
+        if (destination.droppableId === source.droppableId) {
+            destinationCardOrder = sourceOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+            destinationCardOrder.splice(destination.index, 0, grabbedCard.id)
+
+            const input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
                 listId: destinationList.id,
+                cardOrder: destinationCardOrder,
+                sourceCardOrder: null,
+                sourceListId: sourceList.id,
             }
-            setLoaded(false)
-            dispatch(editCardThunk(input, grabbedCard.id))
-            .then(() => setHasSubmitted(prevValue => !prevValue))
-        }
-    }
 
-    // Re-render new data when something is submitted
-    useEffect(() => {
-        dispatch(getUserThunk(currentUser.id))
-        dispatch(selectBoardAction(board))
-        dispatch(loadListsAction(lists))
-        setLoaded(true)
-    // eslint-disable-next-line
-    }, [dispatch, hasSubmitted])
+            applyOptimisticDragUpdate(sourceList, destinationList, grabbedCard, sourceCardOrder, destinationCardOrder)
+            dispatch(editCardThunk(input, grabbedCard.id))
+                .catch(() => rollbackDragUpdate(previousUser))
+            return
+        }
+
+        destinationCardOrder = [...destinationOrder]
+        destinationCardOrder = destinationCardOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+        destinationCardOrder.splice(destination.index, 0, grabbedCard.id)
+
+        const input = {
+            title: grabbedCard.title,
+            description: grabbedCard.description,
+            listId: destinationList.id,
+            cardOrder: destinationCardOrder,
+            sourceCardOrder: sourceCardOrder,
+            sourceListId: sourceList.id,
+        }
+
+        applyOptimisticDragUpdate(sourceList, destinationList, grabbedCard, sourceCardOrder, destinationCardOrder)
+        dispatch(editCardThunk(input, grabbedCard.id))
+            .catch(() => rollbackDragUpdate(previousUser))
+    }
 
     // If board does not exist for this user, Maybe redirect to 404 page later on
     if (!board) {
@@ -131,7 +211,6 @@ const BoardView = () => {
                                                         placeholder={provided.placeholder}
                                                         provided={provided}
                                                         isDraggingOver={snapshot.isDraggingOver}
-                                                        loaded={loaded}
                                                     >
                                                     </ListColumn>
                                                 </div>

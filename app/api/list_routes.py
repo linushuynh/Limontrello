@@ -1,10 +1,28 @@
+import json
+
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Card, db, CardList
+from app.models import Card, db, CardList, Board
 from ..forms import ListForm
 from .auth_routes import validation_errors_to_error_messages, authorized
 
 list_routes = Blueprint('lists', __name__)
+
+
+def _parse_order(value):
+    if isinstance(value, list):
+        return value
+    if not value:
+        return []
+    try:
+        parsed = json.loads(value)
+        return parsed if isinstance(parsed, list) else []
+    except Exception:
+        return []
+
+
+def _remove_id(order, target_id):
+    return [item for item in order if item != target_id]
 
 
 @list_routes.route("/<int:list_id>/cards")
@@ -44,6 +62,15 @@ def create_list():
         )
         db.session.add(new_list)
         db.session.commit()
+
+        board = Board.query.get(data['board_id'])
+        if board:
+            order = _parse_order(board.list_order)
+            if new_list.id not in order:
+                order.append(new_list.id)
+            board.list_order = json.dumps(order)
+            db.session.commit()
+
         return new_list.to_dict()
 
     return { 'errors' : validation_errors_to_error_messages(form.errors)}, 401
@@ -66,6 +93,8 @@ def update_list(list_id):
     if form.validate_on_submit():
         data = form.data
         selected_list.name = data['name']
+        if data.get('card_order') is not None:
+            selected_list.card_order = json.dumps(_parse_order(data['card_order']))
 
         db.session.commit()
         return selected_list.to_dict()
@@ -82,6 +111,11 @@ def delete_list(list_id):
     selected_list = CardList.query.get(list_id)
     if not selected_list:
         return { "error": "List couldn't be found" }, 404
+
+    board = selected_list.board
+    if board:
+        order = _parse_order(board.list_order)
+        board.list_order = json.dumps(_remove_id(order, selected_list.id))
 
     db.session.delete(selected_list)
     db.session.commit()

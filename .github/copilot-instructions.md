@@ -26,6 +26,7 @@
 - Start backend: `pipenv run flask run`
 - Start frontend: `cd react-app && npm start`
 - Production build: `cd react-app && npm run build`
+- If using a recent Node version with this older CRA/Webpack stack, build with: `cd react-app && NODE_OPTIONS=--openssl-legacy-provider npm run build`
 
 ## Validation
 - Check the affected route or component behavior after edits.
