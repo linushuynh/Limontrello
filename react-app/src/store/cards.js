@@ -76,7 +76,7 @@ export const deleteCardThunk = (cardId) => async (dispatch) => {
 }
 
 export const editCardThunk = (input, cardId) => async (dispatch) => {
-    const { title, description, listId } = input
+    const { title, description, listId, cardOrder, sourceCardOrder, sourceListId } = input
     const response = await fetch(`/api/cards/${cardId}`, {
         method: "PUT",
         headers: {
@@ -85,7 +85,11 @@ export const editCardThunk = (input, cardId) => async (dispatch) => {
         body: JSON.stringify({
             title,
             description,
-            list_id: listId
+            list_id: listId,
+            card_order: cardOrder,
+            source_card_order: sourceCardOrder,
+            source_list_id: sourceListId,
+            target_card_order: cardOrder
         })
     })
 

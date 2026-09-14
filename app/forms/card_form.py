@@ -7,3 +7,4 @@ class CardForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
     description = StringField('description')
     list_id = IntegerField('list_id', validators=[DataRequired()])
+    card_order = StringField('card_order')

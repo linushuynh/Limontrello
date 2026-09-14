@@ -32,6 +32,8 @@
   - `cd react-app && npm start`
 - Build the frontend for production:
   - `cd react-app && npm run build`
+- If using a recent Node version with this older CRA/Webpack stack, build with:
+  - `cd react-app && NODE_OPTIONS=--openssl-legacy-provider npm run build`
 
 ## Validation guidance
 - Prefer targeted validation after edits: run the relevant backend route tests or a focused frontend build if appropriate.
