@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Context and thunks
@@ -10,34 +10,26 @@ import styles from "./SingleCardDetails.module.css"
 
 // Other components
 import CommentForm from "../../../../forms/CommentForm";
+import RichTextEditor from "../../../../RichTextEditor";
 
 const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
     const dispatch = useDispatch()
-    const descriptionRef = useRef(null)
 
     // Setup for toggle-able context and states for re-renders
     const { setHasSubmitted } = useContext(SubmittedContext)
     const [showEditCard, setShowEditCard] = useState(false)
 
     // Backtracking into store to find the list the card belongs in for display
-    const lists = useSelector(state => state.boards.selectedBoard.lists)
-    const selectedList = lists.find(list => list.id = card.list_id)
+    const lists = useSelector(state => state.boards.selectedBoard?.lists ?? [])
+    const selectedList = lists.find(list => list.id === card.list_id)
 
     // Setting default state for controlled inputs using card props
     const [title, setTitle] = useState(card.title)
-    const [description, setDescription] = useState(card.description)
+    const [description, setDescription] = useState(card.description || "")
+    const [descriptionLength, setDescriptionLength] = useState(card.description?.length || 0)
 
     // Extracting comments from card for display
     const comments = card?.comments
-
-    // When edit mode is turned on, the re-render will auto-select the text box for user
-    useEffect(() => {
-        if (showEditCard) {
-            descriptionRef.current.focus()
-            descriptionRef.current.setSelectionRange(description.length, description.length)
-        }
-    // eslint-disable-next-line
-    }, [showEditCard])
 
     // Function to call thunk to send new edits to database
     const submitEditDescription = (e) => {
@@ -50,6 +42,12 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
         dispatch(editCardThunk(input, card.id))
         .then(() => setHasSubmitted(prev => !prev))
         .then(() => setShowEditCard(false))
+    }
+
+    const handleDescriptionBlur = (e) => {
+        if (showEditCard && !e.currentTarget.contains(e.relatedTarget)) {
+            submitEditDescription(e)
+        }
     }
 
     // Function to call thunk to delete card from database
@@ -100,21 +98,19 @@ const SingleCardDetails = ({ card, setShowCardDetailsModal}) => {
                                 </div>
                             )}
                             </div>
-                            {/* Form to submit any edits on the Description property of the card */}
-                            <form onSubmit={submitEditDescription}>
-                                <textarea
-                                    value={description}
-                                    onChange={e => setDescription(e.target.value)}
-                                    onClick={() => setShowEditCard(true)}
-                                    onBlur={submitEditDescription}
-                                    ref={descriptionRef}
-                                    id={styles.descriptionBox}
-                                    maxLength={255}
-                                    placeholder={"Give this card a description..."}
+                            <form onSubmit={submitEditDescription} onBlur={handleDescriptionBlur}>
+                                <div onClick={() => setShowEditCard(true)}>
+                                    <RichTextEditor
+                                        value={description}
+                                        onChange={setDescription}
+                                        onTextChange={setDescriptionLength}
+                                        editable={showEditCard}
+                                        placeholder="Give this card a description..."
                                     />
+                                </div>
                                 <div className={showEditCard ? styles.editFooter : styles.noShow }>
                                     <button className={styles.saveButton} type='submit'>Save</button>
-                                    <div className={styles.charCount}>{description.length}/255 characters</div>
+                                    <div className={styles.charCount}>{descriptionLength}/5000 characters</div>
                                 </div>
                             </form>
                         </div>
