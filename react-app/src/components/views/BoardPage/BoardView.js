@@ -42,30 +42,81 @@ const BoardView = () => {
     const [name, setName] = useState(board?.name)
     let lists = board?.lists
 
+    const parseCardOrder = (orderValue) => {
+        if (!orderValue) {
+            return []
+        }
+
+        try {
+            const parsed = JSON.parse(orderValue)
+            return Array.isArray(parsed) ? parsed : []
+        } catch (error) {
+            return []
+        }
+    }
+
     // After drag is let go, this function is run to update the new data
     const onDragEnd = result => {
         const { destination, source, draggableId } = result
+
         // Return if card is dropped outside of droppable
         if (!destination) {
             return
         }
 
-        // If card is dropped in different list column, send thunk to move it
-        if (destination.droppableId !== source.droppableId) {
-            // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
-            let sourceList = lists.find(list => list.name === source.droppableId)
-            let destinationList = lists.find(list => list.name === destination.droppableId)
-            let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
+        const sourceList = lists.find(list => list.name === source.droppableId)
+        const destinationList = lists.find(list => list.name === destination.droppableId)
 
-            let input = {
+        if (!sourceList || !destinationList) {
+            return
+        }
+
+        const grabbedCard = sourceList.cards.find(card => card.id.toString() === draggableId.toString())
+        if (!grabbedCard) {
+            return
+        }
+
+        const sourceOrder = parseCardOrder(sourceList.card_order)
+        const destinationOrder = parseCardOrder(destinationList.card_order)
+
+        let destinationCardOrder = [...destinationOrder]
+        let sourceCardOrder = sourceOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+
+        if (destination.droppableId === source.droppableId) {
+            destinationCardOrder = sourceOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+            destinationCardOrder.splice(destination.index, 0, grabbedCard.id)
+
+            const input = {
                 title: grabbedCard.title,
                 description: grabbedCard.description,
                 listId: destinationList.id,
+                cardOrder: destinationCardOrder,
+                sourceCardOrder: null,
+                sourceListId: sourceList.id,
             }
+
             setLoaded(false)
             dispatch(editCardThunk(input, grabbedCard.id))
-            .then(() => setHasSubmitted(prevValue => !prevValue))
+                .then(() => setHasSubmitted(prevValue => !prevValue))
+            return
         }
+
+        destinationCardOrder = [...destinationOrder]
+        destinationCardOrder = destinationCardOrder.filter(cardId => Number(cardId) !== Number(grabbedCard.id))
+        destinationCardOrder.splice(destination.index, 0, grabbedCard.id)
+
+        const input = {
+            title: grabbedCard.title,
+            description: grabbedCard.description,
+            listId: destinationList.id,
+            cardOrder: destinationCardOrder,
+            sourceCardOrder: sourceCardOrder,
+            sourceListId: sourceList.id,
+        }
+
+        setLoaded(false)
+        dispatch(editCardThunk(input, grabbedCard.id))
+            .then(() => setHasSubmitted(prevValue => !prevValue))
     }
 
     // Re-render new data when something is submitted

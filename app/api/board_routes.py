@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Board, db, CardList
@@ -5,6 +7,22 @@ from ..forms.board_form import BoardForm
 from .auth_routes import validation_errors_to_error_messages, authorized
 
 board_routes = Blueprint('boards', __name__)
+
+
+def _parse_order(value):
+    if isinstance(value, list):
+        return value
+    if not value:
+        return []
+    try:
+        parsed = json.loads(value)
+        return parsed if isinstance(parsed, list) else []
+    except Exception:
+        return []
+
+
+def _remove_id(order, target_id):
+    return [item for item in order if item != target_id]
 
 
 @board_routes.route('', methods=["GET"])
@@ -46,20 +64,26 @@ def create_board():
         if len(new_board.lists) < 1:
             new_list1 = CardList(
                 name = "To-Do",
-                board_id = new_board.id
+                board_id = new_board.id,
+                card_order = '[]'
             )
             new_list2 = CardList(
                 name = "In Progress",
-                board_id = new_board.id
+                board_id = new_board.id,
+                card_order = '[]'
             )
             new_list3 = CardList(
                 name = "Complete",
-                board_id = new_board.id
+                board_id = new_board.id,
+                card_order = '[]'
             )
             new_board.lists.append(new_list1)
             new_board.lists.append(new_list2)
             new_board.lists.append(new_list3)
             db.session.add(new_board)
+            db.session.commit()
+
+            new_board.list_order = json.dumps([new_list1.id, new_list2.id, new_list3.id])
             db.session.commit()
 
         return new_board.to_dict()
@@ -88,6 +112,8 @@ def update_board(board_id):
         board.name = data["name"]
         board.background = data["background"]
         board.private = data["private"]
+        if data.get('list_order') is not None:
+            board.list_order = json.dumps(_parse_order(data['list_order']))
         db.session.commit()
 
         return board.to_dict()

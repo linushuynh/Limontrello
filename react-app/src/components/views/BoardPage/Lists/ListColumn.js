@@ -34,6 +34,26 @@ const ListColumn = ({ list, provided, isDraggingOver }) => {
     const cardsArr = useSelector(state => Object.values(state.cards))
     let cards = cardsArr.filter(card => card.list_id === list.id)
 
+    const parseCardOrder = (orderValue) => {
+        if (!orderValue) return []
+
+        try {
+            const parsed = JSON.parse(orderValue)
+            return Array.isArray(parsed) ? parsed : []
+        } catch (error) {
+            return []
+        }
+    }
+
+    const orderedCardIds = parseCardOrder(list.card_order)
+    const orderedCards = orderedCardIds
+        .map((cardId) => cards.find((card) => Number(card.id) === Number(cardId)))
+        .filter(Boolean)
+
+    const remainingCards = cards.filter((card) => !orderedCardIds.some((cardId) => Number(card.id) === Number(cardId)))
+    const orderedListCards = [...orderedCards, ...remainingCards]
+    cards = orderedListCards
+
     // Controlled inputs
     const [name, setName] = useState(list.name)
 
