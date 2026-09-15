@@ -34,6 +34,7 @@ const BoardView = () => {
 
     // Grabbing current user and locating board data using url parameter
     const currentUser = useSelector(state => state.session.user)
+    const cards = useSelector(state => Object.values(state.cards))
     let board = currentUser?.boards?.find(b => +b.id === +boardId)
 
     // Extracting data from current users's boards
@@ -100,7 +101,7 @@ const BoardView = () => {
             return optimisticUser
         }
 
-        const movedCard = optimisticSourceList.cards.find(card => +card.id === +grabbedCard.id)
+        const movedCard = optimisticSourceList.cards.find(card => +card.id === +grabbedCard.id) || grabbedCard
         movedCard.list_id = destinationList.id
         optimisticSourceList.cards = optimisticSourceList.cards.filter(card => +card.id !== +grabbedCard.id)
         optimisticSourceList.card_order = JSON.stringify(sourceCardOrder)
@@ -136,7 +137,9 @@ const BoardView = () => {
             return
         }
 
-        const grabbedCard = sourceList.cards.find(card => card.id.toString() === draggableId.toString())
+        const grabbedCard = cards.find(card => (
+            card.list_id === sourceList.id && card.id.toString() === draggableId.toString()
+        ))
         if (!grabbedCard) {
             return
         }
