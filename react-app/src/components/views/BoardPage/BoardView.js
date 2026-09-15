@@ -38,7 +38,36 @@ const BoardView = () => {
 
     // Extracting data from current users's boards
     const [name, setName] = useState(board?.name)
-    let lists = board?.lists
+
+    const parseListOrder = (orderValue) => {
+        if (!orderValue) {
+            return []
+        }
+
+        try {
+            const parsed = JSON.parse(orderValue)
+            return Array.isArray(parsed) ? parsed : []
+        } catch (error) {
+            return []
+        }
+    }
+
+    const orderedLists = (() => {
+        if (!board?.lists) {
+            return []
+        }
+
+        const persistedOrder = parseListOrder(board.list_order)
+        const listMap = new Map(board.lists.map(list => [Number(list.id), list]))
+        const ordered = persistedOrder
+            .map(listId => listMap.get(Number(listId)))
+            .filter(Boolean)
+
+        const remaining = board.lists.filter(list => !persistedOrder.some(listId => Number(listId) === Number(list.id)))
+        return [...ordered, ...remaining]
+    })()
+
+    let lists = orderedLists
 
     const parseCardOrder = (orderValue) => {
         if (!orderValue) {
@@ -201,7 +230,7 @@ const BoardView = () => {
 
                                 {/* Iterate and display all the current board's lists as droppables */}
                                 <div className={styles.listsContainer}>
-                                    {lists.map((list) => (
+                                    {orderedLists.map((list) => (
                                         <Droppable droppableId={list.name} key={`${list.id}${list.name}`}>
                                             {(provided, snapshot) => (
                                                 <div key={list.id} >
